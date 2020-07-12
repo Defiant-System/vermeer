@@ -1,0 +1,18 @@
+<MenuBar>
+	<Menu name="Film Simulator">
+		<Menu name="About Film Simulator"/>
+		<Menu type="divider"/>
+		<Menu name="New Game" click="restart"/>
+		<Menu type="divider"/>
+		<Menu name="Hide Film Simulator"/>
+		<Menu name="Hide Others"/>
+		<Menu name="Show All" disabled="1"/>
+		<Menu type="divider"/>
+		<Menu name="Quit Film Simulator" shell="win -c"/>
+	</Menu>
+	<Menu name="Help">
+		<Menu name="Help" click="open-help"/>
+		<Menu type="divider"/>
+		<Menu name="Source Code"/>
+	</Menu>
+</MenuBar>

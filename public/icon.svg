@@ -1,0 +1,69 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+	<g filter="url(#defapp-filter-1)">
+		<path fill="url(#defapp_1_)" stroke="url(#defapp_2_)" stroke-width="19.1304" stroke-miterlimit="10" d="M470,420 c0,24.302-19.7,44-44,44H74c-24.301,0-44-19.698-44-44V68c0-24.299,19.699-44,44-44h352c24.3,0,44,19.701,44,44V420z"/>
+	</g>
+	<g filter="url(#defapp-filter-2)">
+		<g fill="#e9e9e9" filter="url(#defapp-inset-shadow-2)">
+			<path filter="url(#defapp-inset-shadow-1)" d="M394.792,282.16h-54.833l-59.752-103.674c-14.602,9.015-22.181,41.812-12.492,58.678l82.013,142.304 c5.532,9.601,17.801,12.896,27.403,7.363c9.597-5.531,12.896-17.803,7.361-27.401l-21.405-37.143h31.705 c11.082,0,20.063-8.984,20.063-20.064C414.855,291.144,405.874,282.16,394.792,282.16z"/>
+			<path filter="url(#defapp-inset-shadow-1)" d="M270.064,282.16h-63.821l88.983-153.318c5.561-9.581,2.3-21.862-7.28-27.422 c-9.586-5.565-21.867-2.3-27.427,7.281l-10.302,17.751l-10.326-17.918c-5.531-9.599-17.802-12.896-27.401-7.365 c-9.603,5.533-12.898,17.804-7.365,27.403l21.856,37.917L159.849,282.16h-54.64c-11.08,0-20.063,8.983-20.063,20.062 c0,11.08,8.983,20.064,20.063,20.064h186.256C302.833,310.917,291.132,283.497,270.064,282.16z"/>
+			<path filter="url(#defapp-inset-shadow-1)" d="M129.271,334.846l-14.111,24.312c-5.561,9.585-2.3,21.862,7.283,27.427 c9.583,5.559,21.863,2.301,27.425-7.284l19.139-32.978C161.052,329.645,135.612,331.354,129.271,334.846z"/>
+		</g>
+	</g>
+	<defs>
+		<linearGradient id="defapp_1_" gradientUnits="userSpaceOnUse" x1="250" y1="24" x2="250" y2="464.0005">
+			<stop offset="0" style="stop-color:#2AC8FA"/>
+			<stop offset="1" style="stop-color:#1F66EB"/>
+		</linearGradient>
+		<linearGradient id="defapp_2_" gradientUnits="userSpaceOnUse" x1="250" y1="14.4346" x2="250" y2="473.5659">
+			<stop offset="0" style="stop-color:#eee"/>
+			<stop offset="1" style="stop-color:#bbb"/>
+		</linearGradient>
+		<filter filterUnits="objectBoundingBox" id="defapp-filter-1">
+			<feOffset dx="0" dy="5" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
+			<feGaussianBlur stdDeviation="5" in="defappShadowOffsetOuter1" result="defappShadowBlurOuter1"></feGaussianBlur>
+			<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>
+			<feMerge>
+				<feMergeNode in="defappShadowMatrixOuter1"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		<filter filterUnits="objectBoundingBox" id="defapp-filter-2">
+			<feOffset dx="0" dy="4" in="SourceAlpha" result="defappShadowOffsetOuter2"></feOffset>
+			<feGaussianBlur stdDeviation="4" in="defappShadowOffsetOuter2" result="defappShadowBlurOuter2"></feGaussianBlur>
+			<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="defappShadowBlurOuter2" result="defappShadowMatrixOuter2"></feColorMatrix>
+			<feMerge>
+				<feMergeNode in="defappShadowMatrixOuter2"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		<filter id="defapp-inset-shadow-1">
+			<feComponentTransfer in="SourceAlpha">
+				<feFuncA type="table" tableValues="1 0"/>
+			</feComponentTransfer>
+			<feGaussianBlur stdDeviation="7"/>
+			<feOffset dx="-3" dy="-3" result="offsetblur"/>
+			<feFlood flood-color="#444" result="color"/>
+			<feComposite in2="offsetblur" operator="in"/>
+			<feComposite in2="SourceAlpha" operator="in"/>
+			<feMerge>
+				<feMergeNode in="SourceGraphic"/>
+				<feMergeNode />
+			</feMerge>
+		</filter>
+		<filter id="defapp-inset-shadow-2">
+			<feComponentTransfer in="SourceAlpha">
+				<feFuncA type="table" tableValues="1 0"/>
+			</feComponentTransfer>
+			<feGaussianBlur stdDeviation="5"/>
+			<feOffset dx="3" dy="3" result="offsetblur"/>
+			<feFlood flood-color="#fff" result="color"/>
+			<feComposite in2="offsetblur" operator="in"/>
+			<feComposite in2="SourceAlpha" operator="in"/>
+			<feMerge>
+				<feMergeNode in="SourceGraphic"/>
+				<feMergeNode />
+			</feMerge>
+		</filter>
+	</defs>
+</svg>

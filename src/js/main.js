@@ -1,4 +1,7 @@
 
+// import * as ImageProcessing from "./modules/image-processing";
+// console.log( ImageProcessing );
+
 const filmsim = {
 	init() {
 		// fast references

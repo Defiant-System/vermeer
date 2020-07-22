@@ -1,11 +1,13 @@
 
+defiant.require("classes/file.js")
+
+defiant.require("modules/misc.js")
 defiant.require("modules/files.js")
 defiant.require("modules/projector.js");
 defiant.require("modules/exif.min.js");
 
 import { loadImage } from "./modules/image-helpers";
 import { Editor } from "./classes/editor";
-import { File } from "./classes/file";
 
 const vermeer = {
 	init() {

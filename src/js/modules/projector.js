@@ -24,10 +24,11 @@ const Projector = {
 		// reset canvases
 		this.swap.cvs.prop({ width: window.width, height: window.height });
 		
+		this.swap.ctx.fillStyle = "#fff";
 		this.swap.ctx.shadowOffsetX = 0;
 		this.swap.ctx.shadowOffsetY = 1;
 		this.swap.ctx.shadowBlur = 5;
-		this.swap.ctx.shadowColor = "#292929";
+		this.swap.ctx.shadowColor = "#aaa";
 		this.swap.ctx.fillRect(oX, oY, w, h);
 		this.frame = this.swap.ctx.getImageData(0, 0, window.width, window.height);
 	},
@@ -57,7 +58,7 @@ const Projector = {
 		this.ctx.putImageData(this.frame, 0, 0);
 		this.ctx.translate(file.oX, file.oY);
 		this.ctx.imageSmoothingEnabled = false;
-		//this.ctx.drawImage(file.img, 0, 0, file.w, file.h);
+		this.ctx.drawImage(file.img, 0, 0, file.w, file.h);
 		this.ctx.restore();
 	}
 };

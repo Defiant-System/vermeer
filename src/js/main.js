@@ -1,11 +1,19 @@
 
-// import * as ImageProcessing from "./modules/image-processing";
-// console.log( ImageProcessing );
+defiant.require("modules/exif.min.js");
 
-const filmsim = {
-	init() {
+import { loadImage } from "./modules/image-helpers";
+import { Editor } from "./classes/editor";
+
+const vermeer = {
+	async init() {
 		// fast references
 		this.content = window.find("content");
+
+		let cvs = window.find("canvas")[0];
+		this.editor = new Editor(cvs);
+
+		let img = await loadImage("~/images/svetlana-pochatun.jpg");
+		this.editor.setImage(img);
 	},
 	dispatch(event) {
 		switch (event.type) {
@@ -15,4 +23,4 @@ const filmsim = {
 	}
 };
 
-window.exports = filmsim;
+window.exports = vermeer;

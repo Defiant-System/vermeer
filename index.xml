@@ -1,11 +1,14 @@
 <Application>
+	<Build>
+		<task action="skip" source="src/js/modules/worker.js" destination="public/js/worker.js"/>
+	</Build>
 	<Head>
-		<meta name="id" value="filmsim"/>
-		<meta name="title" value="Film Simulator" version="1.0"/>
+		<meta name="id" value="vermeer"/>
+		<meta name="title" value="Vermeer" version="1.0"/>
 		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
 		<meta name="license" value="AGPL-3.0"/>
-		<meta name="width" value="600"/>
-		<meta name="height" value="400"/>
+		<meta name="width" value="700"/>
+		<meta name="height" value="820"/>
 		<meta name="top" value="120"/>
 		<meta name="left" value="120"/>
 		<meta name="minimize"/>

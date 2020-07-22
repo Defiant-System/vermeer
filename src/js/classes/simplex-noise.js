@@ -8,7 +8,7 @@
  *
  */
  
-class SimplexNoise {
+export class SimplexNoise {
 	constructor(randomOrSeed) {
 		this.F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
 		this.G2 = (3.0 - Math.sqrt(3.0)) / 6.0;

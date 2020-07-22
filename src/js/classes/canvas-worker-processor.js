@@ -9,7 +9,7 @@ export default class CanvasWorkerProcessor extends CanvasProcessor {
 	}
 
 	static isSupported() {
-		return !!document.createElement("canvas").getContext && window.Worker && !navigator.userAgent.match("MSIE 10");
+		return !!document.createElement("canvas").getContext && window.Worker;
 	}
 
 	static supportedOptions() {

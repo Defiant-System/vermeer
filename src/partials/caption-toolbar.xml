@@ -1,0 +1,14 @@
+<CaptionToolBar>
+	<Group width="17%">
+		
+	</Group>
+	<Group>
+		<Options>
+			<Tool name="Library"  state="active"/>
+			<Tool name="Develop" />
+		</Options>
+	</Group>
+	<Group width="25%">
+		
+	</Group>
+</CaptionToolBar>

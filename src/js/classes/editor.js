@@ -8,19 +8,19 @@ import clut from "../modules/clut";
 
 
 export class Editor {
-	constructor(cvs) {
+	constructor() {
+		let { cvs, ctx } = createCanvas();
 		this.outputCanvas = cvs;
 		this.processorCanvas = createCanvas().cvs;
 		this.processor = this.getSupportedProcessor(this.processorCanvas);
+
 		this.inputImage = null;
 		this.scaledImage = null;
-
 		this.lastOptions = 0;
 		this.lastWidth = 0;
 		this.lastHeight = 0;
 		this.lastImage = null;
 		this.highQualityPreview = false;
-
 		this.renderPending = false;
 		this.renderInProgress = false;
 	}
@@ -31,9 +31,9 @@ export class Editor {
 		this.render();
 	}
 
-	getSupportedProcessor(canvas) {
+	getSupportedProcessor(cvs) {
 		let Processor = [CanvasWorkerProcessor, CanvasProcessor].find(p => p.isSupported());
-		return new Processor(canvas);
+		return new Processor(cvs);
 	}
 
 	getCanvasSize(image) {

@@ -7,8 +7,8 @@
 		<meta name="title" value="Vermeer" version="1.0"/>
 		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
 		<meta name="license" value="AGPL-3.0"/>
-		<meta name="width" value="700"/>
-		<meta name="height" value="820"/>
+		<meta name="width" value="980"/>
+		<meta name="height" value="640"/>
 		<meta name="top" value="120"/>
 		<meta name="left" value="120"/>
 		<meta name="minimize"/>
@@ -19,5 +19,6 @@
 		<meta name="content" value="src/partials/content.htm"/>
 
 		@import "src/partials/menubar.xml"
+		@import "src/partials/caption-toolbar.xml"
 	</Head>
 </Application>

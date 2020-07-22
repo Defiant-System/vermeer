@@ -1,9 +1,8 @@
 
 export function createCanvas(w, h) {
-	let cvs = document.createElement("canvas"),
-		ctx = cvs.getContext("2d");
-	cvs.width = w || 1;
-	cvs.height = h || 1;
+	let cvs = $(document.createElement("canvas")),
+		ctx = cvs[0].getContext("2d");
+	cvs.prop({ width: w || 1, height: h || 1 });
 	return { cvs, ctx };
 }
 
@@ -26,7 +25,7 @@ export function getImageData(img) {
 export function scaleImage(img, w, h) {
 	let { cvs, ctx } = createCanvas(w, h);
 	ctx.drawImage(img, 0, 0, w, h);
-	return cvs;
+	return cvs[0];
 }
 
 // results in a much smoother image
@@ -45,27 +44,25 @@ export function exifOrient(img, orientation) {
 		h = ~~(img.naturalHeight || img.height),
 		{ cvs, ctx } = createCanvas(w, h),
 		rotate = n => {
-			ctx.translate(cvs.width/2, cvs.height/2);
+			ctx.translate(cvs[0].width/2, cvs[0].height/2);
 			ctx.rotate(Math.PI*n);
-			ctx.translate(-cvs.width/2, -cvs.height/2);
+			ctx.translate(-cvs[0].width/2, -cvs[0].height/2);
 		};
 
 	// set dimensions
 	if (orientation < 5) {
-		cvs.width = w;
-		cvs.height = h;
+		cvs.prop({ width: w, height: h });
 	} else {
-		cvs.width = h;
-		cvs.height = w;
+		cvs.prop({ width: h, height: w });
 	}
 	// flip x
 	if (orientation == 2 || orientation == 5 || orientation == 7) {
-		ctx.translate(cvs.width, 0);
+		ctx.translate(cvs.width(), 0);
 		ctx.scale(-1, 1);
 	}
 	// flip y
 	if (orientation == 4) {
-		ctx.translate(0, cvs.height);
+		ctx.translate(0, cvs.height());
 		ctx.scale(1, -1);
 	}
 
@@ -80,12 +77,14 @@ export function exifOrient(img, orientation) {
 	}
 	// move it back to the corner
 	if (orientation > 4) {
-		let o = (cvs.width - cvs.height)/2;
+		let o = (cvs.width() - cvs.height())/2;
 		ctx.translate(o, -o);
 	}
 
 	ctx.drawImage(img, 0, 0);
-	cvs.naturalWidth = cvs.width;
-	cvs.naturalHeight = cvs.height;
-	return c;
+	cvs.prop({
+		naturalWidth: cvs.width(),
+		naturalHeight: cvs.height(),
+	});
+	return cvs;
 }

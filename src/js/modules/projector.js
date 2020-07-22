@@ -22,7 +22,7 @@ const Projector = {
 			oY = file.oY || Math.round(this.cY - (h / 2));
 		
 		// reset canvases
-		this.swap.cvs.prop({ width: window.width, height: window.height });
+		this.swap.cvs.prop({ width: window.innerWidth, height: window.innerHeight });
 		
 		this.swap.ctx.fillStyle = "#fff";
 		this.swap.ctx.shadowOffsetX = 0;
@@ -52,7 +52,7 @@ const Projector = {
 		// reference to displayed file
 		let file = this.file;
 		// reset canvas
-		this.cvs.prop({ width: window.width, height: window.height });
+		this.cvs.prop({ width: window.innerWidth, height: window.innerHeight });
 
 		this.ctx.save();
 		this.ctx.putImageData(this.frame, 0, 0);

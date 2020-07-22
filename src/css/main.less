@@ -30,4 +30,93 @@ content {
 			backdrop-filter: blur(21px);
 		}
 	}
+
+	.knob {
+		position: relative;
+		display: inline-block;
+		width: 34px;
+		height: 34px;
+		margin: 1px 3px 0;
+		background: url(~/icons/knob.png) 0 -13px no-repeat;
+		background-size: 100% auto;
+		text-transform: uppercase;
+		text-align: center;
+		font-size: 10px;
+		font-weight: 100;
+		color: #69e;
+		text-shadow: 0 0 0;
+		//background-color: rgba(0,0,0,.1);
+
+		&[data-label]:before {
+			content: attr(data-label);
+			position: absolute;
+			bottom: -3px;
+			left: 0;
+			right: 0;
+			z-index: 3;
+			pointer-events: none;
+		}
+
+		&[data-title]:before {
+			content: attr(data-title);
+			position: absolute;
+			bottom: -11px;
+			left: -11px;
+			right: -11px;
+			z-index: 3;
+			pointer-events: none;
+		}
+
+		&[data-value="0"], &[data-value="1"] { background-position: 0 -13px; } 
+		&[data-value="2"], &[data-value="3"] { background-position: 0 -47px; }
+		&[data-value="4"], &[data-value="5"] { background-position: 0 -81px; }
+		&[data-value="6"], &[data-value="7"] { background-position: 0 -115px; }
+		&[data-value="8"], &[data-value="9"] { background-position: 0 -149px; }
+		&[data-value="10"], &[data-value="11"] { background-position: 0 -183px; }
+		&[data-value="12"], &[data-value="13"] { background-position: 0 -217px; }
+		&[data-value="14"], &[data-value="15"] { background-position: 0 -251px; }
+		&[data-value="16"], &[data-value="17"] { background-position: 0 -285px; }
+		&[data-value="18"], &[data-value="19"] { background-position: 0 -319px; }
+		&[data-value="20"], &[data-value="21"] { background-position: 0 -353px; }
+		&[data-value="22"], &[data-value="23"] { background-position: 0 -387px; }
+		&[data-value="24"], &[data-value="25"] { background-position: 0 -421px; }
+		&[data-value="26"], &[data-value="27"] { background-position: 0 -455px; }
+		&[data-value="28"], &[data-value="29"] { background-position: 0 -489px; }
+		&[data-value="30"], &[data-value="31"] { background-position: 0 -523px; }
+		&[data-value="32"], &[data-value="33"] { background-position: 0 -557px; }
+		&[data-value="34"], &[data-value="35"] { background-position: 0 -591px; }
+		&[data-value="36"], &[data-value="37"] { background-position: 0 -625px; }
+		&[data-value="38"], &[data-value="39"] { background-position: 0 -659px; }
+		&[data-value="40"], &[data-value="41"] { background-position: 0 -693px; }
+		&[data-value="42"], &[data-value="43"] { background-position: 0 -727px; }
+		&[data-value="44"], &[data-value="45"] { background-position: 0 -761px; }
+		&[data-value="46"], &[data-value="47"] { background-position: 0 -795px; }
+		&[data-value="48"], &[data-value="49"] { background-position: 0 -829px; }
+		&[data-value="50"], &[data-value="51"] { background-position: 0 -863px; }
+		&[data-value="52"], &[data-value="53"] { background-position: 0 -897px; }
+		&[data-value="54"], &[data-value="55"] { background-position: 0 -931px; }
+		&[data-value="56"], &[data-value="57"] { background-position: 0 -965px; }
+		&[data-value="58"], &[data-value="59"] { background-position: 0 -999px; }
+		&[data-value="60"], &[data-value="61"] { background-position: 0 -1033px; }
+		&[data-value="62"], &[data-value="63"] { background-position: 0 -1067px; }
+		&[data-value="64"], &[data-value="65"] { background-position: 0 -1101px; }
+		&[data-value="66"], &[data-value="67"] { background-position: 0 -1135px; }
+		&[data-value="68"], &[data-value="69"] { background-position: 0 -1169px; }
+		&[data-value="70"], &[data-value="71"] { background-position: 0 -1203px; }
+		&[data-value="72"], &[data-value="73"] { background-position: 0 -1237px; }
+		&[data-value="74"], &[data-value="75"] { background-position: 0 -1271px; }
+		&[data-value="76"], &[data-value="77"] { background-position: 0 -1305px; }
+		&[data-value="78"], &[data-value="79"] { background-position: 0 -1339px; }
+		&[data-value="80"], &[data-value="81"] { background-position: 0 -1373px; }
+		&[data-value="82"], &[data-value="83"] { background-position: 0 -1407px; }
+		&[data-value="84"], &[data-value="85"] { background-position: 0 -1441px; }
+		&[data-value="86"], &[data-value="87"] { background-position: 0 -1475px; }
+		&[data-value="88"], &[data-value="89"] { background-position: 0 -1509px; }
+		&[data-value="90"], &[data-value="91"] { background-position: 0 -1543px; }
+		&[data-value="92"], &[data-value="93"] { background-position: 0 -1577px; }
+		&[data-value="94"], &[data-value="95"] { background-position: 0 -1611px; }
+		&[data-value="96"], &[data-value="97"] { background-position: 0 -1645px; }
+		&[data-value="98"], &[data-value="99"] { background-position: 0 -1679px; }
+		&[data-value="100"] { background-position: 0 -1713px; }
+	}
 }

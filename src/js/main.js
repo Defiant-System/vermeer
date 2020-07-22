@@ -2,6 +2,7 @@
 defiant.require("classes/file.js")
 
 defiant.require("modules/misc.js")
+defiant.require("modules/ui.js")
 defiant.require("modules/files.js")
 defiant.require("modules/projector.js");
 defiant.require("modules/exif.min.js");
@@ -14,6 +15,7 @@ const vermeer = {
 		// fast references
 		this.content = window.find("content");
 
+		UI.init();
 		Files.init();
 		Projector.init();
 

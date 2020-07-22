@@ -6,6 +6,18 @@ content {
 	right: 0;
 	bottom: 0;
 
+	&.no-cursor:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 999;
+		background: transparent;
+		cursor: none;
+	}
+
 	.cvs-wrapper {
 		height: 0;
 
@@ -25,9 +37,40 @@ content {
 			top: 0;
 			bottom: 0;
 			right: 0;
-			width: 257px;
+			width: 227px;
 			background-color: rgba(#889,.25);
 			backdrop-filter: blur(21px);
+			padding: 6px 8px;
+			font-size: 0;
+
+			.control {
+				background: rgba(0,0,0,.05);
+				display: inline-block;
+				width: 67px;
+				//height: 85px;
+				border-radius: 5px;
+				margin: 0 5px 5px 0;
+				padding: 5px 3px;
+				font-size: 11px;
+				text-align: center;
+
+				&:nth-child(3n) {
+					margin-right: 0;
+				}
+
+				.knob,
+				.pan-knob {
+					margin: 11px 0 3px;
+				}
+
+				span {
+					display: block;
+
+					&:nth-child(1) {
+						color: #666;
+					}
+				}
+			}
 		}
 	}
 
@@ -118,5 +161,77 @@ content {
 		&[data-value="96"], &[data-value="97"] { background-position: 0 -1645px; }
 		&[data-value="98"], &[data-value="99"] { background-position: 0 -1679px; }
 		&[data-value="100"] { background-position: 0 -1713px; }
+	}
+
+	.pan-knob {
+		position: relative;
+		display: inline-block;
+		width: 34px;
+		height: 34px;
+		margin: 1px 3px 0;
+		background: url(~/icons/pan-knob.png) no-repeat;
+		background-size: 100% auto;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: -3px;
+			left: 14px;
+			border-left: 3px solid transparent;
+			border-right: 3px solid transparent;
+			border-top: 5px solid #555;
+		}
+
+		&[data-value="-50"], &[data-value="-49"] { background-position: 0 -13px;  }
+		&[data-value="-48"], &[data-value="-47"] { background-position: 0 -47px; }
+		&[data-value="-46"], &[data-value="-45"] { background-position: 0 -81px; }
+		&[data-value="-44"], &[data-value="-43"] { background-position: 0 -115px; }
+		&[data-value="-42"], &[data-value="-41"] { background-position: 0 -149px; }
+		&[data-value="-40"], &[data-value="-39"] { background-position: 0 -183px; }
+		&[data-value="-38"], &[data-value="-37"] { background-position: 0 -217px; }
+		&[data-value="-36"], &[data-value="-35"] { background-position: 0 -251px; }
+		&[data-value="-34"], &[data-value="-33"] { background-position: 0 -285px; }
+		&[data-value="-32"], &[data-value="-31"] { background-position: 0 -319px; }
+		&[data-value="-30"], &[data-value="-29"] { background-position: 0 -353px; }
+		&[data-value="-28"], &[data-value="-27"] { background-position: 0 -387px; }
+		&[data-value="-26"], &[data-value="-25"] { background-position: 0 -421px; }
+		&[data-value="-24"], &[data-value="-23"] { background-position: 0 -455px; }
+		&[data-value="-22"], &[data-value="-21"] { background-position: 0 -489px; }
+		&[data-value="-20"], &[data-value="-19"] { background-position: 0 -523px; }
+		&[data-value="-18"], &[data-value="-17"] { background-position: 0 -557px; }
+		&[data-value="-16"], &[data-value="-15"] { background-position: 0 -591px; }
+		&[data-value="-14"], &[data-value="-13"] { background-position: 0 -625px; }
+		&[data-value="-12"], &[data-value="-11"] { background-position: 0 -659px; }
+		&[data-value="-10"], &[data-value="-9"] { background-position: 0 -693px; }
+		&[data-value="-8"], &[data-value="-7"] { background-position: 0 -727px; }
+		&[data-value="-6"], &[data-value="-5"] { background-position: 0 -761px; }
+		&[data-value="-4"], &[data-value="-3"] { background-position: 0 -795px; }
+		&[data-value="-2"], &[data-value="-1"] { background-position: 0 -829px; }
+		&[data-value="0"] { background-position: 0 -863px; &:before { border-top-color: #aaa; } }
+		&[data-value="2"], &[data-value="1"] { background-position: 0 -897px; }
+		&[data-value="4"], &[data-value="3"] { background-position: 0 -931px; }
+		&[data-value="6"], &[data-value="5"] { background-position: 0 -965px; }
+		&[data-value="8"], &[data-value="7"] { background-position: 0 -999px; }
+		&[data-value="10"], &[data-value="9"] { background-position: 0 -1033px; }
+		&[data-value="12"], &[data-value="11"] { background-position: 0 -1067px; }
+		&[data-value="14"], &[data-value="13"] { background-position: 0 -1101px; }
+		&[data-value="16"], &[data-value="15"] { background-position: 0 -1135px; }
+		&[data-value="18"], &[data-value="17"] { background-position: 0 -1169px; }
+		&[data-value="20"], &[data-value="19"] { background-position: 0 -1203px; }
+		&[data-value="22"], &[data-value="21"] { background-position: 0 -1237px; }
+		&[data-value="24"], &[data-value="23"] { background-position: 0 -1271px; }
+		&[data-value="26"], &[data-value="25"] { background-position: 0 -1305px; }
+		&[data-value="28"], &[data-value="27"] { background-position: 0 -1339px; }
+		&[data-value="30"], &[data-value="29"] { background-position: 0 -1373px; }
+		&[data-value="32"], &[data-value="31"] { background-position: 0 -1407px; }
+		&[data-value="34"], &[data-value="33"] { background-position: 0 -1441px; }
+		&[data-value="36"], &[data-value="35"] { background-position: 0 -1475px; }
+		&[data-value="38"], &[data-value="37"] { background-position: 0 -1509px; }
+		&[data-value="40"], &[data-value="39"] { background-position: 0 -1543px; }
+		&[data-value="42"], &[data-value="41"] { background-position: 0 -1577px; }
+		&[data-value="44"], &[data-value="43"] { background-position: 0 -1611px; }
+		&[data-value="46"], &[data-value="45"] { background-position: 0 -1645px; }
+		&[data-value="48"], &[data-value="47"] { background-position: 0 -1679px; }
+		&[data-value="50"], &[data-value="49"] { background-position: 0 -1713px; }
 	}
 }

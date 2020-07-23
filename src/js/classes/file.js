@@ -15,6 +15,7 @@ class File {
 
 		this.config = {
 			clutPath : "~/images/various-a8314e11.png",
+		//	clutPath : "~/images/various-67d8a942.png",
 			clutMix            : 1,
 			brightness         : 1,
 			saturation         : 0,
@@ -36,6 +37,7 @@ class File {
 		this.cvs = cvs;
 		this.ctx = ctx;
 
+		// load image
 		this.loadImage();
 	}
 
@@ -60,6 +62,7 @@ class File {
 				}
 			});
 
+		// set file initial scale
 		this.dispatch({ ...event, type: "set-scale", noRender: true });
 
 		vermeer.editor.setFile(this);

@@ -365,6 +365,14 @@
 			<Menu name="Warm Yellow" click="set-clut" arg="various-c081a07b.png" />
 		</Menu>
 	</Menu>
+	<Menu name="Window">
+		<Menu name="Navigator" check-group="sidebar-top" is-checked="1"/>
+		<Menu name="Adjust" check-group="sidebar-top"/>
+		<Menu name="Info" check-group="sidebar-top"/>
+		<Menu name="Presets" check-group="sidebar-bottom" is-checked="1"/>
+		<Menu type="divider"/>
+		<Menu name="svetlana-pochatun.jpg" check-group="selected-file" is-checked="1"/>
+	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>
 		<Menu type="divider"/>

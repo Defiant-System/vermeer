@@ -69,11 +69,13 @@ export class Editor {
 			return console.log('render already in progress, setting pending');
 		}
 
-		let w = this.inputFile.oW,
-			h = this.inputFile.oH,
+		let w = this.inputFile.w,
+			h = this.inputFile.h,
+			oW = this.inputFile.oW,
+			oH = this.inputFile.oH,
 			options = this.getOptions();
 
-		if (w <= 0 || h <= 0) {
+		if (oW <= 0 || oH <= 0) {
 			return console.log('editor is not visible, not rendering');
 		}
 
@@ -81,8 +83,8 @@ export class Editor {
 		this.lastImage = this.inputImage;
 
 		if (!this.scaledImage
-			|| this.scaledImage.w !== w
-			|| this.scaledImage.h !== h
+			|| this.scaledImage.w !== oW
+			|| this.scaledImage.h !== oH
 			|| this.inputImage !== this.lastImage) {
 			this.scaledImage = scaleImageHQ(this.inputImage, w, h);
 		}
@@ -92,7 +94,7 @@ export class Editor {
 			.then(options =>
 				this.processor.process(this.scaledImage, options))
 			.then(() =>
-				this.inputFile.ctx.drawImage(this.processorCanvas, 0, 0))
+				this.inputFile.ctx.drawImage(this.processorCanvas, 0, 0, oW, oH))
 			.finally(() => {
 				console.timeEnd('Editor.render');
 				this.renderInProgress = false;

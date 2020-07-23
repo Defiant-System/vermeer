@@ -31,57 +31,176 @@ content {
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
+	}
 
-		.sidebar-wrapper {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			right: 0;
-			width: 228px;
-			background-color: rgba(#889,.25);
-			backdrop-filter: blur(21px);
-			padding: 6px 8px;
-			font-size: 0;
-			border-left: 1px solid #bbb;
+	.sidebar-wrapper {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 228px;
+		background-color: rgba(#889,.25);
+		backdrop-filter: blur(21px);
+		z-index: 12;
+		display: flex;
+		flex-direction: column;
+		border-left: 1px solid #bbb;
+		overflow: hidden;
 
-			.control {
-				background: linear-gradient(to bottom, rgba(255,255,255,.25), rgba(0,0,0,.05));
-				display: inline-block;
-				width: 67px;
-				//height: 85px;
-				border-radius: 5px;
-				margin: 0 5px 5px 0;
-				padding: 5px;
-				font-size: 11px;
-				text-align: center;
-				box-shadow: inset 0 0 0 1px rgba(0,0,0,.15),
-							inset 0 2px 0 rgba(255,255,255,.3),
-							0 1px 1px rgba(0,0,0,.05);
+		.sidebar-box {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			border-top: 1px solid rgba(#000, .2);
 
-				&:nth-child(3n) {
-					margin-right: 0;
+			&:nth-child(2) .box-body {
+				//min-height: 120px;
+			}
+
+			&:first-child {
+				border-top-width: 0;
+			}
+
+			&:last-child {
+				flex: 1;
+			}
+
+			.box-head {
+				background-color: rgba(0,0,0,.05);
+				font-size: 0;
+				user-select: none;
+
+				> div {
+					display: inline-block;
+					text-transform: uppercase;
+					color: #888;
+					font-size: 10px;
+					padding: 8px 11px 7px;
+					border-right: 1px solid rgba(#000, .2);
+
+					&.active {
+						background: rgba(255,255,255,0.15);
+						color: #555;
+						text-shadow: 0 1px 0 #f2f2f2;
+					}
 				}
+			}
 
-				.knob,
-				.pan-knob {
-					margin: 8px 0 3px;
-				}
+			.box-body {
+				position: relative;
+				flex: 1;
+				//min-height: 100px;
 
-				span {
-					display: block;
+				div[data-box] {
+					display: flex;
+					flex-direction: column;
+					height: 100%;
+					border-top: 1px solid rgba(#000, .2);
 
-					&:nth-child(1) {
-						color: #666;
-						text-shadow: 0 1px 1px #f5f5f5;
+					.box-tools {
+						border-bottom: 1px solid rgba(#011, .55);
+						height: 31px;
 					}
 
-					&:nth-child(3) {
-						background: rgba(0,0,0,.15);
-						color: #eee;
-						text-shadow: 0 1px 1px #777;
-						border-radius: 3px;
-						padding: 3px 0 2px;
+					.box-content-wrapper {
+						flex: 1;
+						position: relative;
 					}
+				}
+
+				.navigator-wrapper {
+					position: relative;
+					margin: 9px auto 5px;
+					height: 121px;
+					max-width: 260px;
+					//border: 1px solid rgba(#000, .65);
+
+					&.hidden {
+						.nav-cvs,
+						.view-rect {
+							display: none;
+						}
+					}
+
+					> div {
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+					}
+
+					canvas.nav-cvs {
+						position: absolute;
+						top: 0;
+						left: 0;
+						box-shadow: 0 0 0 1px rgba(#000, .65);
+					}
+
+					.view-rect {
+						//display: none;
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: inherit;
+						height: inherit;
+						background: transparent;
+						border: 2px solid #ff4a4a;
+						cursor: move;
+					}
+				}
+
+				.effects-wrapper {
+					padding: 6px 8px;
+					font-size: 0;
+				}
+			}
+
+			.box-foot {
+				background: rgba(#fff, .15);
+				border-top: 1px solid rgba(#000, .2);
+				height: 23px;
+				padding: 3px 3px;
+				font-size: 0;
+				display: flex;
+			}
+		}
+
+		.control {
+			background: linear-gradient(to bottom, rgba(255,255,255,.25), rgba(0,0,0,.05));
+			display: inline-block;
+			width: 67px;
+			//height: 85px;
+			border-radius: 5px;
+			margin: 0 5px 5px 0;
+			padding: 5px;
+			font-size: 11px;
+			text-align: center;
+			box-shadow: inset 0 0 0 1px rgba(0,0,0,.15),
+						inset 0 2px 0 rgba(255,255,255,.3),
+						0 1px 1px rgba(0,0,0,.05);
+
+			&:nth-child(3n) {
+				margin-right: 0;
+			}
+
+			.knob,
+			.pan-knob {
+				margin: 8px 0 3px;
+			}
+
+			span {
+				display: block;
+
+				&:nth-child(1) {
+					color: #666;
+					text-shadow: 0 1px 1px #f5f5f5;
+				}
+
+				&:nth-child(3) {
+					background: rgba(0,0,0,.15);
+					color: #eee;
+					text-shadow: 0 1px 1px #777;
+					border-radius: 3px;
+					padding: 3px 0 2px;
 				}
 			}
 		}

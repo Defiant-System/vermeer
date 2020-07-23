@@ -15,9 +15,16 @@ const vermeer = {
 		// fast references
 		this.content = window.find("content");
 
+		// init objects
 		UI.init();
 		Files.init();
 		Projector.init();
+
+		// init sidebar initial boxes
+		["navigator", "presets"].map(item => {
+			let box = window.store(`boxes/box-${item}.htm`, `div[data-box="${item}"]`);
+			this.box[item].toggle(box, "on");
+		});
 
 		// initate editor
 		this.editor = new Editor();

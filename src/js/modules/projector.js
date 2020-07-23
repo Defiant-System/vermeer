@@ -13,6 +13,9 @@ const Projector = {
 
 		// publicly used swap canvas
 		this.swap = { cvs, ctx } = createCanvas(1, 1);
+
+		// calc available dimensions
+		this.reset();
 	},
 	renderFrame(file) {
 		// pre-render frame
@@ -46,7 +49,7 @@ const Projector = {
 		this.cX = (window.innerWidth + this.aX - this.els.sideBar.width()) / 2;
 		this.cY = (window.innerHeight + this.aY) / 2;
 		// pre-render frame
-		this.renderFrame(file);
+		if (file) this.renderFrame(file);
 	},
 	render() {
 		// reference to displayed file
@@ -58,7 +61,8 @@ const Projector = {
 		this.ctx.putImageData(this.frame, 0, 0);
 		this.ctx.translate(file.oX, file.oY);
 		this.ctx.imageSmoothingEnabled = false;
-		this.ctx.drawImage(file.img, 0, 0, file.w, file.h);
+		this.ctx.drawImage(file.cvs[0], 0, 0, file.w, file.h);
+		//this.ctx.drawImage(vermeer.editor.outputCanvas, 0, 0, file.w, file.h);
 		this.ctx.restore();
 	}
 };

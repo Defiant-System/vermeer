@@ -3,7 +3,7 @@ class File {
 	constructor(options) {
 		// defaults
 		let opt = {
-			scale: 1,
+			scale: .125, // default to first zoom level
 			width: 1,
 			height: 1,
 			...options
@@ -13,6 +13,10 @@ class File {
 		this.scale = opt.scale;
 		this.path = opt.path;
 
+		let { cvs, ctx } = createCanvas(opt.width, opt.height);
+		this.cvs = cvs;
+		this.ctx = ctx;
+
 		this.loadImage();
 	}
 
@@ -21,14 +25,30 @@ class File {
 		this.img = img;
 		this.oW = img.width;
 		this.oH = img.height;
-		this.w = this.oW * this.scale;
-		this.h = this.oH * this.scale;
 
-		// initiate canvas
-		this.dispatch({ type: "set-canvas", w: img.width, h: img.height, scale1: 4 });
+		// reset canvas
+		this.cvs.prop({ width: this.oW, height: this.oH });
 
+		// paint image on canvas
+		this.ctx.drawImage(img, 0, 0);
+
+		// reset projector
+		//Projector.reset(this);
+
+		// iterate available zoom levels
+		ZOOM.filter(z => z.level <= 100)
+			.map(zoom => {
+				let scale = zoom.level / 100;
+				if (Projector.aW > this.oW * scale && Projector.aH > this.oH * scale) {
+					this.scale = scale;
+				}
+			});
+
+		this.dispatch({ ...event, type: "set-scale", noRender: true });
+
+		vermeer.editor.setFile(this);
+		
 		//Files.select(this._id);
-		Projector.render();
 	}
 
 	dispatch(event) {
@@ -39,31 +59,9 @@ class File {
 		//console.log(event);
 		switch (event.type) {
 			// custom events
-			case "set-canvas":
-				// original dimension
-				this.oW = event.w;
-				this.oH = event.h;
-
-				// reset projector
-				Proj.reset(this);
-
-				if (!event.scale) {
-					// default to first zoom level
-					event.scale = .125;
-					// iterate available zoom levels
-					ZOOM.filter(z => z.level <= 100)
-						.map(zoom => {
-							let scale = zoom.level / 100;
-							if (Proj.aW > event.w * scale && Proj.aH > event.h * scale) {
-								event.scale = scale;
-							}
-						});
-				}
-				this.dispatch({ ...event, type: "set-scale" });
-				break;
 			case "set-scale":
 				// scaled dimension
-				this.scale = event.scale;
+				this.scale = this.scale;
 				this.w = this.oW * this.scale;
 				this.h = this.oH * this.scale;
 				// origo

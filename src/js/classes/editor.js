@@ -9,9 +9,9 @@ import clut from "../modules/clut";
 
 export class Editor {
 	constructor() {
-		let { cvs, ctx } = createCanvas();
-		this.outputCanvas = cvs;
-		this.processorCanvas = createCanvas().cvs;
+		//let { cvs, ctx } = createCanvas();
+		this.outputCanvas = false;
+		this.processorCanvas = createCanvas().cvs[0];
 		this.processor = this.getSupportedProcessor(this.processorCanvas);
 
 		this.inputImage = null;
@@ -25,11 +25,19 @@ export class Editor {
 		this.renderInProgress = false;
 	}
 
-	setImage(image) {
-		this.inputImage = image;
+	setFile(file) {
+		this.inputFile = file;
+		this.inputImage = file.img;
+		this.outputCanvas = file.cvs[0];
 		this.scaledImage = null;
 		this.render();
 	}
+
+	// setImage(image) {
+	// 	this.inputImage = image;
+	// 	this.scaledImage = null;
+	// 	this.render();
+	// }
 
 	getSupportedProcessor(cvs) {
 		let Processor = [CanvasWorkerProcessor, CanvasProcessor].find(p => p.isSupported());
@@ -137,8 +145,10 @@ export class Editor {
 			.finally(() => {
 				console.timeEnd('Editor.render');
 				this.renderInProgress = false;
-				//$('.photo-rendering', this.el).hide();
-				if(this.renderPending) {
+				
+				Files.select(this.inputFile._id);
+
+				if (this.renderPending) {
 					this.renderPending = false;
 					return this.render();
 				}

@@ -19,11 +19,12 @@ const vermeer = {
 		Files.init();
 		Projector.init();
 
+		// initate editor
+		this.editor = new Editor();
+
 		/*
 		let cvs = window.find("canvas");
 		cvs.prop({ width: window.innerWidth, height: window.innerHeight });
-
-		this.editor = new Editor();
 
 		let img = await loadImage("");
 		this.editor.setImage(img);

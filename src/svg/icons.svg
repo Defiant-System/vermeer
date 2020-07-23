@@ -2,8 +2,8 @@
 
 	<svg id="knob" viewBox="0 0 34 1734">
 		<style type="text/css">
-			.st0{fill:none;stroke:#f90;stroke-width:2.5;stroke-linecap:round;}
-			.st1{fill:none;stroke:#999;stroke-width:2.5;stroke-linecap:round;}
+			.st0{fill:none;stroke:#f90;stroke-width:2.25;stroke-linecap:round;}
+			.st1{fill:none;stroke:#a7a7a7;stroke-width:2.75;stroke-linecap:round;}
 		</style>
 		<path class="st0" d="M7.1,60.9c0.4,0.4,0.7,0.7,1.1,1"/>
 		<path class="st0" d="M6.2,94c0.6,0.7,1.2,1.4,2,1.9"/>
@@ -110,8 +110,8 @@
 
 	<svg id="pan-knob" viewBox="0 0 34 1734">
 		<style type="text/css">
-			.st0{fill:none;stroke:#f90;stroke-width:2.5;stroke-linecap:round;}
-			.st1{fill:none;stroke:#999;stroke-width:2.5;stroke-linecap:round;}
+			.st0{fill:none;stroke:#f90;stroke-width:2.25;stroke-linecap:round;}
+			.st1{fill:none;stroke:#a7a7a7;stroke-width:2.75;stroke-linecap:round;}
 		</style>
 		<path class="st0" d="M25.8,1727.9c3.1-2.5,5.2-6.5,5.2-10.9c0-7.7-6.3-14-14-14"/>
 		<path class="st0" d="M17,3C9.3,3,3,9.3,3,17c0,4.4,2.1,8.4,5.2,10.9"/>

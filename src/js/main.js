@@ -29,6 +29,8 @@ const vermeer = {
 		this.editor.setImage(img);
 		*/
 		// temp
+		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
+		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });
 		this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
 	},
 	dispatch(event) {
@@ -39,7 +41,16 @@ const vermeer = {
 			case "open-file":
 				Files.open(event.path);
 				break;
+			case "set-clut":
+				console.log(event);
+				break;
 		}
+	},
+	box: {
+		navigator: defiant.require("boxes/box-navigator.js"),
+		adjust:    defiant.require("boxes/box-adjust.js"),
+		info:      defiant.require("boxes/box-info.js"),
+		presets:   defiant.require("boxes/box-presets.js")
 	}
 };
 

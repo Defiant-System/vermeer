@@ -5,7 +5,7 @@ let lastUrl, lastPromise;
 
 // contains an index of color lookup tables, and caches the last one used
 const clut = {
-	index: defiant.require("../clut.json"),
+	//index: defiant.require("../clut.json"),
 	root: "",
 	get: url => {
 		if (url === lastUrl) {

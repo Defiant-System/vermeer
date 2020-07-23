@@ -10,6 +10,361 @@
 		<Menu type="divider"/>
 		<Menu name="Quit Vermeer" shell="win -c"/>
 	</Menu>
+	<Menu name="Presets">
+		<Menu name="Black &amp; White">
+			<Menu name="Apex 25" click="set-clut" arg="bw-d781e2e5.png" />
+			<Menu name="Apex 100" click="set-clut" arg="bw-90622b37.png" />
+			<Menu name="Neo 1600" click="set-clut" arg="bw-e8b63791.png" />
+			<Menu name="Neo Ac 100" click="set-clut" arg="bw-37d97a49.png" />
+			<Menu name="Triangle 100" click="set-clut" arg="bw-dbae04c2.png" />
+			<Menu name="Triangle 400" click="set-clut" arg="bw-f0dcb012.png" />
+			<Menu name="Triangle 3200" click="set-clut" arg="bw-e687b0ab.png" />
+			<Menu name="Hypersensitive 4 + 125" click="set-clut" arg="bw-42f70f81.png" />
+			<Menu name="Hypersensitive 5 + 400" click="set-clut" arg="bw-9f24f46f.png" />
+			<Menu name="Hypersensitive 800" click="set-clut" arg="bw-23ecce68.png" />
+			<Menu name="Panchromatic + 50" click="set-clut" arg="bw-466732b6.png" />
+			<Menu name="Experience 2" click="set-clut" arg="bw-bde536cd.png" />
+			<Menu name="Bw 400 Cn" click="set-clut" arg="bw-04ca0b7e.png" />
+			<Menu name="High Speed Infrared" click="set-clut" arg="bw-4edd1313.png" />
+			<Menu name="Max 100" click="set-clut" arg="bw-c8101655.png" />
+			<Menu name="Max 400" click="set-clut" arg="bw-68724a8b.png" />
+			<Menu name="Max 3200" click="set-clut" arg="bw-2c55f006.png" />
+			<Menu name="XXX 400" click="set-clut" arg="bw-184901c9.png" />
+			<Menu name="664" click="set-clut" arg="bw-575ff6a3.png" />
+			<Menu name="667" click="set-clut" arg="bw-eb0a7ec2.png" />
+			<Menu name="672" click="set-clut" arg="bw-5effee5c.png" />
+			<Menu name="Ir 400" click="set-clut" arg="bw-ff09ec2e.png" />
+			<Menu name="Ortho 25" click="set-clut" arg="bw-606c840f.png" />
+			<Menu name="Retro 80s" click="set-clut" arg="bw-2ccb1e2c.png" />
+			<Menu name="Retro 100 Tonal" click="set-clut" arg="bw-cc0146c0.png" />
+		</Menu>
+		<Menu name="Instant Consumer">
+			<Menu name="70" click="set-clut" arg="instant_consumer-1252696f.png" />
+			<Menu name="70 +++" click="set-clut" arg="instant_consumer-da4dd73e.png" />
+			<Menu name="70 ++" click="set-clut" arg="instant_consumer-7b828605.png" />
+			<Menu name="70 +" click="set-clut" arg="instant_consumer-2bfb931c.png" />
+			<Menu name="70 --" click="set-clut" arg="instant_consumer-1cd023ae.png" />
+			<Menu name="70 -" click="set-clut" arg="instant_consumer-5a79ea4b.png" />
+			<Menu name="70 Cold" click="set-clut" arg="instant_consumer-312ee49f.png" />
+			<Menu name="70 Cold ++" click="set-clut" arg="instant_consumer-60256b9b.png" />
+			<Menu name="70 Cold +" click="set-clut" arg="instant_consumer-8f973872.png" />
+			<Menu name="70 Cold --" click="set-clut" arg="instant_consumer-6557810d.png" />
+			<Menu name="70 Cold -" click="set-clut" arg="instant_consumer-08183157.png" />
+			<Menu name="70 Warm" click="set-clut" arg="instant_consumer-d8099176.png" />
+			<Menu name="70 Warm ++" click="set-clut" arg="instant_consumer-d27de8db.png" />
+			<Menu name="70 Warm +" click="set-clut" arg="instant_consumer-bedf9629.png" />
+			<Menu name="70 Warm --" click="set-clut" arg="instant_consumer-5a041a7f.png" />
+			<Menu name="70 Warm -" click="set-clut" arg="instant_consumer-9d233830.png" />
+			<Menu name="100uv+ Cold" click="set-clut" arg="instant_consumer-0cd0374f.png" />
+			<Menu name="100uv+ Cold +++" click="set-clut" arg="instant_consumer-e3eba151.png" />
+			<Menu name="100uv+ Cold ++" click="set-clut" arg="instant_consumer-9d1892af.png" />
+			<Menu name="100uv+ Cold +" click="set-clut" arg="instant_consumer-751b9b0c.png" />
+			<Menu name="100uv+ Cold --" click="set-clut" arg="instant_consumer-22ddc066.png" />
+			<Menu name="100uv+ Cold -" click="set-clut" arg="instant_consumer-ae0c954b.png" />
+			<Menu name="100uv+ Warm" click="set-clut" arg="instant_consumer-e999db23.png" />
+			<Menu name="100uv+ Warm +++" click="set-clut" arg="instant_consumer-1d52ae93.png" />
+			<Menu name="100uv+ Warm ++" click="set-clut" arg="instant_consumer-4a7dda9c.png" />
+			<Menu name="100uv+ Warm +" click="set-clut" arg="instant_consumer-753ffc8c.png" />
+			<Menu name="100uv+ Warm --" click="set-clut" arg="instant_consumer-5d1201d0.png" />
+			<Menu name="100uv+ Warm -" click="set-clut" arg="instant_consumer-339213f4.png" />
+			<Menu name="680" click="set-clut" arg="instant_consumer-d032bdc3.png" />
+			<Menu name="680 ++" click="set-clut" arg="instant_consumer-1843fd7e.png" />
+			<Menu name="680 +" click="set-clut" arg="instant_consumer-88c887a8.png" />
+			<Menu name="680 --" click="set-clut" arg="instant_consumer-f78a7281.png" />
+			<Menu name="680 -" click="set-clut" arg="instant_consumer-b527276b.png" />
+			<Menu name="680 Cold" click="set-clut" arg="instant_consumer-00476943.png" />
+			<Menu name="680 Cold ++" click="set-clut" arg="instant_consumer-edf78b8a.png" />
+			<Menu name="680 Cold ++ Alt" click="set-clut" arg="instant_consumer-96cdc562.png" />
+			<Menu name="680 Cold +" click="set-clut" arg="instant_consumer-1ffee1b5.png" />
+			<Menu name="680 Cold --" click="set-clut" arg="instant_consumer-f44da452.png" />
+			<Menu name="680 Cold -" click="set-clut" arg="instant_consumer-cb81215e.png" />
+			<Menu name="680 Warm" click="set-clut" arg="instant_consumer-3d35af0d.png" />
+			<Menu name="680 Warm ++" click="set-clut" arg="instant_consumer-6c5d3f66.png" />
+			<Menu name="680 Warm +" click="set-clut" arg="instant_consumer-a6eef1fe.png" />
+			<Menu name="680 Warm --" click="set-clut" arg="instant_consumer-50dfcfb9.png" />
+			<Menu name="680 Warm -" click="set-clut" arg="instant_consumer-ade101fa.png" />
+			<Menu name="T0 (expired)" click="set-clut" arg="instant_consumer-42a53639.png" />
+			<Menu name="T0 (expired) ++" click="set-clut" arg="instant_consumer-429d05c2.png" />
+			<Menu name="T0 (expired) +" click="set-clut" arg="instant_consumer-3374931f.png" />
+			<Menu name="T0 (expired) ---" click="set-clut" arg="instant_consumer-e1d8774c.png" />
+			<Menu name="T0 (expired) --" click="set-clut" arg="instant_consumer-dab4b8b1.png" />
+			<Menu name="T0 (expired) -" click="set-clut" arg="instant_consumer-9147b3f0.png" />
+			<Menu name="T0 (expired) Cold" click="set-clut" arg="instant_consumer-e4b0ab6a.png" />
+			<Menu name="T0 (expired) Cold ---" click="set-clut" arg="instant_consumer-ffbd883e.png" />
+			<Menu name="T0 (expired) Cold --" click="set-clut" arg="instant_consumer-ca6b14db.png" />
+			<Menu name="T0 (expired) Cold -" click="set-clut" arg="instant_consumer-4021f70b.png" />
+		</Menu>
+		<Menu name="Instant Pro">
+			<Menu name="100c" click="set-clut" arg="instant_pro-dc98ee4c.png" />
+			<Menu name="100c +++" click="set-clut" arg="instant_pro-8fc59b5c.png" />
+			<Menu name="100c ++" click="set-clut" arg="instant_pro-d7dff24d.png" />
+			<Menu name="100c ++ Alt" click="set-clut" arg="instant_pro-9bde2a70.png" />
+			<Menu name="100c +" click="set-clut" arg="instant_pro-9a30d56c.png" />
+			<Menu name="100c --" click="set-clut" arg="instant_pro-569cd1da.png" />
+			<Menu name="100c -" click="set-clut" arg="instant_pro-3ea3dade.png" />
+			<Menu name="100c Cool" click="set-clut" arg="instant_pro-355e9c40.png" />
+			<Menu name="100c Cool ++" click="set-clut" arg="instant_pro-f72c7e09.png" />
+			<Menu name="100c Cool +" click="set-clut" arg="instant_pro-64c3c76e.png" />
+			<Menu name="100c Cool --" click="set-clut" arg="instant_pro-84039b1f.png" />
+			<Menu name="100c Cool -" click="set-clut" arg="instant_pro-666ad3a5.png" />
+			<Menu name="100c Negative" click="set-clut" arg="instant_pro-63850ec6.png" />
+			<Menu name="100c Negative +++" click="set-clut" arg="instant_pro-4d4ddb19.png" />
+			<Menu name="100c Negative ++" click="set-clut" arg="instant_pro-fdd9e76f.png" />
+			<Menu name="100c Negative ++ Alt" click="set-clut" arg="instant_pro-dd32841c.png" />
+			<Menu name="100c Negative +" click="set-clut" arg="instant_pro-0f37d0ce.png" />
+			<Menu name="100c Negative --" click="set-clut" arg="instant_pro-a35f226c.png" />
+			<Menu name="100c Negative -" click="set-clut" arg="instant_pro-989ded90.png" />
+			<Menu name="3000b" click="set-clut" arg="instant_pro-818ec9db.png" />
+			<Menu name="3000b +++" click="set-clut" arg="instant_pro-04f9fbcd.png" />
+			<Menu name="3000b ++" click="set-clut" arg="instant_pro-7f6d2375.png" />
+			<Menu name="3000b +" click="set-clut" arg="instant_pro-fc56f1c3.png" />
+			<Menu name="3000b --" click="set-clut" arg="instant_pro-2120ccc3.png" />
+			<Menu name="3000b -" click="set-clut" arg="instant_pro-33f6edb6.png" />
+			<Menu name="3000b Hc" click="set-clut" arg="instant_pro-85bf8692.png" />
+			<Menu name="3000b Negative" click="set-clut" arg="instant_pro-d8d71659.png" />
+			<Menu name="3000b Negative +++" click="set-clut" arg="instant_pro-f37c84d7.png" />
+			<Menu name="3000b Negative ++" click="set-clut" arg="instant_pro-5fe25f67.png" />
+			<Menu name="3000b Negative +" click="set-clut" arg="instant_pro-4f9f3dba.png" />
+			<Menu name="3000b Negative --" click="set-clut" arg="instant_pro-6b8bfce9.png" />
+			<Menu name="3000b Negative -" click="set-clut" arg="instant_pro-a9322a3c.png" />
+			<Menu name="3000b Negative Early" click="set-clut" arg="instant_pro-af57c881.png" />
+			<Menu name="665" click="set-clut" arg="instant_pro-9477ddef.png" />
+			<Menu name="665 ++" click="set-clut" arg="instant_pro-2ac9b663.png" />
+			<Menu name="665 +" click="set-clut" arg="instant_pro-4a24fa4b.png" />
+			<Menu name="665 --" click="set-clut" arg="instant_pro-4026b6c2.png" />
+			<Menu name="665 -" click="set-clut" arg="instant_pro-abd50ea5.png" />
+			<Menu name="665 Negative" click="set-clut" arg="instant_pro-3aceb5b9.png" />
+			<Menu name="665 Negative +" click="set-clut" arg="instant_pro-2c912ac4.png" />
+			<Menu name="665 Negative -" click="set-clut" arg="instant_pro-28226e5b.png" />
+			<Menu name="665 Negative Hc" click="set-clut" arg="instant_pro-2b43012d.png" />
+			<Menu name="669" click="set-clut" arg="instant_pro-186ca5bc.png" />
+			<Menu name="669 +++" click="set-clut" arg="instant_pro-2686d18e.png" />
+			<Menu name="669 ++" click="set-clut" arg="instant_pro-a2d38534.png" />
+			<Menu name="669 +" click="set-clut" arg="instant_pro-8df22d1d.png" />
+			<Menu name="669 --" click="set-clut" arg="instant_pro-3318e119.png" />
+			<Menu name="669 -" click="set-clut" arg="instant_pro-71d4e3fd.png" />
+			<Menu name="669 Cold" click="set-clut" arg="instant_pro-23a6afc1.png" />
+			<Menu name="669 Cold +" click="set-clut" arg="instant_pro-201442cc.png" />
+			<Menu name="669 Cold --" click="set-clut" arg="instant_pro-82c3dee0.png" />
+			<Menu name="669 Cold -" click="set-clut" arg="instant_pro-181a49b1.png" />
+			<Menu name="690" click="set-clut" arg="instant_pro-97a69e32.png" />
+			<Menu name="690 ++" click="set-clut" arg="instant_pro-987809fb.png" />
+			<Menu name="690 +" click="set-clut" arg="instant_pro-694fe7e5.png" />
+			<Menu name="690 --" click="set-clut" arg="instant_pro-9f320573.png" />
+			<Menu name="690 -" click="set-clut" arg="instant_pro-33a1253b.png" />
+			<Menu name="690 Cold" click="set-clut" arg="instant_pro-e1fe9696.png" />
+			<Menu name="690 Cold ++" click="set-clut" arg="instant_pro-151e0617.png" />
+			<Menu name="690 Cold +" click="set-clut" arg="instant_pro-fac6510a.png" />
+			<Menu name="690 Cold --" click="set-clut" arg="instant_pro-bf2813e5.png" />
+			<Menu name="690 Cold -" click="set-clut" arg="instant_pro-6cae72ed.png" />
+			<Menu name="690 Warm" click="set-clut" arg="instant_pro-80b0e303.png" />
+			<Menu name="690 Warm ++" click="set-clut" arg="instant_pro-291fb858.png" />
+			<Menu name="690 Warm +" click="set-clut" arg="instant_pro-7a7768b6.png" />
+			<Menu name="690 Warm --" click="set-clut" arg="instant_pro-b96f1194.png" />
+			<Menu name="690 Warm -" click="set-clut" arg="instant_pro-e5f2e2d5.png" />
+		</Menu>
+		<Menu name="Negative Color">
+			<Menu name="Ultimate Color 100" click="set-clut" arg="negative_color-8ae1e6fe.png" />
+			<Menu name="View 200" click="set-clut" arg="negative_color-65b00e16.png" />
+			<Menu name="Superior 200" click="set-clut" arg="negative_color-c6234da6.png" />
+			<Menu name="Superior Hg 1600" click="set-clut" arg="negative_color-98cd7a12.png" />
+			<Menu name="Superior Real 100" click="set-clut" arg="negative_color-f1780202.png" />
+			<Menu name="Superior X-tra 800" click="set-clut" arg="negative_color-83b60453.png" />
+			<Menu name="31337 100 Xpro" click="set-clut" arg="negative_color-6e400c94.png" />
+			<Menu name="31337 Color 200" click="set-clut" arg="negative_color-7afc1bf3.png" />
+			<Menu name="31337 Color 400" click="set-clut" arg="negative_color-bef63d18.png" />
+			<Menu name="Portrait 160 Nc" click="set-clut" arg="negative_color-15a11a5c.png" />
+			<Menu name="Portrait 160 Vc" click="set-clut" arg="negative_color-840b6209.png" />
+			<Menu name="Lomo Red 100" click="set-clut" arg="negative_color-a0a94afd.png" />
+		</Menu>
+		<Menu name="Negative New">
+			<Menu name="160c" click="set-clut" arg="negative_new-ce84731d.png" />
+			<Menu name="160c ++" click="set-clut" arg="negative_new-fd0abeba.png" />
+			<Menu name="160c +" click="set-clut" arg="negative_new-58bc2847.png" />
+			<Menu name="160c -" click="set-clut" arg="negative_new-d3a86dfc.png" />
+			<Menu name="400h" click="set-clut" arg="negative_new-50d6a465.png" />
+			<Menu name="400h ++" click="set-clut" arg="negative_new-9a5ca8a5.png" />
+			<Menu name="400h +" click="set-clut" arg="negative_new-574c690f.png" />
+			<Menu name="400h -" click="set-clut" arg="negative_new-ff130820.png" />
+			<Menu name="800z" click="set-clut" arg="negative_new-65367d0a.png" />
+			<Menu name="800z ++" click="set-clut" arg="negative_new-9c340169.png" />
+			<Menu name="800z +" click="set-clut" arg="negative_new-957ba34e.png" />
+			<Menu name="800z -" click="set-clut" arg="negative_new-9c723a05.png" />
+			<Menu name="Hypersensitive 5" click="set-clut" arg="negative_new-213d7772.png" />
+			<Menu name="Hypersensitive 5 ++" click="set-clut" arg="negative_new-22524cd2.png" />
+			<Menu name="Hypersensitive 5 +" click="set-clut" arg="negative_new-53413558.png" />
+			<Menu name="Hypersensitive 5 -" click="set-clut" arg="negative_new-34b92902.png" />
+			<Menu name="Portrait 160" click="set-clut" arg="negative_new-2d47ceb3.png" />
+			<Menu name="Portrait 160 ++" click="set-clut" arg="negative_new-b415159e.png" />
+			<Menu name="Portrait 160 +" click="set-clut" arg="negative_new-ea89aa20.png" />
+			<Menu name="Portrait 160 -" click="set-clut" arg="negative_new-544a916c.png" />
+			<Menu name="Portrait 400" click="set-clut" arg="negative_new-e492f2e9.png" />
+			<Menu name="Portrait 400 ++" click="set-clut" arg="negative_new-1da26cd9.png" />
+			<Menu name="Portrait 400 +" click="set-clut" arg="negative_new-c5405ef1.png" />
+			<Menu name="Portrait 400 -" click="set-clut" arg="negative_new-bc18b3a6.png" />
+			<Menu name="Portrait 800" click="set-clut" arg="negative_new-2260213a.png" />
+			<Menu name="Portrait 800 ++" click="set-clut" arg="negative_new-134aa139.png" />
+			<Menu name="Portrait 800 +" click="set-clut" arg="negative_new-799b7766.png" />
+			<Menu name="Portrait 800 -" click="set-clut" arg="negative_new-d16a3a31.png" />
+			<Menu name="Max 3200" click="set-clut" arg="negative_new-a1aa2d71.png" />
+			<Menu name="Max 3200 ++" click="set-clut" arg="negative_new-70fe2062.png" />
+			<Menu name="Max 3200 +" click="set-clut" arg="negative_new-c1ac5a66.png" />
+			<Menu name="Max 3200 -" click="set-clut" arg="negative_new-5b5c9a4d.png" />
+			<Menu name="XXX 400" click="set-clut" arg="negative_new-184901c9.png" />
+			<Menu name="XXX 400 ++" click="set-clut" arg="negative_new-e3ef1b99.png" />
+			<Menu name="XXX 400 +" click="set-clut" arg="negative_new-6cf88670.png" />
+			<Menu name="XXX 400 -" click="set-clut" arg="negative_new-868b3a6d.png" />
+		</Menu>
+		<Menu name="Negative Old">
+			<Menu name="Triangle 3200" click="set-clut" arg="negative_old-578b9594.png" />
+			<Menu name="Triangle 3200 ++" click="set-clut" arg="negative_old-63e3f6f6.png" />
+			<Menu name="Triangle 3200 +" click="set-clut" arg="negative_old-b6b07ebb.png" />
+			<Menu name="Triangle 3200 -" click="set-clut" arg="negative_old-afa189a3.png" />
+			<Menu name="Neo 1600" click="set-clut" arg="negative_old-e8b63791.png" />
+			<Menu name="Neo 1600 ++" click="set-clut" arg="negative_old-81024019.png" />
+			<Menu name="Neo 1600 +" click="set-clut" arg="negative_old-4923facc.png" />
+			<Menu name="Neo 1600 -" click="set-clut" arg="negative_old-14bc1bf5.png" />
+			<Menu name="Superior 100" click="set-clut" arg="negative_old-207ddc0e.png" />
+			<Menu name="Superior 100 ++" click="set-clut" arg="negative_old-16346318.png" />
+			<Menu name="Superior 100 +" click="set-clut" arg="negative_old-393bc7df.png" />
+			<Menu name="Superior 100 -" click="set-clut" arg="negative_old-328e5abb.png" />
+			<Menu name="Superior 400" click="set-clut" arg="negative_old-3845de87.png" />
+			<Menu name="Superior 400 ++" click="set-clut" arg="negative_old-b06a4ac9.png" />
+			<Menu name="Superior 400 +" click="set-clut" arg="negative_old-bfb427ca.png" />
+			<Menu name="Superior 400 -" click="set-clut" arg="negative_old-14cd68e4.png" />
+			<Menu name="Superior 800" click="set-clut" arg="negative_old-2d3a0a57.png" />
+			<Menu name="Superior 800 ++" click="set-clut" arg="negative_old-291d0133.png" />
+			<Menu name="Superior 800 +" click="set-clut" arg="negative_old-ca369239.png" />
+			<Menu name="Superior 800 -" click="set-clut" arg="negative_old-ab621ce6.png" />
+			<Menu name="Superior 1600" click="set-clut" arg="negative_old-2f54b8c8.png" />
+			<Menu name="Superior 1600 ++" click="set-clut" arg="negative_old-2fed3a2c.png" />
+			<Menu name="Superior 1600 +" click="set-clut" arg="negative_old-7fb0e1f4.png" />
+			<Menu name="Superior 1600 -" click="set-clut" arg="negative_old-6b267a20.png" />
+			<Menu name="Portrait 160 Nc" click="set-clut" arg="negative_old-15a11a5c.png" />
+			<Menu name="Portrait 160 Nc ++" click="set-clut" arg="negative_old-1abe31ed.png" />
+			<Menu name="Portrait 160 Nc +" click="set-clut" arg="negative_old-ee219386.png" />
+			<Menu name="Portrait 160 Nc -" click="set-clut" arg="negative_old-fef894fb.png" />
+			<Menu name="Portrait 160 Vc" click="set-clut" arg="negative_old-840b6209.png" />
+			<Menu name="Portrait 160 Vc ++" click="set-clut" arg="negative_old-c3bb18a4.png" />
+			<Menu name="Portrait 160 Vc +" click="set-clut" arg="negative_old-dd07d7b2.png" />
+			<Menu name="Portrait 160 Vc -" click="set-clut" arg="negative_old-c8304d1b.png" />
+			<Menu name="Portrait 400 Nc" click="set-clut" arg="negative_old-2a298bc1.png" />
+			<Menu name="Portrait 400 Nc ++" click="set-clut" arg="negative_old-672b237f.png" />
+			<Menu name="Portrait 400 Nc +" click="set-clut" arg="negative_old-c36b492e.png" />
+			<Menu name="Portrait 400 Nc -" click="set-clut" arg="negative_old-3030a97d.png" />
+			<Menu name="Portrait 400 Uc" click="set-clut" arg="negative_old-7bcb5ccc.png" />
+			<Menu name="Portrait 400 Uc ++" click="set-clut" arg="negative_old-1f313762.png" />
+			<Menu name="Portrait 400 Uc +" click="set-clut" arg="negative_old-379aaaba.png" />
+			<Menu name="Portrait 400 Uc -" click="set-clut" arg="negative_old-c42dbed0.png" />
+			<Menu name="Portrait 400 Vc" click="set-clut" arg="negative_old-24a29be6.png" />
+			<Menu name="Portrait 400 Vc ++" click="set-clut" arg="negative_old-ceca1eee.png" />
+			<Menu name="Portrait 400 Vc +" click="set-clut" arg="negative_old-b4503954.png" />
+			<Menu name="Portrait 400 Vc -" click="set-clut" arg="negative_old-fe626bca.png" />
+		</Menu>
+		<Menu name="Colorslide">
+			<Menu name="Precise 100" click="set-clut" arg="colorslide-8d494ed0.png" />
+			<Menu name="Astral 100f" click="set-clut" arg="colorslide-6c0133ba.png" />
+			<Menu name="100c" click="set-clut" arg="colorslide-cf1ed1b9.png" />
+			<Menu name="Professional 100f" click="set-clut" arg="colorslide-07fd5fb8.png" />
+			<Menu name="Professional 400f" click="set-clut" arg="colorslide-369967e7.png" />
+			<Menu name="Professional 400x" click="set-clut" arg="colorslide-49ccd567.png" />
+			<Menu name="Sensitive 100" click="set-clut" arg="colorslide-44c30bdf.png" />
+			<Menu name="Superior 200 Xpro" click="set-clut" arg="colorslide-6a92d353.png" />
+			<Menu name="Velvet 50" click="set-clut" arg="colorslide-2bcdd583.png" />
+			<Menu name="Generic  Astral 100" click="set-clut" arg="colorslide-9e06c14a.png" />
+			<Menu name="Generic  Professional 100" click="set-clut" arg="colorslide-c47c5baa.png" />
+			<Menu name="Generic  Velvet 100" click="set-clut" arg="colorslide-461f8063.png" />
+			<Menu name="Generic Chrome 64" click="set-clut" arg="colorslide-10f1ec6e.png" />
+			<Menu name="Generic  Exact Chrome 100 Vs" click="set-clut" arg="colorslide-18feaf1a.png" />
+			<Menu name="E-100 Gx Exact Chrome 100" click="set-clut" arg="colorslide-06e9ba18.png" />
+			<Menu name="Exact Chrome 100 Vs" click="set-clut" arg="colorslide-0f0050af.png" />
+			<Menu name="31337 Chrome 200" click="set-clut" arg="colorslide-1438235b.png" />
+			<Menu name="31337 Chrome 400" click="set-clut" arg="colorslide-90457e9c.png" />
+			<Menu name="31337 Extracolor 100" click="set-clut" arg="colorslide-74a4aed5.png" />
+			<Menu name="Chrome 25" click="set-clut" arg="colorslide-adfa1c4c.png" />
+			<Menu name="Chrome 64" click="set-clut" arg="colorslide-6b8e2cd8.png" />
+			<Menu name="Chrome 200" click="set-clut" arg="colorslide-cbfba943.png" />
+			<Menu name="Lomo Slide 200" click="set-clut" arg="colorslide-c05eca2b.png" />
+			<Menu name="669" click="set-clut" arg="colorslide-186ca5bc.png" />
+			<Menu name="690" click="set-clut" arg="colorslide-97a69e32.png" />
+			<Menu name="Chrome" click="set-clut" arg="colorslide-626e5f01.png" />
+		</Menu>
+		<Menu name="PictureFx">
+			<Menu name="Analogfx Anno 1870 Color" click="set-clut" arg="picturefx-9958694c.png" />
+			<Menu name="Analogfx Sepia Color" click="set-clut" arg="picturefx-f503c307.png" />
+			<Menu name="Goldfx Bright Spring Breeze" click="set-clut" arg="picturefx-ae071990.png" />
+			<Menu name="Goldfx Bright Summer Heat" click="set-clut" arg="picturefx-1e60746d.png" />
+			<Menu name="Goldfx Hot Summer Heat" click="set-clut" arg="picturefx-86a27269.png" />
+			<Menu name="Goldfx Spring Breeze" click="set-clut" arg="picturefx-96142ae3.png" />
+			<Menu name="Goldfx Summer Heat" click="set-clut" arg="picturefx-360f66af.png" />
+			<Menu name="Zilverfx Infrared" click="set-clut" arg="picturefx-68dee116.png" />
+			<Menu name="Zilverfx Vintage B W" click="set-clut" arg="picturefx-25776e5a.png" />
+		</Menu>
+		<Menu name="Various">
+			<Menu name="60's" click="set-clut" arg="various-88149803.png" />
+			<Menu name="60's Faded" click="set-clut" arg="various-a70563cb.png" />
+			<Menu name="60's Faded Alt" click="set-clut" arg="various-4364f822.png" />
+			<Menu name="Alien Green" click="set-clut" arg="various-7161a770.png" />
+			<Menu name="Black And White" click="set-clut" arg="various-d82b4c98.png" />
+			<Menu name="Bleach Bypass" click="set-clut" arg="various-d9e4187b.png" />
+			<Menu name="Blue Mono" click="set-clut" arg="various-c6c593bc.png" />
+			<Menu name="Color Rich" click="set-clut" arg="various-5d6b8231.png" />
+			<Menu name="Expired Fade" click="set-clut" arg="various-3d8fab8c.png" />
+			<Menu name="Expired " click="set-clut" arg="various-149c2435.png" />
+			<Menu name="Extreme" click="set-clut" arg="various-cd5f151c.png" />
+			<Menu name="Fade" click="set-clut" arg="various-b65f624d.png" />
+			<Menu name="Faded" click="set-clut" arg="various-7dfbe5c1.png" />
+			<Menu name="Faded Alt" click="set-clut" arg="various-ffa2796e.png" />
+			<Menu name="Faded Analog" click="set-clut" arg="various-8067e496.png" />
+			<Menu name="Faded Extreme" click="set-clut" arg="various-c8f0cc9e.png" />
+			<Menu name="Faded Vivid" click="set-clut" arg="various-d91da598.png" />
+			<Menu name="Faux Infrared" click="set-clut" arg="various-e03265c3.png" />
+			<Menu name="Golden" click="set-clut" arg="various-3d06aa51.png" />
+			<Menu name="Golden Bright" click="set-clut" arg="various-105d4dcc.png" />
+			<Menu name="Golden Fade" click="set-clut" arg="various-fa66c33b.png" />
+			<Menu name="Golden Mono" click="set-clut" arg="various-47f3ed63.png" />
+			<Menu name="Golden Vibrant" click="set-clut" arg="various-433a993a.png" />
+			<Menu name="Green Mono" click="set-clut" arg="various-dcb79106.png" />
+			<Menu name="Hong Kong" click="set-clut" arg="various-fcf15947.png" />
+			<Menu name="Light Blown" click="set-clut" arg="various-67d8a942.png" />
+			<Menu name="Lomo" click="set-clut" arg="various-2feb72cb.png" />
+			<Menu name="Mono Tinted" click="set-clut" arg="various-ee6564ee.png" />
+			<Menu name="Mute Shift" click="set-clut" arg="various-f813a5ea.png" />
+			<Menu name="Muted Fade" click="set-clut" arg="various-a3b88dca.png" />
+			<Menu name="Natural Vivid" click="set-clut" arg="various-dfa72e9c.png" />
+			<Menu name="Nostalgic" click="set-clut" arg="various-379cc321.png" />
+			<Menu name="Orange Tone" click="set-clut" arg="various-a762bdaf.png" />
+			<Menu name="Pink Fade" click="set-clut" arg="various-655008d7.png" />
+			<Menu name="Purple" click="set-clut" arg="various-bf3ac158.png" />
+			<Menu name="Retro" click="set-clut" arg="various-6919a5d5.png" />
+			<Menu name="Rotate Muted" click="set-clut" arg="various-58f7f4c3.png" />
+			<Menu name="Rotate Vibrant" click="set-clut" arg="various-d1e425eb.png" />
+			<Menu name="Smooth Cromeish" click="set-clut" arg="various-9d7900f2.png" />
+			<Menu name="Smooth Fade" click="set-clut" arg="various-a9cd6955.png" />
+			<Menu name="Soft Fade" click="set-clut" arg="various-e60aa3fb.png" />
+			<Menu name="Solarized Color" click="set-clut" arg="various-572b5d21.png" />
+			<Menu name="Solarized Color2" click="set-clut" arg="various-38e1c5d8.png" />
+			<Menu name="Summer" click="set-clut" arg="various-4f0911ff.png" />
+			<Menu name="Summer Alt" click="set-clut" arg="various-3f0d1be0.png" />
+			<Menu name="Sunny" click="set-clut" arg="various-50e43e29.png" />
+			<Menu name="Sunny Alt" click="set-clut" arg="various-36174176.png" />
+			<Menu name="Sunny Rich" click="set-clut" arg="various-c914f9a8.png" />
+			<Menu name="Sunny Warm" click="set-clut" arg="various-6cccc83e.png" />
+			<Menu name="Super Warm" click="set-clut" arg="various-abe6c63e.png" />
+			<Menu name="Super Warm Rich" click="set-clut" arg="various-83a6afb6.png" />
+			<Menu name="Sutro Fx" click="set-clut" arg="various-743cca20.png" />
+			<Menu name="Vibrant" click="set-clut" arg="various-a8314e11.png" />
+			<Menu name="Vibrant Alien" click="set-clut" arg="various-058884c8.png" />
+			<Menu name="Vibrant Contrast" click="set-clut" arg="various-f8c5ef49.png" />
+			<Menu name="Vibrant Cromeish" click="set-clut" arg="various-ad6b8dfe.png" />
+			<Menu name="Vintage" click="set-clut" arg="various-8bc13157.png" />
+			<Menu name="Vintage Alt" click="set-clut" arg="various-e0d2bdcc.png" />
+			<Menu name="Vintage Brighter" click="set-clut" arg="various-968b12ce.png" />
+			<Menu name="Warm" click="set-clut" arg="various-85dbe54a.png" />
+			<Menu name="Warm Highlight" click="set-clut" arg="various-40ebbc71.png" />
+			<Menu name="Warm Yellow" click="set-clut" arg="various-c081a07b.png" />
+		</Menu>
+	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>
 		<Menu type="divider"/>

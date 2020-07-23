@@ -41,9 +41,53 @@
 	dispatch(event) {
 		let APP = vermeer,
 			Self = APP.box.navigator,
-			el;
-		console.log(event);
+			Proj = Projector,
+			File = Proj.file,
+			_round = Math.round,
+			_max = Math.max,
+			_min = Math.min,
+			data = {},
+			zoom,
+			value,
+			width,
+			height,
+			top,
+			left;
+
+		if (!Self.els.root) return;
+
 		switch (event.type) {
+			// subscribed events
+			case "projector-update":
+				// calc ratio
+				Self.ratio = File.h / File.w;
+				if (isNaN(Self.ratio)) return;
+
+				// available width
+				Self.navWidth = _round(Self.navHeight / Self.ratio);
+				if (Self.navWidth > Self.maxWidth) {
+					Self.navWidth = Self.maxWidth;
+					Self.navHeight = Self.ratio * Self.navWidth;
+				}
+
+				data.top = (((Proj.aY - File.oY) / File.h) * Self.navHeight);
+				data.left = (((Proj.aX - File.oX) / File.w) * Self.navWidth);
+				data.height = _min(((Proj.aH / File.h) * Self.navHeight), Self.navHeight - data.top);
+				data.width = _min(((Proj.aW / File.w) * Self.navWidth), Self.navWidth - data.left);
+				
+				if (data.top < 0) data.height = _min(data.height + data.top, data.height);
+				if (data.left < 0) data.width = _min(data.width + data.left, data.width);
+				data.top = _max(data.top, 0);
+				data.left = _max(data.left, 0);
+
+				for (let key in data) data[key] = _round(data[key]) +"px";
+				Self.els.zoomRect.css(data);
+
+				Self.els.wrapper.css({ width: Self.navWidth +"px" });
+				Self.cvs.prop({ width: Self.navWidth, height: Self.navHeight });
+				Self.ctx.drawImage(File.cvs[0], 0, 0, Self.navWidth, Self.navHeight);
+				Self.els.wrapper.removeClass("hidden");
+				break;
 			// custom events
 			case "custom-event":
 				break;
@@ -73,8 +117,8 @@
 					max: {
 						x: +el.parent().prop("offsetWidth") - +el.prop("offsetWidth"),
 						y: +el.parent().prop("offsetHeight") - +el.prop("offsetHeight") - 4,
-						w: Proj.aW - File.w - (File.showRulers ? Rulers.t : 0),
-						h: Proj.aH - File.h + (File.showRulers ? Rulers.t : 0),
+						w: Proj.aW - File.w,
+						h: Proj.aH - File.h,
 					}
 				};
 				// prevent mouse from triggering mouseover

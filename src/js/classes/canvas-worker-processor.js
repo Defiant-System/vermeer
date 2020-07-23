@@ -17,13 +17,12 @@ export default class CanvasWorkerProcessor extends CanvasProcessor {
 	}
 
 	process(image, options, progress = function(){}) {
-		console.log("processing", options);
+		//console.log("processing", options);
 		let canvas = this.canvas,
 			ctx = this.ctx;
 
 		canvas.width = image.naturalWidth || image.width;
 		canvas.height = image.naturalHeight || image.height;
-
 		ctx.drawImage(image, 0, 0);
 
 		//let data = ctx.getImageData(0, 0, canvas.width, canvas.height);

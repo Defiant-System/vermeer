@@ -21,14 +21,7 @@ const vermeer = {
 
 		// initate editor
 		this.editor = new Editor();
-
-		/*
-		let cvs = window.find("canvas");
-		cvs.prop({ width: window.innerWidth, height: window.innerHeight });
-
-		let img = await loadImage("");
-		this.editor.setImage(img);
-		*/
+		
 		// temp
 		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
 		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });

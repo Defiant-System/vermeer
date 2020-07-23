@@ -51,9 +51,6 @@ class File {
 		// paint image on canvas
 		this.ctx.drawImage(img, 0, 0);
 
-		// reset projector
-		//Projector.reset(this);
-
 		// iterate available zoom levels
 		ZOOM.filter(z => z.level <= 100)
 			.map(zoom => {

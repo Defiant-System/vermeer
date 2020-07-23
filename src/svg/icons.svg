@@ -1,5 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 
+	<svg id="icon-arrow" viewBox="0 0 500 500">
+		<path fill="#999" d="M241.494,401.686L38.997,107.301c-4.664-8.506-0.549-15.365,9.055-15.365h403.896c9.604,0,13.721,6.859,9.056,15.365 L258.506,401.686C253.842,410.191,246.159,410.191,241.494,401.686z"/>
+	</svg>
+
 	<svg id="knob" viewBox="0 0 34 1734">
 		<style type="text/css">
 			.st0{fill:none;stroke:#f90;stroke-width:2.25;stroke-linecap:round;}

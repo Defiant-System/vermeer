@@ -25,7 +25,7 @@ class File {
 		this.h = this.oH * this.scale;
 
 		// initiate canvas
-		this.dispatch({ type: "set-canvas", w: img.width, h: img.height });
+		this.dispatch({ type: "set-canvas", w: img.width, h: img.height, scale1: 4 });
 
 		//Files.select(this._id);
 		Projector.render();

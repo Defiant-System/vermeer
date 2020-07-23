@@ -37,11 +37,12 @@ content {
 			top: 0;
 			bottom: 0;
 			right: 0;
-			width: 227px;
+			width: 228px;
 			background-color: rgba(#889,.25);
 			backdrop-filter: blur(21px);
 			padding: 6px 8px;
 			font-size: 0;
+			border-left: 1px solid #bbb;
 
 			.control {
 				background: linear-gradient(to bottom, rgba(255,255,255,.25), rgba(0,0,0,.05));
@@ -63,7 +64,7 @@ content {
 
 				.knob,
 				.pan-knob {
-					margin: 11px 0 3px;
+					margin: 8px 0 3px;
 				}
 
 				span {
@@ -100,6 +101,7 @@ content {
 		font-weight: 100;
 		color: #69e;
 		text-shadow: 0 0 0;
+		filter: drop-shadow(0 1px 1px #eee);
 		//background-color: rgba(0,0,0,.1);
 
 		&[data-label]:before {
@@ -183,6 +185,7 @@ content {
 		margin: 1px 3px 0;
 		background: url(~/icons/pan-knob.png) no-repeat;
 		background-size: 100% auto;
+		filter: drop-shadow(0 1px 1px #eee);
 
 		&:before {
 			content: "";

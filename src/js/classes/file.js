@@ -13,6 +13,25 @@ class File {
 		this.scale = opt.scale;
 		this.path = opt.path;
 
+		this.config = {
+			clutPath : "~/images/various-a8314e11.png",
+			clutMix            : 1,
+			brightness         : 1,
+			saturation         : 0,
+			contrast           : 0,
+			vibrance           : 0,
+			blacks             : 0,
+			temperature        : 6500,
+			grainScale         : .5,
+			grain              : 0,
+			vignetteRadius     : 1,
+			vignette           : 0,
+			lightLeak          : 0,
+			lightLeakIntensity : 1,
+			lightLeakScale     : 1,
+			highQualityPreview : false,
+		};
+
 		let { cvs, ctx } = createCanvas(opt.width, opt.height);
 		this.cvs = cvs;
 		this.ctx = ctx;
@@ -47,7 +66,6 @@ class File {
 		this.dispatch({ ...event, type: "set-scale", noRender: true });
 
 		vermeer.editor.setFile(this);
-		
 		//Files.select(this._id);
 	}
 

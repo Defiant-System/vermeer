@@ -10,17 +10,12 @@ import clut from "../modules/clut";
 export class Editor {
 	constructor() {
 		//let { cvs, ctx } = createCanvas();
-		this.outputCanvas = false;
 		this.processorCanvas = createCanvas().cvs[0];
 		this.processor = this.getSupportedProcessor(this.processorCanvas);
 
 		this.inputImage = null;
 		this.scaledImage = null;
-		this.lastOptions = 0;
-		this.lastWidth = 0;
-		this.lastHeight = 0;
 		this.lastImage = null;
-		this.highQualityPreview = false;
 		this.renderPending = false;
 		this.renderInProgress = false;
 	}
@@ -28,76 +23,39 @@ export class Editor {
 	setFile(file) {
 		this.inputFile = file;
 		this.inputImage = file.img;
-		this.outputCanvas = file.cvs[0];
 		this.scaledImage = null;
 		this.render();
 	}
-
-	// setImage(image) {
-	// 	this.inputImage = image;
-	// 	this.scaledImage = null;
-	// 	this.render();
-	// }
 
 	getSupportedProcessor(cvs) {
 		let Processor = [CanvasWorkerProcessor, CanvasProcessor].find(p => p.isSupported());
 		return new Processor(cvs);
 	}
 
-	getCanvasSize(image) {
-		let pixelRatio = 1,
-			padding = 0;
+	getOptions() {
+		let config = this.inputFile.config;
 
-		let availableW = 641,
-			availableH = 800,
-			scale = Math.min(availableW/image.width, availableH/image.height, 1),
-			w = ~~(image.width * scale),
-			h = ~~(image.height * scale);
-
-		return [w, h, w/pixelRatio, h/pixelRatio];
-	}
-
-	getOptions(w, h) {
-		let clutPath = "~/images/various-a8314e11.png",
-			options = {
-				clutMix            : 1,
-				brightness         : 1,
-				saturation         : 0,
-				contrast           : 0,
-				vibrance           : 0,
-				blacks             : 0,
-				temperature        : 6500,
-				grainScale         : .5,
-				grain              : 0,
-				vignetteRadius     : 1,
-				vignette           : 0,
-				lightLeak          : 0,
-				lightLeakIntensity : 1,
-				lightLeakScale     : 1,
-			};
-
-		return Promise.resolve(clutPath && clut.get(clutPath)).then(clut => {
-			return {
+		return Promise.resolve(config.clutPath && clut.get(config.clutPath)).then(clut =>
+			({
 				clut,
-				...options,
-				highQuality: this.highQualityPreview,
+				...config,
+				highQuality: config.highQualityPreview,
 				// divide grain scale by image scale so the preview more or less matches the original
 				grain: {
-					scale     : 1600 * (options.grainScale || 1),
-					intensity : options.grain
+					scale     : 1600 * config.grainScale,
+					intensity : config.grain
 				},
 				vignette: {
-					radius    : 0.4 * (options.vignetteRadius || 1),
-					falloff   : Math.sqrt(1 + Math.pow(Math.max(w, h) / Math.min(w, h), 2)) * .5 - .4,
-					intensity : Math.pow(2, options.vignette)
+					radius    : 0.4 * config.vignetteRadius,
+					falloff   : Math.sqrt(1 + Math.pow(Math.max(this.inputFile.w, this.inputFile.h) / Math.min(this.inputFile.w, this.inputFile.h), 2)) * .5 - .4,
+					intensity : Math.pow(2, config.vignette)
 				},
 				lightLeak: {
-					seed      : options.lightLeak,
-					intensity : options.lightLeakIntensity,
-					scale     : options.lightLeakScale || 1,
+					seed      : config.lightLeak,
+					intensity : config.lightLeakIntensity,
+					scale     : config.lightLeakScale,
 				}
-			};
-		});
+			}));
 	}
 
 	render() {
@@ -111,19 +69,16 @@ export class Editor {
 			return console.log('render already in progress, setting pending');
 		}
 
-		let [w, h, wc, hc] = this.getCanvasSize(this.inputImage),
-			options = this.getOptions(w, h);
+		let w = this.inputFile.oW,
+			h = this.inputFile.oH,
+			options = this.getOptions();
 
 		if (w <= 0 || h <= 0) {
 			return console.log('editor is not visible, not rendering');
 		}
 
 		this.renderInProgress = true;
-		this.lastWidth = w;
-		this.lastHeight = h;
-		//this.lastOptions = this.controls.options;
 		this.lastImage = this.inputImage;
-
 
 		if (!this.scaledImage
 			|| this.scaledImage.w !== w
@@ -134,18 +89,15 @@ export class Editor {
 
 		console.time('Editor.render');
 		options
-			.then((options) => {
-				return this.processor.process(this.scaledImage, options);
-			})
-			.then(() => {
-				this.outputCanvas.width = w;
-				this.outputCanvas.height = h;
-				this.outputCanvas.getContext('2d').drawImage(this.processorCanvas, 0, 0);
-			})
+			.then(options =>
+				this.processor.process(this.scaledImage, options))
+			.then(() =>
+				this.inputFile.ctx.drawImage(this.processorCanvas, 0, 0))
 			.finally(() => {
 				console.timeEnd('Editor.render');
 				this.renderInProgress = false;
 				
+				// select file and render projector
 				Files.select(this.inputFile._id);
 
 				if (this.renderPending) {

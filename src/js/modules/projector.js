@@ -29,9 +29,9 @@ const Projector = {
 		
 		this.swap.ctx.fillStyle = "#fff";
 		this.swap.ctx.shadowOffsetX = 0;
-		this.swap.ctx.shadowOffsetY = 1;
-		this.swap.ctx.shadowBlur = 5;
-		this.swap.ctx.shadowColor = "#aaa";
+		this.swap.ctx.shadowOffsetY = 5;
+		this.swap.ctx.shadowBlur = 13;
+		this.swap.ctx.shadowColor = "#999";
 		this.swap.ctx.fillRect(oX, oY, w, h);
 		this.frame = this.swap.ctx.getImageData(0, 0, window.width, window.height);
 	},

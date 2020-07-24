@@ -36,16 +36,29 @@ const UI = {
 					clientX: event.clientX,
 					min: el.hasClass("pan-knob") ? -50 : 0,
 					max: el.hasClass("pan-knob") ? 50 : 100,
+					val: {
+						el: el.parent().find(".value"),
+						min: +el.data("min"),
+						max: +el.data("max"),
+						step: +el.data("step") || 1,
+					}
 				};
+
 				// bind event handlers
 				Self.content.addClass("no-cursor");
 				Self.doc.on("mousemove mouseup", Self.doKnob);
 				break;
 			case "mousemove":
-				value = ((Drag.clientY - event.clientY) * 2) + Drag.value;
+				value = (Drag.clientY - event.clientY) + Drag.value;
 				value = Math.min(Math.max(value, Drag.min), Drag.max);
-				value -= value % 2;
 				Drag.el.data({ value });
+
+				let i = Drag.val.step.toString().split(".")[1],
+					val = Drag.val.max * (value / 100);
+
+				i = i ? i.length : 0;
+
+				Drag.val.el.html(val.toFixed(i));
 				break;
 			case "mouseup":
 				// unbind event handlers

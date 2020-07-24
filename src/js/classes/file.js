@@ -64,7 +64,7 @@ class File {
 			});
 
 		// set file initial scale
-		this.dispatch({ ...event, type: "set-scale", skipEmit: true, scale: 3 });
+		this.dispatch({ ...event, type: "set-scale", skipEmit: true, scale1: 1 });
 
 		//vermeer.editor.setFile(this);
 		Files.select(this._id);

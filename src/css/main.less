@@ -74,12 +74,13 @@ content {
 			}
 
 			.box-head {
-				background-color: rgba(0,0,0,.05);
+				background-color: rgba(0,0,0,.025);
 				font-size: 0;
 				user-select: none;
 
 				> div {
 					display: inline-block;
+					color: #666;
 					text-transform: uppercase;
 					font-size: 10px;
 					padding: 8px 11px 7px;
@@ -88,16 +89,16 @@ content {
 					&.active {
 						background: rgba(255,255,255,0.25);
 						color: #555;
-						text-shadow: 0 1px 0 #f0f0f0;
+						text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 						//border-right: 1px solid rgba(#000, .2);
 					}
 				}
 			}
 
 			.box-tools {
-				background: rgba(235,235,235,0.15);
+				background: rgba(240,240,240,.25);
 				padding: 5px 7px 0;
-				border-bottom: 1px solid rgba(#000, .15);
+				border-bottom: 1px solid rgba(#000, .2);
 				height: 31px;
 				display: flex;
 
@@ -325,12 +326,12 @@ content {
 				text-shadow: 0 1px 0 #eee;
 				padding: 5px 31px 3px 9px;
 				white-space: nowrap;
-				border-radius: 5px;
+				border-radius: 4px;
 				height: 20px;
 				display: inline-block;
 				flex: 1;
-				background: linear-gradient(to bottom, rgba(255,255,255,.25), rgba(0,0,0,.05));
-				box-shadow: inset 0 0 0 1px rgba(0,0,0,.15),
+				background: linear-gradient(to bottom, rgba(235,235,235,.55), rgba(170,170,170,.35));
+				box-shadow: inset 0 0 0 1px rgba(60,60,60,.3),
 							inset 0 2px 0 rgba(255,255,255,.3),
 							0 1px 1px rgba(0,0,0,.05);
 
@@ -359,7 +360,7 @@ content {
 		}
 
 		.control {
-			background: linear-gradient(to bottom, rgba(255,255,255,.25), rgba(0,0,0,.05));
+			background: linear-gradient(to bottom, rgba(235,235,235,.55), rgba(170,170,170,.35));
 			display: inline-block;
 			width: 67px;
 			//height: 85px;
@@ -368,7 +369,7 @@ content {
 			padding: 5px;
 			font-size: 11px;
 			text-align: center;
-			box-shadow: inset 0 0 0 1px rgba(0,0,0,.15),
+			box-shadow: inset 0 0 0 1px rgba(60,60,60,.3),
 						inset 0 2px 0 rgba(255,255,255,.3),
 						0 1px 1px rgba(0,0,0,.05);
 

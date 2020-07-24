@@ -118,7 +118,7 @@ content {
 					position: relative;
 					margin: 7px auto 6px;
 					height: 121px;
-					max-width: 260px;
+					max-width: 220px;
 					//border: 1px solid rgba(#000, .65);
 
 					&.hidden {
@@ -128,35 +128,43 @@ content {
 						}
 					}
 
-					// > div {
-					// 	position: absolute;
-					// 	top: 50%;
-					// 	transform: translateY(-50%);
-					// }
+					> div {
+						position: absolute;
+						// top: 50%;
+						// transform: translateY(-50%);
+					}
 
 					canvas.nav-cvs {
-						position: absolute;
-						top: 0;
-						left: 0;
-						box-shadow: 0 0 0 1px rgba(#000, .2);
+						// position: absolute;
+						// top: 0;
+						// left: 0;
+						box-shadow: 0 0 0 1px rgba(#000, .65);
 					}
 
 					.view-rect {
-						//display: none;
 						position: absolute;
 						top: 0;
 						left: 0;
 						width: inherit;
 						height: inherit;
 						background: transparent;
-						border: 2px solid #ff4a4a;
+						border: 2px solid #ff7474;
 						cursor: move;
 					}
+				}
+
+				.adjust-wrapper {
+					height: 121px;
+				}
+
+				.info-wrapper {
+					height: 121px;
 				}
 
 				.presets-wrapper {
 					padding: 8px 9px;
 					font-size: 0;
+					height: 121px;
 				}
 			}
 

@@ -26,6 +26,11 @@
 
 			// subscribe to events
 			defiant.on("projector-update", this.dispatch);
+
+			if (this.ratio) {
+				// dispatch if ratio is calculated
+				this.dispatch({ type: "projector-update" });
+			}
 		} else {
 			// unbind event handlers
 			if (this.els.zoomRect) this.els.zoomRect.off("mousedown", this.pan);
@@ -63,6 +68,11 @@
 				Self.ratio = File.h / File.w;
 				if (isNaN(Self.ratio)) return;
 
+				ZOOM.map((z, i) => {
+					if (z.level === File.scale * 100) data = { i, level: z.level }});
+				Self.els.zoomSlider.val(data.i);
+				Self.els.zoomValue.html(data.level + "%");
+
 				// available width
 				Self.navWidth = _round(Self.navHeight / Self.ratio);
 				if (Self.navWidth > Self.maxWidth) {
@@ -89,7 +99,29 @@
 				Self.els.wrapper.removeClass("hidden");
 				break;
 			// custom events
-			case "custom-event":
+			case "input":
+				Self.zoomValue = ZOOM[Self.els.zoomSlider.val()].level;
+				Self.els.zoomValue.html(Self.zoomValue + "%");
+
+				if (event.type === "input") {
+					File.dispatch({ type: "set-scale", scale: Self.zoomValue / 100 });
+				}
+				break;
+			case "zoom-out":
+				value = _max(+Self.els.zoomSlider.val() - 1, 0);
+				Self.els.zoomSlider.val(value.toString()).trigger("input");
+				break;
+			case "zoom-in":
+				value = _min(+Self.els.zoomSlider.val() + 1, ZOOM.length - 1);
+				Self.els.zoomSlider.val(value).trigger("input");
+				break;
+			case "pan-canvas":
+				top = _round((event.y / event.max.y) * event.max.h) + Proj.aY;
+				left = _round((event.x / event.max.x) * event.max.w) + Proj.aX;
+				//if (isNaN(top) || isNaN(left)) return;
+
+				// forward event to canvas
+				File.dispatch({ type: "pan-canvas", top, left, noZoom: true });
 				break;
 		}
 	},

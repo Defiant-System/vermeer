@@ -1,6 +1,6 @@
 <Application>
 	<Build>
-		<task action="skip" source="src/js/modules/worker.js" destination="public/js/worker.js"/>
+		<task action1="skip" source="src/js/modules/worker.js" destination="public/js/worker.js"/>
 	</Build>
 	<Head>
 		<meta name="id" value="vermeer"/>

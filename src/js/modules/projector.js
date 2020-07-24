@@ -60,13 +60,12 @@ const Projector = {
 		this.ctx.save();
 		this.ctx.putImageData(this.frame, 0, 0);
 		this.ctx.translate(file.oX, file.oY);
-		this.ctx.imageSmoothingEnabled = false;
 		this.ctx.drawImage(file.cvs[0], 0, 0, file.w, file.h);
 		this.ctx.restore();
 
-		//if (!noEmit) {
+		if (!noEmit) {
 			// emit event
 			defiant.emit("projector-update");
-		//}
+		}
 	}
 };

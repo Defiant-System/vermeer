@@ -1,36 +1,29 @@
 
-class Mash {
-	constructor(data) {
-		data = data.toString();
+function Mash() {
+	let n = 0xefc8249d;
 
-		let n = 0xefc8249d,
-			i = 0,
-			il = data.length;
-		for (; i<il; i++) {
-			n += data.charCodeAt(i);
-			let h = 0.02519603282416938 * n;
-			n = h >>> 0;
-			h -= n;
-			h *= n;
-			n = h >>> 0;
-			h -= n;
-			n += h * 0x100000000; // 2^32
-		}
+	let mash = data => {
+			data = data.toString();
+			for (let i=0, il=data.length; i<il; i++) {
+				n += data.charCodeAt(i);
+				let h = 0.02519603282416938 * n;
+				n = h >>> 0;
+				h -= n;
+				h *= n;
+				n = h >>> 0;
+				h -= n;
+				n += h * 0x100000000; // 2^32
+			}
+			return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
+		};
 
-		return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
-	}
-
-	get version() {
-		return "Mash 0.9";
-	}
+	mash.version = 'Mash 0.9';
+	return mash;
 }
 
 export class Alea {
 	constructor(args) {
-		// Johannes Baagøe <baagoe@baagoe.com>, 2010
-		if (args.length == 0) {
-			args = [+new Date];
-		}
+		args = args || [0, 0, 0, 1];
 
 		let mash = Mash();
 		this.s0 = mash(" ");
@@ -55,7 +48,7 @@ export class Alea {
 	}
 
 	random() {
-		let t = 2091639 * this.s0 + c * 2.3283064365386963e-10; // 2^-32
+		let t = 2091639 * this.s0 + this.c * 2.3283064365386963e-10; // 2^-32
 		this.s0 = this.s1;
 		this.s1 = this.s2;
 		return this.s2 = t - (this.c = t | 0);
@@ -74,14 +67,14 @@ export class Alea {
 	}
 
 	static importState(i) {
-		let random = new Alea(i);
+		let alea = new Alea(i);
 
-		random.s0 = +i[0] || 0;
-		random.s1 = +i[1] || 0;
-		random.s2 = +i[2] || 0;
-		random.c = +i[3] || 0;
+		alea.s0 = +i[0] || 0;
+		alea.s1 = +i[1] || 0;
+		alea.s2 = +i[2] || 0;
+		alea.c = +i[3] || 0;
 
-		return random;
+		return alea;
 	}
 
 	get version() {

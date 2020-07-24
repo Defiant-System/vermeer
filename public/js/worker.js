@@ -1,35 +1,28 @@
-class Mash {
-	constructor(data) {
-		data = data.toString();
+function Mash() {
+	let n = 0xefc8249d;
 
-		let n = 0xefc8249d,
-			i = 0,
-			il = data.length;
-		for (; i<il; i++) {
-			n += data.charCodeAt(i);
-			let h = 0.02519603282416938 * n;
-			n = h >>> 0;
-			h -= n;
-			h *= n;
-			n = h >>> 0;
-			h -= n;
-			n += h * 0x100000000; // 2^32
-		}
+	let mash = data => {
+			data = data.toString();
+			for (let i=0, il=data.length; i<il; i++) {
+				n += data.charCodeAt(i);
+				let h = 0.02519603282416938 * n;
+				n = h >>> 0;
+				h -= n;
+				h *= n;
+				n = h >>> 0;
+				h -= n;
+				n += h * 0x100000000; // 2^32
+			}
+			return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
+		};
 
-		return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
-	}
-
-	get version() {
-		return "Mash 0.9";
-	}
+	mash.version = 'Mash 0.9';
+	return mash;
 }
 
 class Alea {
 	constructor(args) {
-		// Johannes Baagøe <baagoe@baagoe.com>, 2010
-		if (args.length == 0) {
-			args = [+new Date];
-		}
+		args = args || [0, 0, 0, 1];
 
 		let mash = Mash();
 		this.s0 = mash(" ");
@@ -54,7 +47,7 @@ class Alea {
 	}
 
 	random() {
-		let t = 2091639 * this.s0 + c * 2.3283064365386963e-10; // 2^-32
+		let t = 2091639 * this.s0 + this.c * 2.3283064365386963e-10; // 2^-32
 		this.s0 = this.s1;
 		this.s1 = this.s2;
 		return this.s2 = t - (this.c = t | 0);
@@ -73,14 +66,14 @@ class Alea {
 	}
 
 	static importState(i) {
-		let random = new Alea(i);
+		let alea = new Alea(i);
 
-		random.s0 = +i[0] || 0;
-		random.s1 = +i[1] || 0;
-		random.s2 = +i[2] || 0;
-		random.c = +i[3] || 0;
+		alea.s0 = +i[0] || 0;
+		alea.s1 = +i[1] || 0;
+		alea.s2 = +i[2] || 0;
+		alea.c = +i[3] || 0;
 
-		return random;
+		return alea;
 	}
 
 	get version() {
@@ -108,7 +101,8 @@ class SimplexNoise {
 		if (typeof randomOrSeed == 'function') {
 			random = randomOrSeed;
 		} else if (randomOrSeed) {
-			random = alea(randomOrSeed);
+			let alea = new Alea(randomOrSeed);
+			random = alea.random;
 		}
 
 		this.p = new Uint8Array(256);
@@ -188,13 +182,13 @@ class SimplexNoise {
 }
 
 // From http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
-function colorTemperatureToRGB(temperature){
+function colorTemperatureToRGB(temperature) {
 	temperature *= 0.01;
 	let r, g, b;
-	if (temperature <= 66 ){
+	if (temperature <= 66 ) {
 		r = 255;
 		g = 99.4708025861 * Math.log(temperature) - 161.1195681661;
-		if (temperature <= 19){
+		if (temperature <= 19) {
 			b = 0;
 		} else {
 			b = 138.5177312231 * Math.log(temperature-10) - 305.0447927307;
@@ -212,7 +206,7 @@ function clamp(x, x0, x1) {
 	return Math.min(Math.max(x, x0), x1);
 }
 
-function addVignette(out, image, slice, radius, falloff, intensity){
+function addVignette(out, image, slice, radius, falloff, intensity) {
 	let od = out.data,
 		id = image.data,
 		w = image.width,
@@ -240,15 +234,15 @@ function addVignette(out, image, slice, radius, falloff, intensity){
 	}
 }
 
-function dither(value){
+function dither(value) {
 	let floorValue = Math.floor(value),
 		remainder = value-floorValue;
 	return (Math.random() > remainder) ? floorValue : Math.ceil(value);
 }
 
-function addGrain(out, image, slice, scale, intensity){
+function addGrain(out, image, slice, scale, intensity) {
 	let simplex = new SimplexNoise(new Alea());
-	console.time('addGrain');
+	console.time("addGrain");
 	let od = out.data,
 		id = image.data,
 		w = image.width,
@@ -275,13 +269,13 @@ function addGrain(out, image, slice, scale, intensity){
 			od[i+2] = id[i+2]+noise;
 		}
 	}
-	console.timeEnd('addGrain');
+	console.timeEnd("addGrain");
 }
 
 
-function addLightLeak(out, image, slice, intensity, scale, seed){
+function addLightLeak(out, image, slice, intensity, scale, seed) {
 	let simplex = new SimplexNoise(new Alea(seed));
-	console.time('addLightLeak');
+	console.time("addLightLeak");
 	console.log(intensity, scale, seed);
 	let od = out.data,
 		id = image.data,
@@ -311,11 +305,11 @@ function addLightLeak(out, image, slice, intensity, scale, seed){
 			od[i+2] = id[i+2]+noise*b;
 		}
 	}
-	console.timeEnd('addLightLeak');
+	console.timeEnd("addLightLeak");
 }
 
 
-function adjustTemperature(out, image, temperature){
+function adjustTemperature(out, image, temperature) {
 	let od = out.data, id=image.data,
 		[rx, gx, bx] = colorTemperatureToRGB(temperature),
 		lr = 0.2126,
@@ -325,7 +319,7 @@ function adjustTemperature(out, image, temperature){
 	rx = m/rx;
 	gx = m/gx;
 	bx = m/bx;
-	for (let i = 0; i < od.length;i+=4){
+	for (let i = 0; i < od.length;i+=4) {
 		id[i] = od[i]*rx;
 		id[i+1] = od[i+1]*gx;
 		id[i+2] = od[i+2]*bx;
@@ -333,7 +327,7 @@ function adjustTemperature(out, image, temperature){
 }
 
 function adjust(out, image, brightness, contrast, saturation, vibrance, blacks) {
-	console.time('adjust');
+	console.time("adjust");
 	let od = out.data, id=image.data,
 		lr = 0.2126,
 		lg = 0.7152,
@@ -341,7 +335,7 @@ function adjust(out, image, brightness, contrast, saturation, vibrance, blacks) 
 
 	brightness = brightness/(1-blacks);
 
-	for (let i = 0; i < od.length;i+=4){
+	for (let i = 0; i < od.length;i+=4) {
 		// leave values gamma encoded, results are practically nicer
 		let r = id[i]/255,
 			g = id[i+1]/255,
@@ -389,11 +383,11 @@ function adjust(out, image, brightness, contrast, saturation, vibrance, blacks) 
 		od[i+1] = dither(g*255);
 		od[i+2] = dither(b*255);
 	}
-	console.timeEnd('adjust');
+	console.timeEnd("adjust");
 }
 
-function mapColorsFast(out, image, clut, clutMix){
-	console.time('mapColorsFast');
+function mapColorsFast(out, image, clut, clutMix) {
+	console.time("mapColorsFast");
 	let od = out.data,
 		id = image.data,
 		w = out.width,
@@ -419,15 +413,15 @@ function mapColorsFast(out, image, clut, clutMix){
 			od[i+3] = a*255;
 		}
 	}
-	console.timeEnd('mapColorsFast');
+	console.timeEnd("mapColorsFast");
 }
 
-function noisy(n){
+function noisy(n) {
 	return Math.min(Math.max(0, n+Math.random()-0.5), 255);
 }
 
-function mapColors(out, image, clut, clutMix){
-	console.time('mapColors');
+function mapColors(out, image, clut, clutMix) {
+	console.time("mapColors");
 	let od = out.data,
 		id = image.data,
 		w = out.width,
@@ -491,43 +485,43 @@ function mapColors(out, image, clut, clutMix){
 			od[i+3] = a*256;
 		}
 	}
-	console.timeEnd('mapColors');
+	console.timeEnd("mapColors");
 }
 
-function rgbLerp(out, x, y, t){
+function rgbLerp(out, x, y, t) {
 	out[0] = x[0]+(y[0]-x[0])*t;
 	out[1] = x[1]+(y[1]-x[1])*t;
 	out[2] = x[2]+(y[2]-x[2])*t;
 }
 
-function sample(out, cd, cs, r, g, b){
+function sample(out, cd, cs, r, g, b) {
 	let ci = (b*cs*cs+g*cs+r)*4;
 	out[0] = cd[ci];
 	out[1] = cd[ci+1];
 	out[2] = cd[ci+2];
 }
 
-function processImage(data, slice, options){
-	if (options.brightness && options.brightness !== 1 || options.contrast || options.saturation || options.vibrance || options.temperature || options.blacks){
+function processImage(data, slice, options) {
+	if (options.brightness && options.brightness !== 1 || options.contrast || options.saturation || options.vibrance || options.temperature || options.blacks) {
 		adjust(data, data, options.brightness||1, options.contrast||0, options.saturation||0, options.vibrance||0, options.blacks || 0);
 	}
-	if (options.temperature && options.temperature != 6500){
+	if (options.temperature && options.temperature != 6500) {
 		adjustTemperature(data, data, options.temperature);
 	}
-	if (options.vignette && options.vignette.intensity > 0){
+	if (options.vignette && options.vignette.intensity > 0) {
 		addVignette(data, data, slice, options.vignette.radius, options.vignette.falloff, options.vignette.intensity);
 	}
 	if (options.grain && options.grain.intensity > 0) {
 		addGrain(data, data, slice, options.grain.scale, options.grain.intensity);
 	}
-	if (options.clut){
-		if (options.highQuality){
+	if (options.clut) {
+		if (options.highQuality) {
 			mapColors(data, data, options.clut, options.clutMix);
 		} else {
 			mapColorsFast(data, data, options.clut, options.clutMix);
 		}
 	}
-	if (options.lightLeak && options.lightLeak.seed > 0){
+	if (options.lightLeak && options.lightLeak.seed > 0) {
 		addLightLeak(data, data, slice, options.lightLeak.intensity||1, options.lightLeak.scale, options.lightLeak.seed);
 	}
 }

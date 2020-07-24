@@ -19,7 +19,7 @@ class File {
 		//	clutPath : "~/images/various-67d8a942.png",
 			clutMix            : 1,
 			brightness         : 1,
-			saturation         : 0,
+			saturation         : 1,
 			contrast           : 0,
 			vibrance           : 0,
 			blacks             : 0,
@@ -27,7 +27,7 @@ class File {
 			grainScale         : .5,
 			grain              : 0,
 			vignetteRadius     : 1,
-			vignette           : 0,
+			vignette           : 7,
 			lightLeak          : 0,
 			lightLeakIntensity : 1,
 			lightLeakScale     : 1,
@@ -80,7 +80,7 @@ class File {
 			// custom events
 			case "set-scale":
 				// scaled dimension
-				this.scale = this.scale;
+				this.scale = event.scale || this.scale;
 				this.w = this.oW * this.scale;
 				this.h = this.oH * this.scale;
 				// origo
@@ -92,6 +92,12 @@ class File {
 					Proj.renderFrame(this);
 					Proj.render();
 				}
+				break;
+			case "pan-canvas":
+				this.oX = (Number.isInteger(event.left) ? event.left : Proj.cX - (this.w / 2) + event.x) || this.oX;
+				this.oY = (Number.isInteger(event.top) ? event.top : Proj.cY - (this.h / 2) + event.y) || this.oY;
+				// render projector canvas
+				Proj.render();
 				break;
 		}
 	}

@@ -9,7 +9,7 @@
  */
 
 import { Alea } from "./alea";
- 
+
 export class SimplexNoise {
 	constructor(randomOrSeed) {
 		this.F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
@@ -20,8 +20,7 @@ export class SimplexNoise {
 		if (typeof randomOrSeed == 'function') {
 			random = randomOrSeed;
 		} else if (randomOrSeed) {
-			let alea = new Alea(randomOrSeed);
-			random = alea.random;
+			random = (new Alea(randomOrSeed)).random;
 		}
 
 		this.p = new Uint8Array(256);

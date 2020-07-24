@@ -26,6 +26,6 @@ const Files = {
 		// reference to active file
 		let file = this.stack.find(f => f._id === _id);
 		Projector.reset(file);
-		Projector.render();
+		Projector.render({ emit: ["projector-zoom", "projector-pan", "projector-update"] });
 	}
 };

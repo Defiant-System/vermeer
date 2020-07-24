@@ -51,7 +51,7 @@ const Projector = {
 		// pre-render frame
 		if (file) this.renderFrame(file);
 	},
-	render(noEmit) {
+	render(opt) {
 		// reference to displayed file
 		let file = this.file;
 		// reset canvas
@@ -63,9 +63,9 @@ const Projector = {
 		this.ctx.drawImage(file.cvs[0], 0, 0, file.w, file.h);
 		this.ctx.restore();
 
-		if (!noEmit) {
+		if (opt) {
 			// emit event
-			defiant.emit("projector-update");
+			opt.emit.map(type => defiant.emit(type));
 		}
 	}
 };

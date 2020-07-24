@@ -24,7 +24,7 @@ export class Editor {
 		this.inputFile = file;
 		this.inputImage = file.img;
 		this.scaledImage = null;
-		this.render();
+		this.render({ emit: ["projector-update"] });
 	}
 
 	getSupportedProcessor(cvs) {

@@ -25,6 +25,8 @@
 			this.els.zoomSlider.on("input", this.dispatch);
 
 			// subscribe to events
+			defiant.on("projector-zoom", this.dispatch);
+			defiant.on("projector-pan", this.dispatch);
 			defiant.on("projector-update", this.dispatch);
 
 			if (this.ratio) {
@@ -40,6 +42,8 @@
 			this.els = {};
 
 			// unsubscribe to events
+			defiant.off("projector-zoom", this.dispatch);
+			defiant.off("projector-pan", this.dispatch);
 			defiant.off("projector-update", this.dispatch);
 		}
 	},
@@ -63,15 +67,17 @@
 
 		switch (event.type) {
 			// subscribed events
-			case "projector-update":
-				// calc ratio
-				Self.ratio = File.h / File.w;
-				if (isNaN(Self.ratio)) return;
-
+			case "projector-zoom":
+			console.log(event)
 				ZOOM.map((z, i) => {
 					if (z.level === File.scale * 100) data = { i, level: z.level }});
 				Self.els.zoomSlider.val(data.i);
 				Self.els.zoomValue.html(data.level + "%");
+				/* falls through */
+			case "projector-pan":
+				// calc ratio
+				Self.ratio = File.h / File.w;
+				if (isNaN(Self.ratio)) return;
 
 				// available width
 				Self.navWidth = _round(Self.navHeight / Self.ratio);
@@ -92,7 +98,8 @@
 
 				for (let key in data) data[key] = _round(data[key]) +"px";
 				Self.els.zoomRect.css(data);
-
+				break;
+			case "projector-update":
 				Self.els.wrapper.css({ width: Self.navWidth +"px" });
 				Self.cvs.prop({ width: Self.navWidth, height: Self.navHeight });
 				Self.ctx.drawImage(File.cvs[0], 0, 0, Self.navWidth, Self.navHeight);
@@ -121,7 +128,7 @@
 				//if (isNaN(top) || isNaN(left)) return;
 
 				// forward event to canvas
-				File.dispatch({ type: "pan-canvas", top, left, noZoom: true });
+				File.dispatch({ type: "pan-canvas", top, left });
 				break;
 		}
 	},
@@ -148,7 +155,7 @@
 					min: { x: 0, y: 0 },
 					max: {
 						x: +el.parent().prop("offsetWidth") - +el.prop("offsetWidth"),
-						y: +el.parent().prop("offsetHeight") - +el.prop("offsetHeight") - 4,
+						y: +el.parent().prop("offsetHeight") - +el.prop("offsetHeight") - 2,
 						w: Proj.aW - File.w,
 						h: Proj.aH - File.h,
 					}

@@ -10,6 +10,13 @@ defiant.require("modules/exif.min.js");
 import { loadImage } from "./modules/image-helpers";
 import { Editor } from "./classes/editor";
 
+
+const TOOLS = {
+	_active  : false,
+	move     : defiant.require("tools/move.js"),
+};
+
+
 const vermeer = {
 	els: {},
 	init() {
@@ -20,6 +27,7 @@ const vermeer = {
 		UI.init();
 		Files.init();
 		Projector.init();
+		Object.keys(TOOLS).filter(t => TOOLS[t].init).map(t => TOOLS[t].init());
 
 		// init sidebar initial boxes
 		["navigator", "presets"].map(item => {
@@ -30,6 +38,8 @@ const vermeer = {
 		// initate editor
 		this.editor = new Editor();
 		
+		this.dispatch({ type: "select-tool", arg: "move" });
+
 		// temp
 		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
 		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });
@@ -61,6 +71,19 @@ const vermeer = {
 				newBox = oldBox.replace(newBox);
 				// notify box state = on
 				this.box[newBox.data("box")].toggle(newBox, "on");
+				break;
+			case "select-tool":
+				if (TOOLS._active === event.arg) return;
+				
+				if (TOOLS._active) {
+					// disable active tool
+					TOOLS[TOOLS._active].dispatch({ type: "disable" });
+				}
+				if (TOOLS[event.arg]) {
+					// enable tool
+					TOOLS._active = event.arg;
+					TOOLS[TOOLS._active].dispatch({ type: "enable" });
+				}
 				break;
 			default:
 				if (event.el) {

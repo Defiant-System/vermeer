@@ -25,7 +25,7 @@ class File {
 			blacks             : 0,
 			temperature        : 6500,
 			grainScale         : .5,
-			grain              : 0.5,
+			grain              : 0,
 			vignetteRadius     : 1,
 			vignette           : 0,
 			lightLeak          : 0,
@@ -64,10 +64,10 @@ class File {
 			});
 
 		// set file initial scale
-		this.dispatch({ ...event, type: "set-scale", noRender: true });
+		this.dispatch({ ...event, type: "set-scale", noRender: true, scale: 3 });
 
-		vermeer.editor.setFile(this);
-		//Files.select(this._id);
+		//vermeer.editor.setFile(this);
+		Files.select(this._id);
 	}
 
 	dispatch(event) {
@@ -90,14 +90,14 @@ class File {
 				if (!event.noRender) {
 					// render projector canvas
 					Proj.renderFrame(this);
-					Proj.render();
+					Proj.render({ emit: ["projector-zoom"] });
 				}
 				break;
 			case "pan-canvas":
 				this.oX = (Number.isInteger(event.left) ? event.left : Proj.cX - (this.w / 2) + event.x) || this.oX;
 				this.oY = (Number.isInteger(event.top) ? event.top : Proj.cY - (this.h / 2) + event.y) || this.oY;
 				// render projector canvas
-				Proj.render();
+				Proj.render({ emit: ["projector-pan"] });
 				break;
 		}
 	}

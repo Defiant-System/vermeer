@@ -64,7 +64,7 @@ class File {
 			});
 
 		// set file initial scale
-		this.dispatch({ ...event, type: "set-scale", noRender: true, scale: 3 });
+		this.dispatch({ ...event, type: "set-scale", skipEmit: true, scale: 3 });
 
 		//vermeer.editor.setFile(this);
 		Files.select(this._id);
@@ -87,7 +87,7 @@ class File {
 				this.oX = _round(Proj.cX - (this.w / 2));
 				this.oY = _round(Proj.cY - (this.h / 2));
 
-				if (!event.noRender) {
+				if (!event.skipEmit) {
 					// render projector canvas
 					Proj.renderFrame(this);
 					Proj.render({ emit: ["projector-zoom"] });
@@ -96,8 +96,9 @@ class File {
 			case "pan-canvas":
 				this.oX = (Number.isInteger(event.left) ? event.left : Proj.cX - (this.w / 2) + event.x) || this.oX;
 				this.oY = (Number.isInteger(event.top) ? event.top : Proj.cY - (this.h / 2) + event.y) || this.oY;
+
 				// render projector canvas
-				Proj.render({ emit: ["projector-pan"] });
+				Proj.render(!event.skipEmit ? { emit: ["projector-pan"] } : null);
 				break;
 		}
 	}

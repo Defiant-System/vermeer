@@ -68,7 +68,6 @@
 		switch (event.type) {
 			// subscribed events
 			case "projector-zoom":
-			console.log(event)
 				ZOOM.map((z, i) => {
 					if (z.level === File.scale * 100) data = { i, level: z.level }});
 				Self.els.zoomSlider.val(data.i);
@@ -128,7 +127,7 @@
 				//if (isNaN(top) || isNaN(left)) return;
 
 				// forward event to canvas
-				File.dispatch({ type: "pan-canvas", top, left });
+				File.dispatch({ type: "pan-canvas", top, left, skipEmit: event.skipEmit });
 				break;
 		}
 	},
@@ -171,7 +170,7 @@
 				// moves navigator view rectangle
 				Drag.el.css({ top: y +"px", left: x +"px" });
 				// emit pan-event
-				Self.dispatch({ type: "pan-canvas", ...Drag, x, y });
+				Self.dispatch({ type: "pan-canvas", ...Drag, x, y, skipEmit: true });
 				break;
 			case "mouseup":
 				// remove class

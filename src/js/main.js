@@ -44,6 +44,8 @@ const vermeer = {
 		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
 		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });
 		this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
+
+		//this.els.content.find(".box-head div[data-content='info']").trigger("click");
 	},
 	dispatch(event) {
 		let Self = vermeer,
@@ -58,7 +60,7 @@ const vermeer = {
 				break;
 			case "box-head-tab":
 				el = $(event.target);
-				if (el.hasClass("active")) return;
+				if (el.hasClass("active") || !el.parent().hasClass("box-head")) return;
 				el.parent().find(".active").removeClass("active");
 				el.addClass("active");
 

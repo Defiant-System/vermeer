@@ -24,6 +24,35 @@ content {
 		cursor: none;
 	}
 
+	.icon {
+		position: relative;
+		background-size: 0px;
+		width: 17px;
+		height: 17px;
+		margin: 0 2px;
+		z-index: 2;
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0.5;
+			background-image: inherit;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			filter: invert(50%) brightness(50%) drop-shadow(0 1px 0 #f0f0f0);
+			width: inherit;
+			height: inherit;
+			transition: opacity 80ms ease-in-out;
+		}
+
+		&.icon-pipette          { background-image: url(~/icons/tool-pipette.png); }
+		&.icon-cursor_pos       { background-image: url(~/icons/icon-cursor-pos.png); }
+		&.icon-selection_dim    { background-image: url(~/icons/icon-selection-dim.png); }
+	}
+
 	.cvs-wrapper {
 		height: 0;
 
@@ -110,13 +139,18 @@ content {
 			.box-body {
 				position: relative;
 				flex: 1;
-				//min-height: 100px;
+
+				.divider {
+					background: rgba(#666, .25);
+					height: 1px;
+					margin: 3px 0;
+				}
 
 				div[data-box] {
 					display: flex;
 					flex-direction: column;
 					height: 100%;
-					border-top: 1px solid rgba(#000, .15);
+					border-top: 1px solid rgba(#555, .25);
 
 					.box-content-wrapper {
 						flex: 1;
@@ -177,7 +211,67 @@ content {
 				}
 
 				.info-wrapper {
-					height: 121px;
+					padding: 3px 0 13px;
+					font-size: 11px;
+					color: rgba(#555, .5);
+
+					.field {
+						display: flex;
+
+						&:first-child .info-area:nth-child(1) {
+							flex: initial;
+							width: 137px;
+						}
+
+						&:last-child .info-area {
+							padding-top: 5px;
+							padding-left: 7px;
+							//color: rgba(#eff, .45);
+						}
+					}
+
+					.info-area {
+						position: relative;
+						padding-left: 29px;
+						flex: 1;
+
+						&:nth-child(3) {
+							flex: initial;
+							width: 33px;
+							padding-top: 42px;
+							padding-left: 0;
+						}
+
+						> .icon {
+							position: absolute;
+							top: 50%;
+							left: 5px;
+							width: 15px;
+							height: 15px;
+							transform: translateY(-50%);
+						}
+
+						.info-row {
+							padding: 2px 0;
+							display: flex;
+
+							&.hidden { display: none; }
+
+							.label {
+								display: inline-block;
+								vertical-align: middle;
+								padding: 3px 7px 0 0;
+								font-size: 11px;
+								//color: rgba(#eff, .45);
+							}
+
+							.value {
+								height: 17px;
+								padding: 3px 0 0;
+								width: 43px;
+							}
+						}
+					}
 				}
 
 				.presets-wrapper {

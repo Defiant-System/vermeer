@@ -121,6 +121,15 @@ content {
 					.box-content-wrapper {
 						flex: 1;
 						position: relative;
+
+						.box-content-body {
+							position: absolute;
+							top: 0;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							overflow-y: auto;
+						}
 					}
 				}
 
@@ -163,7 +172,7 @@ content {
 					}
 				}
 
-				.adjust-wrapper {
+				.histogram-wrapper {
 					height: 121px;
 				}
 
@@ -172,9 +181,10 @@ content {
 				}
 
 				.presets-wrapper {
-					padding: 8px 9px;
-					font-size: 0;
-					height: 121px;
+					.box-content-body {
+						padding: 8px 9px;
+						font-size: 0;
+					}
 				}
 			}
 

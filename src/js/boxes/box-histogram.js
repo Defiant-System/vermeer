@@ -1,5 +1,5 @@
 
-// vermeer.box.adjust
+// vermeer.box.histogram
 
 {
 	els: {},
@@ -14,7 +14,7 @@
 	},
 	dispatch(event) {
 		let APP = vermeer,
-			Self = APP.box.adjust,
+			Self = APP.box.histogram,
 			el;
 
 		switch (event.type) {

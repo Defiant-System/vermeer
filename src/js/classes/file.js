@@ -94,8 +94,8 @@ class File {
 				}
 				break;
 			case "pan-canvas":
-				this.oX = (Number.isInteger(event.left) ? event.left : Proj.cX - (this.w / 2) + event.x) || this.oX;
-				this.oY = (Number.isInteger(event.top) ? event.top : Proj.cY - (this.h / 2) + event.y) || this.oY;
+				this.oX = (Number.isInteger(event.left) ? event.left : this.w > Proj.aW ? Proj.cX - (this.w / 2) + event.x : false) || this.oX;
+				this.oY = (Number.isInteger(event.top) ? event.top : this.h > Proj.aH ? Proj.cY - (this.h / 2) + event.y : false) || this.oY;
 
 				// render projector canvas
 				Proj.render(!event.skipEmit ? { emit: ["projector-pan"] } : null);

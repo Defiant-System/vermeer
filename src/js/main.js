@@ -97,7 +97,7 @@ const vermeer = {
 	},
 	box: {
 		navigator: defiant.require("boxes/box-navigator.js"),
-		adjust:    defiant.require("boxes/box-adjust.js"),
+		histogram: defiant.require("boxes/box-histogram.js"),
 		info:      defiant.require("boxes/box-info.js"),
 		presets:   defiant.require("boxes/box-presets.js")
 	}

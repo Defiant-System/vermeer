@@ -31,6 +31,7 @@
 
 			if (this.ratio) {
 				// dispatch if ratio is calculated
+				this.dispatch({ type: "projector-zoom" });
 				this.dispatch({ type: "projector-update" });
 			}
 		} else {

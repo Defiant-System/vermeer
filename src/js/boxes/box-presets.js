@@ -61,7 +61,7 @@
 			// custom events
 			case "set-clut":
 				// update file's clut filename
-				File.config.clutFile = event.arg;
+				File.config.clutFile = event.arg === "none" ? false : event.arg;
 				// apply config on file / image
 				APP.editor.setFile(File);
 				break;

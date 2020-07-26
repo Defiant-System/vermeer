@@ -259,7 +259,7 @@ function dither(value) {
 
 function addGrain(out, image, slice, scale, intensity) {
 	let simplex = new SimplexNoise(new Alea());
-	console.time("addGrain");
+	// console.time("addGrain");
 	let od = out.data,
 		id = image.data,
 		w = image.width,
@@ -286,14 +286,14 @@ function addGrain(out, image, slice, scale, intensity) {
 			od[i+2] = id[i+2]+noise;
 		}
 	}
-	console.timeEnd("addGrain");
+	// console.timeEnd("addGrain");
 }
 
 
 function addLightLeak(out, image, slice, intensity, scale, seed) {
 	let simplex = new SimplexNoise(new Alea(seed));
-	console.time("addLightLeak");
-	console.log(intensity, scale, seed);
+	// console.time("addLightLeak");
+	// console.log(intensity, scale, seed);
 	let od = out.data,
 		id = image.data,
 		w = image.width,
@@ -322,7 +322,7 @@ function addLightLeak(out, image, slice, intensity, scale, seed) {
 			od[i+2] = id[i+2]+noise*b;
 		}
 	}
-	console.timeEnd("addLightLeak");
+	// console.timeEnd("addLightLeak");
 }
 
 
@@ -344,7 +344,7 @@ function adjustTemperature(out, image, temperature) {
 }
 
 function adjust(out, image, brightness, contrast, saturation, vibrance, blacks) {
-	console.time("adjust");
+	// console.time("adjust");
 	let od = out.data, id=image.data,
 		lr = 0.2126,
 		lg = 0.7152,
@@ -400,11 +400,11 @@ function adjust(out, image, brightness, contrast, saturation, vibrance, blacks) 
 		od[i+1] = dither(g*255);
 		od[i+2] = dither(b*255);
 	}
-	console.timeEnd("adjust");
+	// console.timeEnd("adjust");
 }
 
 function mapColorsFast(out, image, clut, clutMix) {
-	console.time("mapColorsFast");
+	// console.time("mapColorsFast");
 	let od = out.data,
 		id = image.data,
 		w = out.width,
@@ -430,7 +430,7 @@ function mapColorsFast(out, image, clut, clutMix) {
 			od[i+3] = a*255;
 		}
 	}
-	console.timeEnd("mapColorsFast");
+	// console.timeEnd("mapColorsFast");
 }
 
 function noisy(n) {
@@ -438,7 +438,7 @@ function noisy(n) {
 }
 
 function mapColors(out, image, clut, clutMix) {
-	console.time("mapColors");
+	// console.time("mapColors");
 	let od = out.data,
 		id = image.data,
 		w = out.width,
@@ -502,7 +502,7 @@ function mapColors(out, image, clut, clutMix) {
 			od[i+3] = a*256;
 		}
 	}
-	console.timeEnd("mapColors");
+	// console.timeEnd("mapColors");
 }
 
 function rgbLerp(out, x, y, t) {

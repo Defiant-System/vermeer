@@ -5,7 +5,7 @@ import CanvasProcessor from "./canvas-processor";
 export default class CanvasWorkerProcessor extends CanvasProcessor {
 	constructor(canvas) {
 		super(canvas);
-		this.workers = new WorkerPool("~/js/worker.js");
+		this.workers = new WorkerPool("~/js/worker.js", 4);
 	}
 
 	static isSupported() {
@@ -46,7 +46,7 @@ export default class CanvasWorkerProcessor extends CanvasProcessor {
 				}, [imageData.data.buffer]]);
 		}
 
-	   return Promise.all(this.workers.dispatch(messages)).then((results) => {
+		return Promise.all(this.workers.dispatch(messages)).then(results => {
 			for(let i=0; i<results.length; i++) {
 				ctx.putImageData(results[i], 0, chunk * i);
 			}

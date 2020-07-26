@@ -17,9 +17,12 @@ const UI = {
 
 	},
 	doKnob(event) {
-		let Self = UI,
+		let APP = vermeer,
+			Self = UI,
 			Drag = Self.drag,
+			name,
 			value,
+			type,
 			el;
 		switch (event.type) {
 			case "mousedown":
@@ -61,6 +64,13 @@ const UI = {
 				// unbind event handlers
 				Self.content.removeClass("no-cursor");
 				Self.doc.off("mousemove mouseup", Self.doKnob);
+
+				// emit change event
+				name = Drag.el.parents("[data-box").data("box");
+				type = Drag.el.data("emit");
+				if (name && type) {
+					APP.box[name].dispatch({ type });
+				}
 				break;
 		}
 	}

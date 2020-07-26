@@ -9,18 +9,18 @@
 			this.els.root = root;
 
 			// subscribe to events
-			defiant.on("projector-update", this.dispatch);
+			defiant.on("select-file", this.dispatch);
 
 			if (this.data) {
 				// dispatch if ratio is calculated
-				this.dispatch({ type: "projector-update", arg: this.data });
+				this.dispatch({ type: "select-file", arg: this.data });
 			}
 		} else {
 			// clean up
 			this.els = {};
 
 			// unsubscribe to events
-			defiant.off("projector-update", this.dispatch);
+			defiant.off("select-file", this.dispatch);
 		}
 	},
 	dispatch(event) {
@@ -34,8 +34,8 @@
 		if (!Self.els.root) return;
 
 		switch (event.type) {
-			// custom events
-			case "projector-update":
+			// subscribed events
+			case "select-file":
 				data = event.arg || File.config;
 
 				Object.keys(data).map(key => {
@@ -57,6 +57,21 @@
 
 				// save last preset data
 				Self.data = data;
+				break;
+			// custom events
+			case "control-change":
+				data = Self.els.root.find(".control").reduce((acc, el) => {
+					acc[el.classList[1]] = +$(".value", el).text();
+					return acc;
+				}, {});
+
+				File.config = {
+					...File.config,
+					...data,
+				};
+				
+				// apply config on file / image
+				APP.editor.setFile(File);
 				break;
 		}
 	}

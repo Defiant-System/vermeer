@@ -1,6 +1,6 @@
 
 export default class WorkerPool {
-    constructor(src = "~/js/worker.js", poolSize = undefined) {
+    constructor(src, poolSize) {
         // limiting the maximal number of workers to 4, navigator.hardwareConcurrency
         // tends to overreport because of hyper threading.
         // according to http://store.steampowered.com/hwsurvey/cpus/
@@ -8,14 +8,14 @@ export default class WorkerPool {
         // the synchronization is rarely worth it. 
         poolSize = poolSize || Math.min(4, navigator.hardwareConcurrency) || 4;
         this.pool = [];
-        for(var i = 0; i < poolSize; i++) {
+        for(var i=0; i<poolSize; i++) {
             this.pool.push(new Worker(src));
         }
     }
 
     zip(...args) {
         let length = Math.max(...args.map(r => r.length));
-        let merged = [...Array(length)].map((e, i) => args.map(a => a.shift()));
+        let merged = [...Array(length)].map((e, i) => args.map(a => a[i]));
         return merged;
     }
 

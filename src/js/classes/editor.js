@@ -9,7 +9,6 @@ import clut from "../modules/clut";
 
 export class Editor {
 	constructor() {
-		//let { cvs, ctx } = createCanvas();
 		this.processorCanvas = createCanvas().cvs[0];
 		this.processor = this.getSupportedProcessor(this.processorCanvas);
 
@@ -24,7 +23,7 @@ export class Editor {
 		this.inputFile = file;
 		this.inputImage = file.img;
 		this.scaledImage = null;
-		this.render({ emit: ["projector-update"] });
+		this.render();
 	}
 
 	getSupportedProcessor(cvs) {
@@ -35,8 +34,8 @@ export class Editor {
 	getOptions() {
 		let config = this.inputFile.config;
 
-		return Promise.resolve(config.clutPath && clut.get(config.clutPath)).then(clut =>
-			({
+		return Promise.resolve(config.clutPath && clut.get(config.clutPath)).then(clut => {
+			return {
 				clut,
 				...config,
 				highQuality: config.highQualityPreview,
@@ -55,10 +54,11 @@ export class Editor {
 					intensity : config.lightLeakIntensity,
 					scale     : config.lightLeakScale,
 				}
-			}));
+			}
+		});
 	}
 
-	render() {
+	async render(emit) {
 		if (!this.inputImage) return;
 
 		if (this.renderPending) {
@@ -69,11 +69,9 @@ export class Editor {
 			return console.log('render already in progress, setting pending');
 		}
 
-		let w = this.inputFile.w,
-			h = this.inputFile.h,
-			oW = this.inputFile.oW,
+		let oW = this.inputFile.oW,
 			oH = this.inputFile.oH,
-			options = this.getOptions();
+			options = await this.getOptions();
 
 		if (oW <= 0 || oH <= 0) {
 			return console.log('editor is not visible, not rendering');
@@ -86,26 +84,21 @@ export class Editor {
 			|| this.scaledImage.w !== oW
 			|| this.scaledImage.h !== oH
 			|| this.inputImage !== this.lastImage) {
-			this.scaledImage = scaleImageHQ(this.inputImage, w, h);
+			this.scaledImage = scaleImageHQ(this.inputImage, oW, oH);
 		}
 
 		console.time('Editor.render');
-		options
-			.then(options =>
-				this.processor.process(this.scaledImage, options))
-			.then(() =>
-				this.inputFile.ctx.drawImage(this.processorCanvas, 0, 0, oW, oH))
-			.finally(() => {
-				console.timeEnd('Editor.render');
-				this.renderInProgress = false;
-				
-				// select file and render projector
-				Files.select(this.inputFile._id);
+		await this.processor.process(this.scaledImage, options);
+		this.inputFile.ctx.drawImage(this.processorCanvas, 0, 0, oW, oH);
+		this.renderInProgress = false;
+		console.timeEnd('Editor.render');
+		
+		// select file and render projector
+		Projector.render({ emit: ["projector-update"] });
 
-				if (this.renderPending) {
-					this.renderPending = false;
-					return this.render();
-				}
-			});
+		// if (this.renderPending) {
+		// 	this.renderPending = false;
+		// 	return this.render();
+		// }
 	}
 }

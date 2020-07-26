@@ -19,20 +19,20 @@ class File {
 		//	clutPath : "~/images/various-67d8a942.png",
 			clutMix            : 1,
 			highQualityPreview : false,
-			
-			grain              : 0.085,
+
+			grain              : 0,
 			grainScale         : .5,
-			vignette           : 5,
-			vignetteRadius     : 0.01,
+			vignette           : 0,
+			vignetteRadius     : 1,
 			lightLeak          : 0,
 			lightLeakIntensity : 1,
 			lightLeakScale     : 1,
-			brightness         : .36,
-			blacks             : -0.16,
-			contrast           : -.25,
+			brightness         : 1,
+			blacks             : 0,
+			contrast           : 0,
 			temperature        : 6500,
-			vibrance           : 0.5,
-			saturation         : 0.25,
+			vibrance           : 0,
+			saturation         : 0,
 		};
 
 		let { cvs, ctx } = createCanvas(opt.width, opt.height);

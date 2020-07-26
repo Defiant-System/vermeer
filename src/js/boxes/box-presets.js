@@ -49,7 +49,7 @@
 						max = +knob.data("max"),
 						step = +knob.data("step"),
 						perc = ((data[key] - min) / (max - min)) - (isPan ? .5 : 0),
-						value = ~~(perc * 100),
+						value = Math.round(perc * 100),
 						i = step.toString().split(".")[1];
 
 					knob.data({ value });
@@ -58,8 +58,31 @@
 
 				// save last preset data
 				Self.data = data;
+				
+				// apply config on file / image
+				APP.editor.setFile(File);
 				break;
 			// custom events
+			case "save-values":
+				break;
+			case "reset-values":
+				data = {
+					grain              : 0,
+					grainScale         : .5,
+					vignette           : 0,
+					vignetteRadius     : 0,
+					lightLeak          : 0,
+					lightLeakIntensity : 0,
+					lightLeakScale     : 0,
+					brightness         : 1,
+					blacks             : 0,
+					contrast           : 0,
+					temperature        : 0,
+					vibrance           : 0,
+					saturation         : 0,
+				};
+				Self.dispatch({ type: "select-file", arg: data });
+				break;
 			case "set-clut":
 				let xEl = window.bluePrint.selectSingleNode(`//Menu[@arg="${event.arg}"]`);
 				this.els.selectEl.html(xEl.getAttribute("name"));
@@ -73,12 +96,11 @@
 					acc[el.classList[1]] = +$(".value", el).text();
 					return acc;
 				}, {});
-
+				// apply values to file
 				File.config = {
 					...File.config,
 					...data,
 				};
-				
 				// apply config on file / image
 				APP.editor.setFile(File);
 				break;

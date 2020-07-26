@@ -24,7 +24,7 @@
 
 			<div class="control vignetteRadius">
 				<span class="label">V. Radius</span>
-				<div class="knob" data-value="1" data-min="0.01" data-max="2" data-step="0.01" data-emit="control-change"></div>
+				<div class="knob" data-value="0" data-min="0" data-max="2" data-step="0.01" data-emit="control-change"></div>
 				<span class="value"><!-- value --></span>
 			</div>
 
@@ -48,7 +48,7 @@
 
 			<div class="control brightness">
 				<span class="label">Brightness</span>
-				<div class="knob" data-value="0" data-min="0" data-max="2" data-step="0.01" data-emit="control-change"></div>
+				<div class="knob" data-value="0" data-min="0.01" data-max="2" data-step="0.01" data-emit="control-change"></div>
 				<span class="value"><!-- value --></span>
 			</div>
 
@@ -83,7 +83,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="box-foot">
-
+	<div class="box-foot right">
+		<div class="icon icon-new" title="Save current preset." data-click="save-values"></div>
+		<div class="icon icon-trashcan" title="Reset values." data-click="reset-values"></div>
 	</div>
 </div>

@@ -55,6 +55,9 @@ const vermeer = {
 			case "open-file":
 				Files.open(event.path);
 				break;
+			case "open-help":
+				defiant.shell("fs -u '~/help/index.md'");
+				break;
 			case "set-clut":
 				Self.box.presets.dispatch(event);
 				break;

@@ -57,7 +57,8 @@ const UI = {
 				Drag.el.data({ value });
 
 				let i = Drag.val.step.toString().split(".")[1],
-					val = ((Drag.val.max - Drag.val.min) * (value / 100));
+					val = ((Drag.val.max - Drag.val.min) * (value / 100)) + Drag.val.min;
+
 				Drag.val.el.html(val.toFixed(i ? i.length : 0));
 				break;
 			case "mouseup":

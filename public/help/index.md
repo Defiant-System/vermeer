@@ -4,5 +4,10 @@
 	Vermeer
 </h1>
 
+*This application is named after famous Dutch painter [Johannes Vermeer](https://en.wikipedia.org/wiki/Johannes_Vermeer) a.k.a. **master of light**.*
+
 ### How to
 
+
+---
+*This application is based on excellent code written by [Jan Wagner](https://29a.ch/).*

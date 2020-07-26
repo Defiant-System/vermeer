@@ -25,11 +25,11 @@
 
 	<svg id="knob" viewBox="0 0 34 1734">
 		<filter id="DS_1" x="-40%" y="-40%" width="180%" height="180%">
-			<feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#f90" flood-opacity="1" />
+			<feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="#f90" flood-opacity="1" />
 		</filter>
 		<style type="text/css">
 			.st0{fill:none;stroke:#f90;stroke-width:2.5;stroke-linecap:round;filter:url(#DS_1);}
-			.st1{fill:none;stroke:#66666670;stroke-width:2.75;stroke-linecap:round;}
+			.st1{fill:none;stroke:#a6a6a6;stroke-width:2.75;stroke-linecap:round;}
 		</style>
 		<path class="st0" d="M7.1,60.9c0.4,0.4,0.7,0.7,1.1,1"/>
 		<path class="st0" d="M6.2,94c0.6,0.7,1.2,1.4,2,1.9"/>
@@ -136,11 +136,11 @@
 
 	<svg id="pan-knob" viewBox="0 0 34 1734">
 		<filter id="DS_1" x="-40%" y="-40%" width="180%" height="180%">
-			<feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#f90" flood-opacity="1" />
+			<feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="#f90" flood-opacity="1" />
 		</filter>
 		<style type="text/css">
 			.st0{fill:none;stroke:#f90;stroke-width:2.5;stroke-linecap:round;filter:url(#DS_1);}
-			.st1{fill:none;stroke:#66666670;stroke-width:2.75;stroke-linecap:round;}
+			.st1{fill:none;stroke:#a6a6a6;stroke-width:2.75;stroke-linecap:round;}
 		</style>
 		<path class="st0" d="M25.8,1727.9c3.1-2.5,5.2-6.5,5.2-10.9c0-7.7-6.3-14-14-14"/>
 		<path class="st0" d="M17,275c-7.7,0-14,6.3-14,14c0,0.5,0,1,0.1,1.4"/>

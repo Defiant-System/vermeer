@@ -41,8 +41,8 @@ const UI = {
 					max: el.hasClass("pan-knob") ? 50 : 100,
 					val: {
 						el: el.parent().find(".value"),
-						min: +el.data("min"),
-						max: +el.data("max"),
+						min: el.hasClass("pan-knob") ? 0 : +el.data("min"),
+						max: +el.data("max") - +el.data("min"),
 						step: +el.data("step") || 1,
 					}
 				};
@@ -57,7 +57,7 @@ const UI = {
 				Drag.el.data({ value });
 
 				let i = Drag.val.step.toString().split(".")[1],
-					val = ((Drag.val.max - Drag.val.min) * (value / 100)) + Drag.val.min;
+					val = (Drag.val.max * (value / 100)) + Drag.val.min;
 
 				Drag.val.el.html(val.toFixed(i ? i.length : 0));
 				break;

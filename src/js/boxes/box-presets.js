@@ -6,6 +6,7 @@
 	toggle(root, state) {
 		if (state === "on") {
 			// fast references
+			this.els.selectEl = root.find(".box-tools .option[data-menu='preset-list'] .value");
 			this.els.root = root;
 
 			// subscribe to events
@@ -60,6 +61,8 @@
 				break;
 			// custom events
 			case "set-clut":
+				let xEl = window.bluePrint.selectSingleNode(`//Menu[@arg="${event.arg}"]`);
+				this.els.selectEl.html(xEl.getAttribute("name"));
 				// update file's clut filename
 				File.config.clutFile = event.arg === "none" ? false : event.arg;
 				// apply config on file / image

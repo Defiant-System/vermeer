@@ -37,7 +37,7 @@
 		switch (event.type) {
 			// subscribed events
 			case "select-file":
-				data = event.arg || File.config;
+				data = File.config;
 
 				Object.keys(data).map(key => {
 					let el = Self.els.root.find(".control."+ key);
@@ -55,10 +55,8 @@
 					knob.data({ value });
 					el.find(".value").html(data[key].toFixed(i ? i.length : 0));
 				});
-
 				// save last preset data
 				Self.data = data;
-				
 				// apply config on file / image
 				APP.editor.setFile(File);
 				break;
@@ -66,22 +64,26 @@
 			case "save-values":
 				break;
 			case "reset-values":
-				data = {
-					grain              : 0,
-					grainScale         : .5,
-					vignette           : 0,
-					vignetteRadius     : 0,
-					lightLeak          : 0,
-					lightLeakIntensity : 0,
-					lightLeakScale     : 0,
-					brightness         : 1,
-					blacks             : 0,
-					contrast           : 0,
-					temperature        : 0,
-					vibrance           : 0,
-					saturation         : 0,
+				// apply values to file
+				File.config = {
+					...File.config,
+						grain              : 0,
+						grainScale         : .5,
+						vignette           : 0,
+						vignetteRadius     : 0,
+						lightLeak          : 0,
+						lightLeakIntensity : 0,
+						lightLeakScale     : 0,
+						brightness         : 1,
+						blacks             : 0,
+						contrast           : 0,
+						temperature        : 0,
+						vibrance           : 0,
+						saturation         : 0,
 				};
-				Self.dispatch({ type: "select-file", arg: data });
+				// dispatch events
+				Self.dispatch({ type: "set-clut", arg: "none" });
+				Self.dispatch({ type: "select-file" });
 				break;
 			case "set-clut":
 				let xEl = window.bluePrint.selectSingleNode(`//Menu[@arg="${event.arg}"]`);

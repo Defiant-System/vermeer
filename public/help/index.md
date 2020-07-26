@@ -4,7 +4,7 @@
 	Vermeer
 </h1>
 
-*This application is named after famous Dutch painter [Johannes Vermeer](https://en.wikipedia.org/wiki/Johannes_Vermeer) a.k.a. **master of light**.*
+*This application is named after famous Dutch painter [Johannes Vermeer](https://en.wikipedia.org/wiki/Johannes_Vermeer), commonly referred to as the **master of light**.*
 
 ### How to
 

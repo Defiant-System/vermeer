@@ -59,6 +59,12 @@
 				Self.data = data;
 				break;
 			// custom events
+			case "set-clut":
+				// update file's clut filename
+				File.config.clutFile = event.arg;
+				// apply config on file / image
+				APP.editor.setFile(File);
+				break;
 			case "control-change":
 				data = Self.els.root.find(".control").reduce((acc, el) => {
 					acc[el.classList[1]] = +$(".value", el).text();

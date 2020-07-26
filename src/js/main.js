@@ -56,7 +56,7 @@ const vermeer = {
 				Files.open(event.path);
 				break;
 			case "set-clut":
-				console.log(event);
+				Self.box.presets.dispatch(event);
 				break;
 			case "box-head-tab":
 				el = $(event.target);

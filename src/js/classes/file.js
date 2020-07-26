@@ -14,9 +14,9 @@ class File {
 		this.path = opt.path;
 
 		this.config = {
-			clutPath : false,
-		//	clutPath : "~/images/various-a8314e11.png",
-		//	clutPath : "~/images/various-67d8a942.png",
+			clutFile : false,
+		//	clutFile : "various-a8314e11.png",
+		//	clutFile : "various-67d8a942.png",
 			clutMix            : 1,
 			highQualityPreview : false,
 

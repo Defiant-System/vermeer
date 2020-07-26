@@ -34,7 +34,7 @@ export class Editor {
 	getOptions() {
 		let config = this.inputFile.config;
 
-		return Promise.resolve(config.clutPath && clut.get(config.clutPath)).then(clut => {
+		return Promise.resolve(config.clutFile && clut.get(config.clutFile)).then(clut => {
 			return {
 				clut,
 				...config,

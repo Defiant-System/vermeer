@@ -82,7 +82,7 @@
 						saturation         : 0,
 				};
 				// dispatch events
-				Self.dispatch({ type: "set-clut", arg: "none" });
+				Self.dispatch({ type: "set-clut", arg: "none", noSet: true });
 				Self.dispatch({ type: "select-file" });
 				break;
 			case "set-clut":
@@ -91,7 +91,7 @@
 				// update file's clut filename
 				File.config.clutFile = event.arg === "none" ? false : event.arg;
 				// apply config on file / image
-				APP.editor.setFile(File);
+				if (!event.noSet) APP.editor.setFile(File);
 				break;
 			case "control-change":
 				data = Self.els.root.find(".control").reduce((acc, el) => {

@@ -70,6 +70,57 @@ content {
 		    cursor: crosshair;
 		    border-radius: 0 0 5px 5px;
 		}
+
+		.compare {
+			position: absolute;
+			top: 100px;
+			left: 375px;
+		    z-index: 3;
+			width: 37px;
+			height: 37px;
+			border-radius: 50%;
+			border: 2px solid #fff;
+			background: rgba(255,255,255,.4);
+			box-shadow: 0 2px 4px rgba(0,0,0,.35);
+			cursor: col-resize;
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: 100%;
+				left: 16px;
+				width: 1px;
+				height: 9999px;
+				background: #fff;
+				pointer-events: none;
+			}
+			&:after {
+				bottom: auto;
+				top: 100%;
+			}
+
+			.left-arrow,
+			.right-arrow {
+				position: absolute;
+				top: 50%;
+				margin-top: -6px;
+				display: block;
+				width: 0;
+				height: 0;
+				border: 6px inset transparent;
+				filter: drop-shadow(0 1px 1px rgba(0,0,0,.4));
+				pointer-events: none;
+			}
+			.left-arrow {
+				left: 0;
+				border-right: 6px solid #fff;
+			}
+			.right-arrow {
+				right: 0;
+				border-left: 6px solid #fff;
+			}
+		}
 	}
 
 	.workspace {

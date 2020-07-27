@@ -6,8 +6,13 @@
 	toggle(root, state) {
 		if (state === "on") {
 			// fast references
+			this.doc = $(document);
 			this.els.selectEl = root.find(".box-tools .option[data-menu='preset-list'] .value");
+			this.els.compare = vermeer.els.content.find(".compare");
 			this.els.root = root;
+
+			// bind event handlers
+			this.els.compare.on("mousedown", this.compare);
 
 			// subscribe to events
 			defiant.on("select-file", this.dispatch);
@@ -17,6 +22,9 @@
 				this.dispatch({ type: "select-file", arg: this.data });
 			}
 		} else {
+			// unbind event handlers
+			if (this.els.compare) this.els.compare.off("mousedown", this.compare);
+
 			// clean up
 			this.els = {};
 
@@ -105,6 +113,51 @@
 				};
 				// apply config on file / image
 				APP.editor.setFile(File);
+				break;
+		}
+	},
+	compare(event) {
+		let APP = vermeer,
+			Self = APP.box.presets,
+			Drag = Self.drag,
+			Proj = Projector,
+			File = Proj.file,
+			_max = Math.max,
+			_min = Math.min,
+			x, y,
+			el;
+		switch (event.type) {
+			case "mousedown":
+				// prevent default behaviour
+				event.preventDefault();
+				// prepare drag object
+				el = $(event.target);
+				Self.drag = {
+					el,
+					clickX: +el.prop("offsetLeft") - event.clientX,
+					clickY: +el.prop("offsetTop") - event.clientY,
+					min: { x: 0, y: 0 },
+					max: {
+						x: 800,
+						y: 500,
+					}
+				};
+				// prevent mouse from triggering mouseover
+				APP.els.content.addClass("cover");
+				// bind event handlers
+				Self.doc.on("mousemove mouseup", Self.compare);
+				break;
+			case "mousemove":
+				x = _min(_max(event.clientX + Drag.clickX, Drag.min.x), Drag.max.x);
+				y = _min(_max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
+				// moves navigator view rectangle
+				Drag.el.css({ top: y +"px", left: x +"px" });
+				break;
+			case "mouseup":
+				// remove class
+				APP.els.content.removeClass("cover");
+				// unbind event handlers
+				Self.doc.off("mousemove mouseup", Self.compare);
 				break;
 		}
 	}

@@ -41,11 +41,11 @@ const vermeer = {
 		this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
-		this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
+		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
 		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });
-		//this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
+		this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
 
-		this.els.content.find(".box-head div[data-content='histogram']").trigger("click");
+		//this.els.content.find(".box-head div[data-content='histogram']").trigger("click");
 	},
 	dispatch(event) {
 		let Self = vermeer,

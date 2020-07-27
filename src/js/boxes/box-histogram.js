@@ -6,6 +6,7 @@
 	toggle(root, state) {
 		if (state === "on") {
 			// fast references
+			this.els.foot = root.find(".box-foot");
 			this.els.root = root;
 
 			this.cvs = root.find(".histogram-cvs");
@@ -13,6 +14,10 @@
 
 			// subscribe to events
 			defiant.on("projector-update", this.dispatch);
+
+			if (this.show) {
+				this.dispatch({ type: "projector-update" });
+			}
 		} else {
 			// clean up
 			this.els = {};
@@ -27,6 +32,7 @@
 			Proj = Projector,
 			File = Proj.file,
 			_round = Math.round,
+			show,
 			el;
 
 		switch (event.type) {
@@ -46,6 +52,9 @@
 
 				let scalar = Math.max(...rData, ...gData, ...bData);
 
+				// decides which colors to display
+				show = event.show || Self.show || ["r", "g", "b"];
+
 				rData = rData.map(y => _round((y / scalar) * (oY - 7)));
 				gData = gData.map(y => _round((y / scalar) * (oY - 7)));
 				bData = bData.map(y => _round((y / scalar) * (oY - 7)));
@@ -55,25 +64,37 @@
 				Proj.swap.cvs.prop({ width: 256, height: oY });
 				Proj.swap.ctx.globalCompositeOperation = "lighten";
 				
-				Proj.swap.ctx.fillStyle = "#f00";
-				rData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
-				
-				Proj.swap.ctx.fillStyle = "#0f0";
-				gData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
-				
-				Proj.swap.ctx.fillStyle = "#00f";
-				bData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
-
+				if (show.includes("r")) {
+					Proj.swap.ctx.fillStyle = "#f00";
+					rData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
+				}
+				if (show.includes("g")) {
+					Proj.swap.ctx.fillStyle = "#0f0";
+					gData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
+				}
+				if (show.includes("b")) {
+					Proj.swap.ctx.fillStyle = "#00f";
+					bData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
+				}
 				Self.ctx.drawImage(Proj.swap.cvs[0], 1, 0, 220, 110);
+
+				Self.els.foot.find(".active").removeClass("active");
+				Self.els.foot.find(".icon-"+ show.join("")).addClass("active");
+
+				Self.show = show;
 				break;
 			// custom events
 			case "show-only-reds":
+				Self.dispatch({ type: "projector-update", show: ["r"] });
 				break;
 			case "show-only-greens":
+				Self.dispatch({ type: "projector-update", show: ["g"] });
 				break;
 			case "show-only-blues":
+				Self.dispatch({ type: "projector-update", show: ["b"] });
 				break;
 			case "show-blend":
+				Self.dispatch({ type: "projector-update", show: ["r", "g", "b"] });
 				break;
 		}
 	}

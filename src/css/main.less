@@ -51,7 +51,7 @@ content {
 		&.icon-r                { background-image: url(~/icons/icon-r.png); }
 		&.icon-g                { background-image: url(~/icons/icon-g.png); }
 		&.icon-b                { background-image: url(~/icons/icon-b.png); }
-		&.icon-rgb-mix          { background-image: url(~/icons/icon-rgb-mix.png); }
+		&.icon-rgb		        { background-image: url(~/icons/icon-rgb-mix.png); }
 		&.icon-pipette          { background-image: url(~/icons/tool-pipette.png); }
 		&.icon-cursor_pos       { background-image: url(~/icons/icon-cursor-pos.png); }
 		&.icon-selection_dim    { background-image: url(~/icons/icon-selection-dim.png); }
@@ -341,7 +341,7 @@ content {
 					position: relative;
 					background-size: 0px;
 					width: 21px;
-					height: 17px;
+					height: 16px;
 					margin: 0 3px;
 					cursor: pointer;
 
@@ -367,6 +367,16 @@ content {
 						}
 					}
 
+					&.active {
+						background-color: #fff;
+						box-shadow: 0 0 0 1px #dcdcdc;
+						border-radius: 2px;
+
+						&:after {
+							filter: brightness(50%) drop-shadow(0 1px 0 #f7f7f7);
+						}
+					}
+
 					&.disabled {
 						opacity: 0.35;
 
@@ -375,7 +385,7 @@ content {
 						}
 					}
 
-					&:hover:not(.disabled):after {
+					&:hover:not(.disabled):not(.active):after {
 						opacity: 1;
 					}
 

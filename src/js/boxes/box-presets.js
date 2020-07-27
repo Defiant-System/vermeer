@@ -124,6 +124,7 @@
 			File = Proj.file,
 			_max = Math.max,
 			_min = Math.min,
+			rect,
 			x, y,
 			el;
 		switch (event.type) {
@@ -132,16 +133,24 @@
 				event.preventDefault();
 				// prepare drag object
 				el = $(event.target);
+				
+				rect = event.target.getBoundingClientRect();
+
 				Self.drag = {
 					el,
 					clickX: +el.prop("offsetLeft") - event.clientX,
 					clickY: +el.prop("offsetTop") - event.clientY,
-					min: { x: 0, y: 0 },
+					min: {
+						x: File.oX - (rect.width / 2),
+						y: 10,
+					},
 					max: {
-						x: 800,
-						y: 500,
+						x: File.w + File.oX - (rect.width / 2),
+						y: Proj.aH - rect.height - 10,
 					}
 				};
+				console.log(Self.drag.max);
+
 				// prevent mouse from triggering mouseover
 				APP.els.content.addClass("cover");
 				// bind event handlers
@@ -152,6 +161,8 @@
 				y = _min(_max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
 				// moves navigator view rectangle
 				Drag.el.css({ top: y +"px", left: x +"px" });
+
+				Proj.render({ cX: x - Drag.min.x });
 				break;
 			case "mouseup":
 				// remove class

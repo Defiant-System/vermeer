@@ -62,17 +62,19 @@ const Projector = {
 		this.ctx.translate(file.oX, file.oY);
 		this.ctx.drawImage(file.cvs[0], 0, 0, file.w, file.h);
 
-		let cX = 260,
-			csX = cX / file.scale;
-		this.ctx.drawImage(file.img,
-			csX, 0, file.oW - csX, file.oH,
-			cX, 0, file.w-cX, file.h);
+		if (opt) {
+			if (opt.cX > -1) {
+				let csX = opt.cX / file.scale;
+				this.ctx.drawImage(file.img,
+					csX, 0, file.oW - csX, file.oH,
+					opt.cX, 0, file.w - opt.cX, file.h);
+			}
+			if (opt.emit) {
+				// emit event
+				opt.emit.map(type => defiant.emit(type));
+			}
+		}
 
 		this.ctx.restore();
-
-		if (opt) {
-			// emit event
-			opt.emit.map(type => defiant.emit(type));
-		}
 	}
 };

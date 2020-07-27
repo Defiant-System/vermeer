@@ -48,6 +48,10 @@ content {
 			transition: opacity 80ms ease-in-out;
 		}
 
+		&.icon-r                { background-image: url(~/icons/icon-r.png); }
+		&.icon-g                { background-image: url(~/icons/icon-g.png); }
+		&.icon-b                { background-image: url(~/icons/icon-b.png); }
+		&.icon-rgb-mix          { background-image: url(~/icons/icon-rgb-mix.png); }
 		&.icon-pipette          { background-image: url(~/icons/tool-pipette.png); }
 		&.icon-cursor_pos       { background-image: url(~/icons/icon-cursor-pos.png); }
 		&.icon-selection_dim    { background-image: url(~/icons/icon-selection-dim.png); }
@@ -216,10 +220,13 @@ content {
 
 				.histogram-wrapper {
 					height: 121px;
-					padding: 4px 3px;
+					padding: 5px 5px;
 
 					.histogram-cvs {
-						background: #fff;
+						background: #ccc;
+						width: 222px;
+						height: 111px;
+						box-shadow: inset 0 0 0 1px #c0c0c0
 					}
 				}
 

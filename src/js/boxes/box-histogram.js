@@ -24,56 +24,56 @@
 	dispatch(event) {
 		let APP = vermeer,
 			Self = APP.box.histogram,
-			File = Projector.file,
+			Proj = Projector,
+			File = Proj.file,
 			_round = Math.round,
-			img,
-			data,
 			el;
 
 		switch (event.type) {
-			// custom events
+			// subscribed events
 			case "projector-update":
-				let r = Array(256).fill(0),
-					g = Array(256).fill(0),
-					b = Array(256).fill(0),
-					fW = File.w,
-					fH = File.h;
+				let d = File.ctx.getImageData(0, 0, File.oW, File.oH).data,
+					rData = Array(256).fill(0),
+					gData = Array(256).fill(0),
+					bData = Array(256).fill(0),
+					oY = 100;
 
-				img = File.ctx.getImageData(0, 0, fW, fH);
-				data = img.data;
-
-				for (let y=0; y<fH; y++) {
-					for (let x=0; x<fH; x++) {
-						let o = ((y * fH) + x) * 4;
-						r[data[o + 0]]++;
-						g[data[o + 1]]++;
-						b[data[o + 2]]++;
-					}
+				for (let i=0, il=d.length; i<il; i+=4) {
+					rData[d[i  ]]++;
+					gData[d[i+1]]++;
+					bData[d[i+2]]++;
 				}
 
-				let rM = Math.max(...r);
-				let gM = Math.max(...g);
-				let bM = Math.max(...b);
+				let scalar = Math.max(...rData, ...gData, ...bData);
 
-				Self.cvs.prop({ width: 226, height: 113 });
+				rData = rData.map(y => _round((y / scalar) * (oY - 7)));
+				gData = gData.map(y => _round((y / scalar) * (oY - 7)));
+				bData = bData.map(y => _round((y / scalar) * (oY - 7)));
 
-				Self.ctx.strokeStyle = "#f00";
-				Self.ctx.beginPath();
-				Self.ctx.moveTo(0, 0);
-				r.map((e, i) => Self.ctx.lineTo(i, 110 - _round((e / rM) * 70)));
-				Self.ctx.stroke();
+				// reset canvases
+				Self.cvs.prop({ width: 222, height: 111 });
+				Proj.swap.cvs.prop({ width: 256, height: oY });
+				Proj.swap.ctx.globalCompositeOperation = "lighten";
+				
+				Proj.swap.ctx.fillStyle = "#f00";
+				rData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
+				
+				Proj.swap.ctx.fillStyle = "#0f0";
+				gData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
+				
+				Proj.swap.ctx.fillStyle = "#00f";
+				bData.map((y, x) => Proj.swap.ctx.fillRect(x, oY, 1, -y));
 
-				Self.ctx.strokeStyle = "#0f0";
-				Self.ctx.beginPath();
-				Self.ctx.moveTo(0, 0);
-				g.map((e, i) => Self.ctx.lineTo(i, 110 - _round((e / rM) * 70)));
-				Self.ctx.stroke();
-
-				Self.ctx.strokeStyle = "#00f";
-				Self.ctx.beginPath();
-				Self.ctx.moveTo(0, 0);
-				b.map((e, i) => Self.ctx.lineTo(i, 110 - _round((e / rM) * 70)));
-				Self.ctx.stroke();
+				Self.ctx.drawImage(Proj.swap.cvs[0], 1, 0, 220, 110);
+				break;
+			// custom events
+			case "show-only-reds":
+				break;
+			case "show-only-greens":
+				break;
+			case "show-only-blues":
+				break;
+			case "show-blend":
 				break;
 		}
 	}

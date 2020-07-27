@@ -15,9 +15,7 @@
 			// subscribe to events
 			defiant.on("projector-update", this.dispatch);
 
-			if (this.show) {
-				this.dispatch({ type: "projector-update" });
-			}
+			this.dispatch({ type: "projector-update" });
 		} else {
 			// clean up
 			this.els = {};

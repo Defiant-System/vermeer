@@ -37,7 +37,7 @@ const Projector = {
 	},
 	reset(file) {
 		// reference to displayed file
-		this.file = file;
+		this.file = file || this.file;
 		// reset canvases
 		this.cvs.prop({ width: window.width, height: window.height });
 		// available dimensions
@@ -49,7 +49,7 @@ const Projector = {
 		this.cX = (window.innerWidth + this.aX - this.els.sideBar.width()) / 2;
 		this.cY = (window.innerHeight + this.aY) / 2;
 		// pre-render frame
-		if (file) this.renderFrame(file);
+		if (this.file) this.renderFrame(this.file);
 	},
 	render(opt) {
 		// reference to displayed file

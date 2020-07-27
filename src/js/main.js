@@ -52,6 +52,10 @@ const vermeer = {
 			name,
 			el;
 		switch (event.type) {
+			case "window.resize":
+				Projector.reset();
+				Projector.file.dispatch({ type: "set-scale" });
+				break;
 			case "open-file":
 				Files.open(event.path);
 				break;

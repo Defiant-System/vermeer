@@ -63,11 +63,17 @@ const Projector = {
 		this.ctx.drawImage(file.cvs[0], 0, 0, file.w, file.h);
 
 		if (opt) {
-			if (opt.cX > -1) {
-				let csX = opt.cX / file.scale;
-				this.ctx.drawImage(file.img,
-					csX, 0, file.oW - csX, file.oH,
-					opt.cX, 0, file.w - opt.cX, file.h);
+			if (Number(opt.cX) === opt.cX) {
+				let csX = opt.cX / file.scale,
+					x1 = opt.cX / file.scale,
+					y1 = 0,
+					w1 = file.oW - x1,
+					h1 = file.oH,
+					x2 = opt.cX,
+					y2 = 0,
+					w2 = file.w - opt.cX,
+					h2 = file.h;
+				this.ctx.drawImage(file.img, x1, y1, w1, h1, x2, y2, w2, h2);
 			}
 			if (opt.emit) {
 				// emit event

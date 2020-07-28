@@ -38,6 +38,8 @@
 			Proj = Projector,
 			File = Proj.file,
 			data,
+			rect,
+			isOn,
 			el;
 
 		if (!Self.els.root) return;
@@ -69,6 +71,22 @@
 				APP.editor.setFile(File);
 				break;
 			// custom events
+			case "compare-image":
+				isOn = event.el.hasClass("active");
+				event.el.toggleClass("active", isOn);
+
+				Self.els.compare.toggleClass("active", isOn)
+
+				rect = Self.els.compare[0].getBoundingClientRect();
+				Self.els.compare.css({
+					top: (Proj.cY - (rect.height/2)) +"px",
+					left: (Proj.cX - (rect.width/2)) +"px",
+				});
+
+				// Projector -> render comparison
+				let cX = +Self.els.compare.prop("offsetLeft") - File.oX + (rect.width / 2);
+				Proj.render({ cX: isOn ? false : cX });
+				break;
 			case "save-values":
 				break;
 			case "reset-values":
@@ -161,7 +179,7 @@
 				y = _min(_max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
 				// moves navigator view rectangle
 				Drag.el.css({ top: y +"px", left: x +"px" });
-
+				// Projector -> render comparison
 				Proj.render({ cX: x - Drag.min.x });
 				break;
 			case "mouseup":

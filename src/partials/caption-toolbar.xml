@@ -9,6 +9,6 @@
 		</Options>
 	</Group>
 	<Group width="25%">
-		
+		<Tool symbol="icon-cog"/>
 	</Group>
 </CaptionToolBar>

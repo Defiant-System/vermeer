@@ -51,6 +51,10 @@ const Projector = {
 		// pre-render frame
 		if (this.file) this.renderFrame(this.file);
 	},
+	comparison: {
+		isOn: false,
+		cX: false,
+	},
 	render(opt) {
 		// reference to displayed file
 		let file = this.file;
@@ -62,25 +66,23 @@ const Projector = {
 		this.ctx.translate(file.oX, file.oY);
 		this.ctx.drawImage(file.cvs[0], 0, 0, file.w, file.h);
 
-		if (opt) {
-			if (Number(opt.cX) === opt.cX) {
-				let csX = opt.cX / file.scale,
-					x1 = opt.cX / file.scale,
-					y1 = 0,
-					w1 = file.oW - x1,
-					h1 = file.oH,
-					x2 = opt.cX,
-					y2 = 0,
-					w2 = file.w - opt.cX,
-					h2 = file.h;
-				this.ctx.drawImage(file.img, x1, y1, w1, h1, x2, y2, w2, h2);
-			}
-			if (opt.emit) {
-				// emit event
-				opt.emit.map(type => defiant.emit(type));
-			}
+		if (this.comparison.isOn) {
+			let cX = this.comparison.cX,
+				x1 = cX / file.scale,
+				y1 = 0,
+				w1 = file.oW - x1,
+				h1 = file.oH,
+				x2 = cX,
+				y2 = 0,
+				w2 = file.w - cX,
+				h2 = file.h;
+			this.ctx.drawImage(file.img, x1, y1, w1, h1, x2, y2, w2, h2);
 		}
-
 		this.ctx.restore();
+
+		if (opt && opt.emit) {
+			// emit event
+			opt.emit.map(type => defiant.emit(type));
+		}
 	}
 };

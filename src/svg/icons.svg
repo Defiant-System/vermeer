@@ -51,7 +51,7 @@
 
 	<svg id="icon-compare" viewBox="0 0 500 500">
 		<style type="text/css">
-			.st0{fill:none;stroke:#000;stroke-width:20;}
+			.st0{fill:none;stroke:#000;stroke-width:35;}
 			.st1{opacity:0.25;}
 		</style>
 		<rect x="18.1" y="85.9" class="st0" width="463.7" height="328.3"/>

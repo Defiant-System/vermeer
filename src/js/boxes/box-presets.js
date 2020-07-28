@@ -78,14 +78,18 @@
 				Self.els.compare.toggleClass("active", isOn)
 
 				rect = Self.els.compare[0].getBoundingClientRect();
-				Self.els.compare.css({
-					top: (Proj.cY - (rect.height/2)) +"px",
-					left: (Proj.cX - (rect.width/2)) +"px",
-				});
-
+				if (!Proj.comparison.cX) {
+					Self.els.compare.css({
+						top: (Proj.cY - (rect.height/2)) +"px",
+						left: (Proj.cX - (rect.width/2)) +"px",
+					});
+				}
 				// Projector -> render comparison
-				let cX = +Self.els.compare.prop("offsetLeft") - File.oX + (rect.width / 2);
-				Proj.render({ cX: isOn ? false : cX });
+				Proj.comparison = {
+					isOn: !isOn,
+					cX: +Self.els.compare.prop("offsetLeft") - File.oX + (rect.width / 2),
+				};
+				Proj.render();
 				break;
 			case "save-values":
 				break;
@@ -176,7 +180,8 @@
 				// moves navigator view rectangle
 				Drag.el.css({ top: y +"px", left: x +"px" });
 				// Projector -> render comparison
-				Proj.render({ cX: x - Drag.min.x });
+				Proj.comparison.cX = x - Drag.min.x;
+				Proj.render();
 				break;
 			case "mouseup":
 				// remove class

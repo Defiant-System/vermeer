@@ -8,6 +8,7 @@
 			// fast references
 			this.doc = $(document);
 			this.els.selectEl = root.find(".box-tools .option[data-menu='preset-list'] .value");
+			this.els.compareIcon = root.find(".icon-compare");
 			this.els.compare = vermeer.els.content.find(".compare");
 			this.els.root = root;
 
@@ -16,11 +17,18 @@
 
 			// subscribe to events
 			defiant.on("select-file", this.dispatch);
+			defiant.on("projector-zoom", this.dispatch);
+			defiant.on("projector-pan", this.dispatch);
 
 			if (this.data) {
 				// dispatch if ratio is calculated
 				this.dispatch({ type: "select-file", arg: this.data });
 			}
+
+			// temp
+			setTimeout(() => {
+				this.els.root.find(".icon-compare").trigger("click");
+			}, 300);
 		} else {
 			// unbind event handlers
 			if (this.els.compare) this.els.compare.off("mousedown", this.compare);
@@ -30,6 +38,8 @@
 
 			// unsubscribe to events
 			defiant.off("select-file", this.dispatch);
+			defiant.off("projector-zoom", this.dispatch);
+			defiant.off("projector-pan", this.dispatch);
 		}
 	},
 	dispatch(event) {
@@ -69,6 +79,19 @@
 				Self.data = data;
 				// apply config on file / image
 				APP.editor.setFile(File);
+				break;
+			case "projector-zoom":
+			case "projector-pan":
+				isOn = Self.els.compareIcon.hasClass("active");
+				if (!isOn) return;
+
+				// Projector -> render comparison
+				rect = Self.els.compare[0].getBoundingClientRect();
+				Proj.comparison = {
+					isOn,
+					cX: +Self.els.compare.prop("offsetLeft") - File.oX + (rect.width / 2),
+				};
+				Proj.render();
 				break;
 			// custom events
 			case "compare-image":

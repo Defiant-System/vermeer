@@ -14,9 +14,8 @@ class File {
 		this.path = opt.path;
 
 		this.config = {
-			clutFile : false,
-		//	clutFile : "various-a8314e11.png",
-		//	clutFile : "various-67d8a942.png",
+		//	clutFile : false,
+			clutFile : "various-a8314e11.png",
 			clutMix            : 1,
 			highQualityPreview : false,
 			grain              : 0,
@@ -64,7 +63,7 @@ class File {
 			});
 
 		// set file initial scale
-		this.dispatch({ ...event, type: "set-scale", skipEmit: true, scale1: 1 });
+		this.dispatch({ ...event, type: "set-scale", skipEmit: true, scale: 2 });
 
 		//vermeer.editor.setFile(this);
 		Files.select(this._id);

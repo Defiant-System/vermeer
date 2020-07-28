@@ -26,9 +26,7 @@
 			}
 
 			// temp
-			setTimeout(() => {
-				this.els.root.find(".icon-compare").trigger("click");
-			}, 300);
+			//setTimeout(() => this.els.root.find(".icon-compare").trigger("click"), 300);
 		} else {
 			// unbind event handlers
 			if (this.els.compare) this.els.compare.off("mousedown", this.compare);

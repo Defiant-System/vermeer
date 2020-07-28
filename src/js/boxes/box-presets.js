@@ -151,9 +151,7 @@
 				event.preventDefault();
 				// prepare drag object
 				el = $(event.target);
-				
 				rect = event.target.getBoundingClientRect();
-
 				Self.drag = {
 					el,
 					clickX: +el.prop("offsetLeft") - event.clientX,
@@ -167,8 +165,6 @@
 						y: Proj.aH - rect.height - 10,
 					}
 				};
-				console.log(Self.drag.max);
-
 				// prevent mouse from triggering mouseover
 				APP.els.content.addClass("cover");
 				// bind event handlers

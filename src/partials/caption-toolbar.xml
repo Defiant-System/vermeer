@@ -4,8 +4,9 @@
 	</Group>
 	<Group>
 		<Options>
-			<Tool name="Library"  state="active"/>
+			<Tool name="Library" />
 			<Tool name="Develop" />
+			<Tool name="Sidebar" state="active"/>
 		</Options>
 	</Group>
 	<Group width="25%">

@@ -14,8 +14,8 @@ class File {
 		this.path = opt.path;
 
 		this.config = {
-		//	clutFile : false,
-			clutFile : "various-a8314e11.png",
+			clutFile : false,
+		//	clutFile : "various-a8314e11.png",
 		//	clutFile : "various-67d8a942.png",
 			clutMix            : 1,
 			highQualityPreview : false,
@@ -24,8 +24,8 @@ class File {
 			vignette           : 0,
 			vignetteRadius     : 0,
 			lightLeak          : 0,
-			lightLeakIntensity : 0,
-			lightLeakScale     : 0,
+			lightLeakIntensity : 0.5,
+			lightLeakScale     : 0.5,
 			brightness         : 1,
 			blacks             : 0,
 			contrast           : 0,

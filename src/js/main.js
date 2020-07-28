@@ -1,6 +1,7 @@
 
 defiant.require("classes/file.js")
 
+defiant.require("modules/color.js")
 defiant.require("modules/misc.js")
 defiant.require("modules/ui.js")
 defiant.require("modules/files.js")
@@ -44,8 +45,8 @@ const vermeer = {
 		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
 		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });
 		this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
-
-		//this.els.content.find(".box-head div[data-content='histogram']").trigger("click");
+		
+		//this.els.content.find(".box-head div[data-content='info']").trigger("click");
 	},
 	dispatch(event) {
 		let Self = vermeer,

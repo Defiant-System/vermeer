@@ -43,10 +43,14 @@
 		<line fill="none" stroke="#000" stroke-width="30" x1="250.001" y1="21.461" x2="250" y2="478.539"/>
 	</svg>
 
-	<svg id="icon-selection-dim" viewBox="0 0 500 500">
-		<polygon points="478.325,90.395 359.316,21.675 359.316,75.082 105.708,75.082 75.083,75.082 75.083,105.708 75.083,359.315 21.675,359.315 90.395,478.324 159.116,359.315 105.708,359.315 105.708,105.708 359.316,105.708 359.316,159.115"/>
-		<line fill="none" stroke="#000" stroke-width="30" stroke-dasharray="33.6886" x1="149.605" y1="429.833" x2="452.803" y2="429.833"/>
-		<line fill="none" stroke="#000" stroke-width="30" stroke-dasharray="33.6886" x1="437.49" y1="141.948" x2="437.49" y2="445.146"/>
+	<svg id="icon-comparison-pos" viewBox="0 0 500 500">
+		<style type="text/css">
+			.st0{fill:none;stroke:#000;stroke-width:35;}
+			.st1{fill:none;stroke:#000;stroke-width:35;}
+		</style>
+		<circle class="st0" cx="250" cy="250" r="100"/>
+		<line class="st1" x1="250" y1="150" x2="250" y2="10"/>
+		<line class="st1" x1="250" y1="350" x2="250" y2="490"/>
 	</svg>
 
 	<svg id="icon-compare" viewBox="0 0 500 500">

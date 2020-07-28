@@ -200,6 +200,10 @@
 				y = _min(_max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
 				// moves navigator view rectangle
 				Drag.el.css({ top: y +"px", left: x +"px" });
+
+				// broadcast event
+				defiant.emit("mouse-move", { cX: x, cY: y });
+
 				// Projector -> render comparison
 				Proj.comparison.cX = x - Drag.min.x;
 				Proj.render();

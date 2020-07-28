@@ -7,6 +7,7 @@
 		if (state === "on") {
 			// fast references
 			this.els.foot = root.find(".box-foot");
+			this.els.rgbIcon = root.find(".box-foot .icon-rgb");
 			this.els.root = root;
 
 			this.cvs = root.find(".histogram-cvs");
@@ -83,12 +84,21 @@
 				break;
 			// custom events
 			case "show-only-reds":
+				if (event.el.hasClass("active")) {
+					return Self.els.rgbIcon.trigger("click");
+				}
 				Self.dispatch({ type: "projector-update", show: ["r"] });
 				break;
 			case "show-only-greens":
+				if (event.el.hasClass("active")) {
+					return Self.els.rgbIcon.trigger("click");
+				}
 				Self.dispatch({ type: "projector-update", show: ["g"] });
 				break;
 			case "show-only-blues":
+				if (event.el.hasClass("active")) {
+					return Self.els.rgbIcon.trigger("click");
+				}
 				Self.dispatch({ type: "projector-update", show: ["b"] });
 				break;
 			case "show-blend":

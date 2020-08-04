@@ -1,6 +1,6 @@
 <MenuBar>
 	<Menu name="Vermeer">
-		<Menu name="About Vermeer"/>
+		<Menu name="About Vermeer" shell="win -a"/>
 		<Menu type="divider"/>
 		<Menu name="New Game" click="restart"/>
 		<Menu type="divider"/>

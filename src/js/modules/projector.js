@@ -12,7 +12,7 @@ const Projector = {
 		this.cvs.prop({ width: window.innerWidth, height: window.innerHeight });
 
 		// publicly used swap canvas
-		this.swap = { cvs, ctx } = createCanvas(1, 1);
+		this.swap = createCanvas(1, 1);
 
 		// calc available dimensions
 		this.reset();

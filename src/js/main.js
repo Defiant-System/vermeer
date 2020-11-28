@@ -13,8 +13,8 @@ import { Editor } from "./classes/editor";
 
 
 const TOOLS = {
-	_active  : false,
-	move     : defiant.require("tools/move.js"),
+	_active : false,
+	move    : defiant.require("tools/move.js"),
 };
 
 
@@ -44,22 +44,27 @@ const vermeer = {
 		// temp
 		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
 		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });
-		this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
+		// this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
 		
 		//this.els.content.find(".box-head div[data-content='info']").trigger("click");
 	},
 	dispatch(event) {
 		let Self = vermeer,
 			name,
+			pEl,
 			el;
 		switch (event.type) {
+			// system events
 			case "window.resize":
 				Projector.reset();
 				Projector.file.dispatch({ type: "set-scale" });
 				break;
-			case "open-file":
+			case "open.file":
+				// event.open().then(file =>
+				// 	Files.open(event.path));
 				Files.open(event.path);
 				break;
+			// custom events
 			case "open-help":
 				defiant.shell("fs -u '~/help/index.md'");
 				break;

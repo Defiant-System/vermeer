@@ -8,6 +8,11 @@ export default class CanvasWorkerProcessor extends CanvasProcessor {
 		this.workers = new WorkerPool("~/js/worker.js", 4);
 	}
 
+	dispose() {
+		// forward "kill" signal
+		this.workers.dispose();
+	}
+
 	static isSupported() {
 		return !!document.createElement("canvas").getContext && window.Worker;
 	}

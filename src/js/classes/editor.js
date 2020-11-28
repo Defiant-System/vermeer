@@ -1,5 +1,4 @@
 
-import WorkerPool from "../classes/worker-pool";
 import CanvasProcessor from "../classes/canvas-processor";
 import CanvasWorkerProcessor from "../classes/canvas-worker-processor";
 
@@ -17,6 +16,11 @@ export class Editor {
 		this.lastImage = null;
 		this.renderPending = false;
 		this.renderInProgress = false;
+	}
+
+	dispose() {
+		// forward "kill" signal
+		this.processor.dispose();
 	}
 
 	setFile(file) {
@@ -87,11 +91,11 @@ export class Editor {
 			this.scaledImage = scaleImageHQ(this.inputImage, oW, oH);
 		}
 
-		console.time('Editor.render');
+		// console.time('Editor.render');
 		await this.processor.process(this.scaledImage, options);
 		this.inputFile.ctx.drawImage(this.processorCanvas, 0, 0, oW, oH);
 		this.renderInProgress = false;
-		console.timeEnd('Editor.render');
+		// console.timeEnd('Editor.render');
 		
 		// select file and render projector
 		Projector.render({ emit: ["projector-update"] });

@@ -33,6 +33,7 @@ const Projector = {
 		switch (event.type) {
 			// native events
 			case "mousemove":
+				if (!File) return;
 				data.top = _round(_min(_max(event.offsetY - File.oY, 0), File.h) / File.scale);
 				data.left = _round(_min(_max(event.offsetX - File.oX, 0), File.w) / File.scale);
 				data.offsetY = _min(_max(event.offsetY, File.oY), File.oY + File.h) - Self.aY;

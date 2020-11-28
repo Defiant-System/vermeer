@@ -59,9 +59,11 @@ const vermeer = {
 				Projector.reset();
 				Projector.file.dispatch({ type: "set-scale" });
 				break;
+			case "window.close":
+				// send "kill" signal to workers
+				Self.editor.dispose();
+				break;
 			case "open.file":
-				// event.open().then(file =>
-				// 	Files.open(event.path));
 				Files.open(event.path);
 				break;
 			// custom events

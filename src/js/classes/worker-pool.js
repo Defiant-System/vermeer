@@ -13,6 +13,12 @@ export default class WorkerPool {
         }
     }
 
+    dispose() {
+        // clear workers
+        this.pool.map(worker => 
+            worker.terminate());
+    }
+
     zip(...args) {
         let length = Math.max(...args.map(r => r.length));
         let merged = [...Array(length)].map((e, i) => args.map(a => a[i]));

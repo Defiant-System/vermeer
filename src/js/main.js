@@ -1,20 +1,19 @@
 
-defiant.require("classes/file.js")
-
-defiant.require("modules/color.js")
-defiant.require("modules/misc.js")
-defiant.require("modules/ui.js")
-defiant.require("modules/files.js")
-defiant.require("modules/projector.js");
-defiant.require("modules/exif.min.js");
-
-import { loadImage } from "./modules/image-helpers";
+import { createCanvas, loadImage } from "./modules/image-helpers";
 import { Editor } from "./classes/editor";
+
+@import "./modules/exif.min.js"
+@import "./classes/file.js"
+@import "./modules/color.js"
+@import "./modules/misc.js"
+@import "./modules/ui.js"
+@import "./modules/files.js"
+@import "./modules/projector.js"
 
 
 const TOOLS = {
 	_active : false,
-	move    : defiant.require("tools/move.js"),
+	move    : @import "./tools/move.js",
 };
 
 
@@ -113,10 +112,10 @@ const vermeer = {
 		}
 	},
 	box: {
-		navigator: defiant.require("boxes/box-navigator.js"),
-		histogram: defiant.require("boxes/box-histogram.js"),
-		info:      defiant.require("boxes/box-info.js"),
-		presets:   defiant.require("boxes/box-presets.js")
+		navigator: @import "./boxes/box-navigator.js",
+		histogram: @import "./boxes/box-histogram.js",
+		info:      @import "./boxes/box-info.js",
+		presets:   @import "./boxes/box-presets.js"
 	}
 };
 

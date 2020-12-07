@@ -36,7 +36,7 @@ const vermeer = {
 		});
 
 		// initate editor
-		this.editor = new Editor();
+		this.editor = new Editor(Projector);
 		
 		this.dispatch({ type: "select-tool", arg: "move" });
 

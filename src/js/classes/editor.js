@@ -7,7 +7,7 @@ import clut from "../modules/clut";
 
 
 export class Editor {
-	constructor() {
+	constructor(Projector) {
 		this.processorCanvas = createCanvas().cvs[0];
 		this.processor = this.getSupportedProcessor(this.processorCanvas);
 
@@ -16,6 +16,7 @@ export class Editor {
 		this.lastImage = null;
 		this.renderPending = false;
 		this.renderInProgress = false;
+		this.projector = Projector;
 	}
 
 	dispose() {
@@ -98,7 +99,7 @@ export class Editor {
 		// console.timeEnd('Editor.render');
 		
 		// select file and render projector
-		Projector.render({ emit: ["projector-update"] });
+		this.projector.render({ emit: ["projector-update"] });
 
 		// if (this.renderPending) {
 		// 	this.renderPending = false;

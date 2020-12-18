@@ -1,17 +1,21 @@
 
 class File {
-	constructor(fsFile) {
-		// save reference to original FS file
-		this._file = fsFile;
-		
+	constructor(options) {
 		// defaults
-		this.scale = .125;
-		this.width = 0;
-		this.height = 0;
+		let opt = {
+			scale: .125, // default to first zoom level
+			width: 1,
+			height: 1,
+			...options
+		};
 
-		// preset defaults
+		this._id = opt._id;
+		this.scale = opt.scale;
+		this.path = opt.path;
+
 		this.config = {
-			clutFile           : false,
+			clutFile : false,
+		//	clutFile : "various-a8314e11.png",
 			clutMix            : 1,
 			highQualityPreview : false,
 			grain              : 0,
@@ -29,29 +33,25 @@ class File {
 			saturation         : 0,
 		};
 
-		// file canvas
-		let { cvs, ctx } = createCanvas(1, 1);
+		let { cvs, ctx } = createCanvas(opt.width, opt.height);
 		this.cvs = cvs;
 		this.ctx = ctx;
 
-		// parse image content blob
-		this.parseImage();
+		// load image
+		this.loadImage();
 	}
 
-	async parseImage() {
-		let src = URL.createObjectURL(this._file.blob);
-		let image = await this.loadImage(src);
-		let width = image.width;
-		let height = image.height;
-
-		// set image dimensions
-		this.oW = this.width = width;
-		this.oH = this.height = height;
+	async loadImage() {
+		let img = await loadImage(this.path);
+		this.img = img;
+		this.oW = img.width;
+		this.oH = img.height;
 
 		// reset canvas
-		this.cvs.prop({ width, height });
-		// apply image to canvas
-		this.ctx.drawImage(image, 0, 0);
+		this.cvs.prop({ width: this.oW, height: this.oH });
+
+		// paint image on canvas
+		this.ctx.drawImage(img, 0, 0);
 
 		// iterate available zoom levels
 		ZOOM.filter(z => z.level <= 100)
@@ -63,23 +63,16 @@ class File {
 			});
 
 		// set file initial scale
-		this.dispatch({ ...event, type: "set-scale", skipEmit: true });
+		this.dispatch({ ...event, type: "set-scale", skipEmit: true, scale1: 1 });
 
 		//vermeer.editor.setFile(this);
 		Files.select(this._id);
 	}
 
-	loadImage(url) {
-		return new Promise(resolve => {
-			let img = new Image;
-			img.src = url;
-			img.onload = () => resolve(img);
-		})
-	}
-
 	dispatch(event) {
 		let APP = vermeer,
 			Proj = Projector,
+			_round = Math.round,
 			el;
 		//console.log(event);
 		switch (event.type) {
@@ -89,10 +82,9 @@ class File {
 				this.scale = event.scale || this.scale;
 				this.w = this.oW * this.scale;
 				this.h = this.oH * this.scale;
-
 				// origo
-				this.oX = Math.round(Proj.cX - (this.w / 2));
-				this.oY = Math.round(Proj.cY - (this.h / 2));
+				this.oX = _round(Proj.cX - (this.w / 2));
+				this.oY = _round(Proj.cY - (this.h / 2));
 
 				if (!event.skipEmit) {
 					// render projector canvas

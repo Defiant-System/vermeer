@@ -8,7 +8,13 @@ const Files = {
 		let ids = this.stack.map(f => f._id);
 		return Math.max.apply({}, [0, ...ids]) + 1;
 	},
-	open(path) {
+	open(fsFile) {
+		// create file
+		let file = new File(fsFile);
+		// add to stack
+		this.stack.push(file);
+	},
+	open2(path) {
 		let _id =  this.getUniqId(),
 			opt = { _id, path };
 

@@ -63,7 +63,9 @@ const vermeer = {
 				Self.editor.dispose();
 				break;
 			case "open.file":
-				Files.open(event.path);
+				// Files.open(event.path);
+				event.open({ responseType: "blob" })
+					.then(file => Files.open(file));
 				break;
 			// custom events
 			case "open-help":

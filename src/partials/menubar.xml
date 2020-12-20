@@ -8,12 +8,10 @@
 		<Menu name="New"/>
 		<Menu name="Open&#8230;"/>
 		<Menu type="divider"/>
-		<Menu name="Close"/>
-		<Menu name="Close All"/>
 		<Menu name="Save" click="save-file"/>
 		<Menu name="Save As&#8230;" click="save-file-as"/>
 		<Menu type="divider"/>
-		<Menu name="Close File"/>
+		<Menu name="Close"/>
 	</Menu>
 	<Menu name="Presets" for="preset-list">
 		<Menu name="None" click="set-clut" arg="none" check-group="active-clut" is-checked="1" />

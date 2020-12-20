@@ -46,9 +46,11 @@ const vermeer = {
 		// this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
 		
 		//this.els.content.find(".box-head div[data-content='info']").trigger("click");
+		// setTimeout(() => this.dispatch({ type: "save-file-as" }), 1000);
 	},
 	dispatch(event) {
 		let Self = vermeer,
+			file,
 			name,
 			pEl,
 			el;
@@ -72,7 +74,13 @@ const vermeer = {
 				break;
 			case "save-file-as":
 				file = Files.stack[0];
-				console.log(file);
+
+				// pass on available file types
+				window.dialog.saveAs(file._file, {
+					png: () => file.cvs.toBlob("image/png"),
+					jpg: () => file.cvs.toBlob("image/jpeg", .95),
+					webp: () => file.cvs.toBlob("image/webp"),
+				});
 				break;
 			case "open-help":
 				defiant.shell("fs -u '~/help/index.md'");

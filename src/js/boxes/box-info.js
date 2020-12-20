@@ -32,6 +32,7 @@
 		let APP = vermeer,
 			Self = APP.box.info,
 			Detail = event.detail,
+			isOn,
 			el;
 
 		if (!Self.els.root) return;

@@ -7,6 +7,7 @@ const Files = {
 	open(fsFile) {
 		// create file
 		let file = new File(fsFile);
+		
 		// add to stack
 		this.stack.push(file);
 
@@ -23,19 +24,6 @@ const Files = {
 		// select newly added file
 		this.select(file._file.id);
 	},
-	/*
-	open2(path) {
-		let _id =  this.getUniqId(),
-			opt = { _id, path };
-
-		// add to stack
-		let file = new File(opt);
-		this.stack.push(file);
-
-		// select newly added file
-		//this.select(_id);
-	},
-	*/
 	select(_id) {
 		// skip reset if this function is called from "open"
 		// if (Projector.file && Projector.file._file.id === _id) return;

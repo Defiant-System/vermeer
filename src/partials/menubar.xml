@@ -5,8 +5,7 @@
 		<Menu name="Quit Vermeer" shell="win -c"/>
 	</Menu>
 	<Menu name="File">
-		<Menu name="New"/>
-		<Menu name="Open&#8230;"/>
+		<Menu name="Open&#8230;" click="open-file"/>
 		<Menu type="divider"/>
 		<Menu name="Save" click="save-file"/>
 		<Menu name="Save As&#8230;" click="save-file-as"/>

@@ -168,7 +168,7 @@
 			_max = Math.max,
 			_min = Math.min,
 			rect,
-			x, y,
+			cX, cY,
 			el;
 		switch (event.type) {
 			case "mousedown":
@@ -196,16 +196,16 @@
 				Self.doc.on("mousemove mouseup", Self.compare);
 				break;
 			case "mousemove":
-				x = _min(_max(event.clientX + Drag.clickX, Drag.min.x), Drag.max.x);
-				y = _min(_max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
+				cX = _min(_max(event.clientX + Drag.clickX, Drag.min.x), Drag.max.x);
+				cY = _min(_max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
 				// moves navigator view rectangle
-				Drag.el.css({ top: y +"px", left: x +"px" });
+				Drag.el.css({ top: cY +"px", left: cX +"px" });
 
 				// broadcast event
-				defiant.emit("mouse-move", { cX: x, cY: y });
+				defiant.emit("mouse-move", { cX, cY });
 
 				// Projector -> render comparison
-				Proj.comparison.cX = x - Drag.min.x;
+				Proj.comparison.cX = cX - Drag.min.x;
 				Proj.render();
 				break;
 			case "mouseup":

@@ -41,12 +41,8 @@ const vermeer = {
 		this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
-		//this.dispatch({ type: "open-file", path: "~/images/pilatus.jpg" });
-		//this.dispatch({ type: "open-file", path: "~/images/cup.jpg" });
-		// this.dispatch({ type: "open-file", path: "~/images/svetlana-pochatun.jpg" });
-		
 		//this.els.content.find(".box-head div[data-content='info']").trigger("click");
-		// setTimeout(() => this.dispatch({ type: "save-file-as" }), 1000);
+		// setTimeout(() => this.dispatch({ type: "open-file" }), 1000);
 	},
 	dispatch(event) {
 		let Self = vermeer,
@@ -70,11 +66,12 @@ const vermeer = {
 					.then(file => Files.open(file));
 				break;
 			// custom events
+			case "open-file":
+				break;
 			case "save-file":
 				break;
 			case "save-file-as":
 				file = Files.stack[0];
-
 				// pass on available file types
 				window.dialog.saveAs(file._file, {
 					png: () => file.cvs.toBlob("image/png"),

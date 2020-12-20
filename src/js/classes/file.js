@@ -63,6 +63,12 @@ class File {
 				}
 			});
 
+		// temp
+		this.scale = 2;
+		this.config.brightness = .69;
+		this.config.temperature = 23000;
+		vermeer.els.content.find(".icon-compare").trigger("click");
+
 		// set file initial scale
 		this.dispatch({ ...event, type: "set-scale", skipEmit: true });
 

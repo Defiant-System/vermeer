@@ -42,7 +42,7 @@ const vermeer = {
 
 		// temp
 		//this.els.content.find(".box-head div[data-content='info']").trigger("click");
-		// setTimeout(() => this.dispatch({ type: "open-file" }), 1000);
+		// setTimeout(() => this.dispatch({ type: "save-file" }), 1000);
 	},
 	dispatch(event) {
 		let Self = vermeer,
@@ -69,14 +69,18 @@ const vermeer = {
 			case "open-file":
 				break;
 			case "save-file":
+				// file = Files.stack[0];
+				// file._file.base = "coast-3.jpg";
+				// await file.toBlob("image/jpeg", .95);
+				// window.dialog.save(file._file);
 				break;
 			case "save-file-as":
 				file = Files.stack[0];
 				// pass on available file types
 				window.dialog.saveAs(file._file, {
-					png: () => file.cvs.toBlob("image/png"),
-					jpg: () => file.cvs.toBlob("image/jpeg", .95),
-					webp: () => file.cvs.toBlob("image/webp"),
+					png: () => file.toBlob("image/png"),
+					jpg: () => file.toBlob("image/jpeg", .95),
+					webp: () => file.toBlob("image/webp"),
 				});
 				break;
 			case "open-help":

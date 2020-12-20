@@ -38,6 +38,23 @@ class File {
 		this.parseImage();
 	}
 
+	toBlob(mime, quality) {
+		// backup file image
+		let backup = this.ctx.getImageData(0, 0, this.width, this.height);
+		// return promise
+		return new Promise(async (resolve, reject) => {
+			// apply config on file / image
+			await vermeer.editor.setFile(this, true);
+			// generate blob
+			this.cvs[0].toBlob((blob) => {
+				// restore file image
+				this.ctx.putImageData(backup, 0, 0);
+				// return created blob
+				resolve(blob);
+			}, mime, quality);
+		});
+	}
+
 	async parseImage() {
 		let src = URL.createObjectURL(this._file.blob),
 			image = await loadImage(src),
@@ -62,12 +79,6 @@ class File {
 					this.scale = scale;
 				}
 			});
-
-		// temp
-		this.scale = 2;
-		this.config.brightness = .69;
-		this.config.temperature = 23000;
-		vermeer.els.content.find(".icon-compare").trigger("click");
 
 		// set file initial scale
 		this.dispatch({ ...event, type: "set-scale", skipEmit: true });

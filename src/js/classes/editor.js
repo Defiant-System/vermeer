@@ -24,7 +24,7 @@ export class Editor {
 		this.processor.dispose();
 	}
 
-	setFile(file) {
+	setFile(file, silent) {
 		this.inputFile = file;
 		this.inputImage = file.img;
 		this.scaledImage = null;
@@ -63,7 +63,7 @@ export class Editor {
 		});
 	}
 
-	async render(emit) {
+	async render(emit, silent) {
 		if (!this.inputImage) return;
 
 		if (this.renderPending) {
@@ -98,8 +98,10 @@ export class Editor {
 		this.renderInProgress = false;
 		// console.timeEnd('Editor.render');
 		
-		// select file and render projector
-		this.projector.render({ emit: ["projector-update"] });
+		if (!silent) {
+			// select file and render projector
+			this.projector.render({ emit: ["projector-update"] });
+		}
 
 		// if (this.renderPending) {
 		// 	this.renderPending = false;

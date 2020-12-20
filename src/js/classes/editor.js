@@ -51,7 +51,7 @@ export class Editor {
 				},
 				vignette: {
 					radius    : 0.4 * config.vignetteRadius,
-					falloff   : Math.sqrt(1 + Math.pow(Math.max(this.inputFile.w, this.inputFile.h) / Math.min(this.inputFile.w, this.inputFile.h), 2)) * .5 - .4,
+					falloff   : Math.sqrt(1 + Math.pow(Math.max(this.inputFile.width, this.inputFile.height) / Math.min(this.inputFile.width, this.inputFile.height), 2)) * .5 - .4,
 					intensity : Math.pow(2, config.vignette)
 				},
 				lightLeak: {

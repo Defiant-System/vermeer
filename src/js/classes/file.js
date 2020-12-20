@@ -52,6 +52,7 @@ class File {
 		this.cvs.prop({ width, height });
 		// apply image to canvas
 		this.ctx.drawImage(image, 0, 0);
+		this.img = image;
 
 		// iterate available zoom levels
 		ZOOM.filter(z => z.level <= 100)

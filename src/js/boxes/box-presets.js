@@ -186,7 +186,7 @@
 						y: 10,
 					},
 					max: {
-						x: File.w + File.oX - (rect.width / 2),
+						x: File.width + File.oX - (rect.width / 2),
 						y: Proj.aH - rect.height - 10,
 					}
 				};

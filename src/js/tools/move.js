@@ -21,18 +21,18 @@
 				event.preventDefault();
 
 				// dont pan if image fits available area
-				if (File.w <= Proj.aW && File.h <= Proj.aH) return;
+				if (File.width <= Proj.aW && File.height <= Proj.aH) return;
 
 				Self.drag = {
-					clickX: event.clientX - (File.oX - Proj.cX + (File.w / 2)),
-					clickY: event.clientY - (File.oY - Proj.cY + (File.h / 2)),
+					clickX: event.clientX - (File.oX - Proj.cX + (File.width / 2)),
+					clickY: event.clientY - (File.oY - Proj.cY + (File.height / 2)),
 					min: {
-						x: Proj.aX - Proj.cX + (File.w / 2),
-						y: Proj.aY - Proj.cY + (File.h / 2),
+						x: Proj.aX - Proj.cX + (File.width / 2),
+						y: Proj.aY - Proj.cY + (File.height / 2),
 					},
 					max: {
-						x: (Proj.cX - Proj.aX - (File.w / 2)),
-						y: (Proj.cY - Proj.aY - (File.h / 2)),
+						x: (Proj.cX - Proj.aX - (File.width / 2)),
+						y: (Proj.cY - Proj.aY - (File.height / 2)),
 					},
 					stop: true,
 				};

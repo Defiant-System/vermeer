@@ -68,6 +68,12 @@ const vermeer = {
 					.then(file => Files.open(file));
 				break;
 			// custom events
+			case "save-file":
+				break;
+			case "save-file-as":
+				file = Files.stack[0];
+				console.log(file);
+				break;
 			case "open-help":
 				defiant.shell("fs -u '~/help/index.md'");
 				break;

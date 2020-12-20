@@ -39,10 +39,10 @@ class File {
 	}
 
 	async parseImage() {
-		let src = URL.createObjectURL(this._file.blob);
-		let image = await this.loadImage(src);
-		let width = image.width;
-		let height = image.height;
+		let src = URL.createObjectURL(this._file.blob),
+			image = await loadImage(src),
+			width = image.width,
+			height = image.height;
 
 		// set image dimensions
 		this.oW = this.width = width;
@@ -66,15 +66,7 @@ class File {
 		this.dispatch({ ...event, type: "set-scale", skipEmit: true });
 
 		//vermeer.editor.setFile(this);
-		Files.select(this._id);
-	}
-
-	loadImage(url) {
-		return new Promise(resolve => {
-			let img = new Image;
-			img.src = url;
-			img.onload = () => resolve(img);
-		})
+		Files.select(this._file.id);
 	}
 
 	dispatch(event) {
@@ -87,12 +79,12 @@ class File {
 			case "set-scale":
 				// scaled dimension
 				this.scale = event.scale || this.scale;
-				this.w = this.oW * this.scale;
-				this.h = this.oH * this.scale;
+				this.width = this.oW * this.scale;
+				this.height = this.oH * this.scale;
 
 				// origo
-				this.oX = Math.round(Proj.cX - (this.w / 2));
-				this.oY = Math.round(Proj.cY - (this.h / 2));
+				this.oX = Math.round(Proj.cX - (this.width / 2));
+				this.oY = Math.round(Proj.cY - (this.height / 2));
 
 				if (!event.skipEmit) {
 					// render projector canvas
@@ -101,8 +93,8 @@ class File {
 				}
 				break;
 			case "pan-canvas":
-				this.oX = (Number.isInteger(event.left) ? event.left : this.w > Proj.aW ? Proj.cX - (this.w / 2) + event.x : false) || this.oX;
-				this.oY = (Number.isInteger(event.top) ? event.top : this.h > Proj.aH ? Proj.cY - (this.h / 2) + event.y : false) || this.oY;
+				this.oX = (Number.isInteger(event.left) ? event.left : this.width > Proj.aW ? Proj.cX - (this.width / 2) + event.x : false) || this.oX;
+				this.oY = (Number.isInteger(event.top) ? event.top : this.height > Proj.aH ? Proj.cY - (this.height / 2) + event.y : false) || this.oY;
 
 				// render projector canvas
 				Proj.render(!event.skipEmit ? { emit: ["projector-pan"] } : null);

@@ -4,6 +4,17 @@
 		<Menu type="divider"/>
 		<Menu name="Quit Vermeer" shell="win -c"/>
 	</Menu>
+	<Menu name="File">
+		<Menu name="New"/>
+		<Menu name="Open&#8230;"/>
+		<Menu type="divider"/>
+		<Menu name="Close"/>
+		<Menu name="Close All"/>
+		<Menu name="Save"/>
+		<Menu name="Save As&#8230;"/>
+		<Menu type="divider"/>
+		<Menu name="Export"/>
+	</Menu>
 	<Menu name="Presets" for="preset-list">
 		<Menu name="None" click="set-clut" arg="none" check-group="active-clut" is-checked="1" />
 		<Menu type="divider"/>
@@ -381,7 +392,7 @@
 		<Menu name="Info" check-group="sidebar-top"/>
 		<Menu name="Presets" check-group="sidebar-bottom" is-checked="1"/>
 		<Menu type="divider"/>
-		<Menu name="svetlana-pochatun.jpg" check-group="selected-file" is-checked="1"/>
+		<!-- <Menu name="svetlana-pochatun.jpg" check-group="selected-file" is-checked="1"/> -->
 	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>

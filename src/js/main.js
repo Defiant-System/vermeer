@@ -70,12 +70,10 @@ const vermeer = {
 				break;
 			case "save-file":
 				file = Files.activeFile;
-				console.log(file);
 				// create blob and save file
-				// file.toBlob("image/jpeg", .95)
-				// 	.then(blob => {
-				// 		window.dialog.save(file._file, blob);
-				// 	});
+				file.toBlob(file._file.blob.type, .95)
+					.then(blob =>
+						window.dialog.save(file._file, blob));
 				break;
 			case "save-file-as":
 				file = Files.activeFile;

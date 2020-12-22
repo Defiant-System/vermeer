@@ -248,7 +248,7 @@ content {
 					&.hidden {
 						.nav-cvs,
 						.view-rect {
-							display: none;
+							opacity: 0;
 						}
 					}
 
@@ -263,6 +263,8 @@ content {
 						// top: 0;
 						// left: 0;
 						box-shadow: 0 0 0 1px rgba(#000, .65);
+						opacity: 1;
+						transition: opacity 100ms 120ms ease-in-out;
 					}
 
 					.view-rect {
@@ -274,6 +276,8 @@ content {
 						background: transparent;
 						border: 2px solid #ff7474;
 						cursor: move;
+						opacity: 1;
+						transition: opacity 100ms 120ms ease-in-out;
 					}
 				}
 

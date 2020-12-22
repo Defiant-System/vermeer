@@ -69,13 +69,16 @@ const vermeer = {
 			case "open-file":
 				break;
 			case "save-file":
-				// file = Files.stack[0];
-				// file._file.base = "coast-3.jpg";
-				// await file.toBlob("image/jpeg", .95);
-				// window.dialog.save(file._file);
+				file = Files.activeFile;
+				console.log(file);
+				// create blob and save file
+				// file.toBlob("image/jpeg", .95)
+				// 	.then(blob => {
+				// 		window.dialog.save(file._file, blob);
+				// 	});
 				break;
 			case "save-file-as":
-				file = Files.stack[0];
+				file = Files.activeFile;
 				// pass on available file types
 				window.dialog.saveAs(file._file, {
 					png: () => file.toBlob("image/png"),

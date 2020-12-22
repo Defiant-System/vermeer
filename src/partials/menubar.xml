@@ -7,7 +7,7 @@
 	<Menu name="File">
 		<Menu name="Open&#8230;" click="open-file"/>
 		<Menu type="divider"/>
-		<Menu name="Save" click="save-file"/>
+		<Menu name="Save" click="save-file" hotkey="alt+s"/>
 		<Menu name="Save As&#8230;" click="save-file-as"/>
 		<Menu type="divider"/>
 		<Menu name="Close"/>

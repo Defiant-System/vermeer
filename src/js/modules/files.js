@@ -29,9 +29,12 @@ const Files = {
 		// if (Projector.file && Projector.file._file.id === _id) return;
 
 		// reference to active file
-		let file = this.stack.find(f => f._file.id === _id);
+		this._active = this.stack.find(f => f._file.id === _id);
 
-		Projector.reset(file);
+		Projector.reset(this._active);
 		Projector.render({ emit: ["projector-zoom", "projector-pan", "projector-update", "select-file"] });
+	},
+	get activeFile() {
+		return this._active;
 	}
 };

@@ -14,6 +14,6 @@ let commands = {
     }
 };
 
-self.onmessage = function(e){
-    commands[e.data.command].apply(self, e.data.arguments);
+self.onmessage = function(event) {
+    commands[event.data.command].apply(self, event.data.arguments);
 };

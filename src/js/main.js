@@ -41,7 +41,7 @@ const vermeer = {
 		this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
-		setTimeout(() => this.els.content.find(".box-head div[data-content='info']").trigger("click"), 700);
+		// setTimeout(() => this.els.content.find(".box-head div[data-content='info']").trigger("click"), 700);
 		// setTimeout(() => this.dispatch({ type: "save-file" }), 700);
 	},
 	dispatch(event) {

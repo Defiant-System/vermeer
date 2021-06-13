@@ -96,7 +96,7 @@ class File {
 			// custom events
 			case "set-scale":
 				// scaled dimension
-				this.scale = event.scale || this.scale;
+				this.scale = event.scale || this.scale;
 				this.width = this.oW * this.scale;
 				this.height = this.oH * this.scale;
 

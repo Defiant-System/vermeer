@@ -52,7 +52,7 @@
 				let scalar = Math.max(...rData, ...gData, ...bData);
 
 				// decides which colors to display
-				show = event.show || Self.show || ["r", "g", "b"];
+				show = event.show || Self.show || ["r", "g", "b"];
 
 				rData = rData.map(y => _round((y / scalar) * (oY - 7)));
 				gData = gData.map(y => _round((y / scalar) * (oY - 7)));

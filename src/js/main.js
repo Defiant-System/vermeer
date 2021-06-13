@@ -72,8 +72,7 @@ const vermeer = {
 				file = Files.activeFile;
 				// create blob and save file
 				file.toBlob(file._file.blob.type, .95)
-					.then(blob =>
-						window.dialog.save(file._file, blob));
+					.then(blob => window.dialog.save(file._file, blob));
 				break;
 			case "save-file-as":
 				file = Files.activeFile;

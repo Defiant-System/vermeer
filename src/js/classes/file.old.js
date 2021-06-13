@@ -79,7 +79,7 @@ class File {
 			// custom events
 			case "set-scale":
 				// scaled dimension
-				this.scale = event.scale || this.scale;
+				this.scale = event.scale || this.scale;
 				this.w = this.oW * this.scale;
 				this.h = this.oH * this.scale;
 				// origo

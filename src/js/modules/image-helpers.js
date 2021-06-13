@@ -2,7 +2,7 @@
 export function createCanvas(w, h) {
 	let cvs = $(document.createElement("canvas")),
 		ctx = cvs[0].getContext("2d");
-	cvs.prop({ width: w || 1, height: h || 1 });
+	cvs.prop({ width: w || 1, height: h || 1 });
 	return { cvs, ctx };
 }
 

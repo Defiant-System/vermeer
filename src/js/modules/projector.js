@@ -52,8 +52,8 @@ const Projector = {
 		// pre-render frame
 		let w = file.oW * file.scale,
 			h = file.oH * file.scale,
-			oX = file.oX || Math.round(this.cX - (w / 2)),
-			oY = file.oY || Math.round(this.cY - (h / 2));
+			oX = file.oX || Math.round(this.cX - (w / 2)),
+			oY = file.oY || Math.round(this.cY - (h / 2));
 		
 		// reset canvases
 		this.swap.cvs.prop({ width: window.innerWidth, height: window.innerHeight });

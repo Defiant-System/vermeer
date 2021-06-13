@@ -1,5 +1,5 @@
 
-import { processImage } from "./image-processing";
+import { processImage } from "./image-processing";
 
 let clut;
 

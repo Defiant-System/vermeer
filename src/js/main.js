@@ -18,10 +18,12 @@ const TOOLS = {
 
 
 const vermeer = {
-	els: {},
 	init() {
 		// fast references
-		this.els.content = window.find("content");
+		this.els = {
+			content: window.find("content"),
+			blankView: window.find(".blank-view"),
+		};
 
 		// init objects
 		UI.init();
@@ -29,11 +31,10 @@ const vermeer = {
 		Projector.init();
 		Object.keys(TOOLS).filter(t => TOOLS[t].init).map(t => TOOLS[t].init());
 
-		// init sidebar initial boxes
-		["navigator", "presets"].map(item => {
-			let box = window.store(`boxes/box-${item}.htm`, `div[data-box="${item}"]`);
-			this.box[item].toggle(box, "on");
-		});
+		// init all sub-objects
+		Object.keys(this)
+			.filter(i => typeof this[i].init === "function")
+			.map(i => this[i].init(this));
 
 		// initate editor
 		this.editor = new Editor(Projector);
@@ -52,6 +53,10 @@ const vermeer = {
 			el;
 		switch (event.type) {
 			// system events
+			case "window.init":
+				// reset app by default - show initial view
+				Self.dispatch({ type: "reset-app" });
+				break;
 			case "window.resize":
 				Projector.reset();
 				Projector.file.dispatch({ type: "set-scale" });
@@ -66,6 +71,16 @@ const vermeer = {
 					.then(file => Files.open(file));
 				break;
 			// custom events
+			case "reset-app":
+				// render blank view
+				window.render({
+					template: "blank-view",
+					match: `//Data`,
+					target: Self.els.blankView
+				});
+				// show blank view
+				Self.els.content.addClass("show-blank-view");
+				break;
 			case "open-file":
 				break;
 			case "save-file":
@@ -86,6 +101,8 @@ const vermeer = {
 			case "open-help":
 				defiant.shell("fs -u '~/help/index.md'");
 				break;
+			case "toggle-sidebar":
+				return Self.sidebar.dispatch(event);
 			case "set-clut":
 				Self.box.presets.dispatch(event);
 				break;
@@ -120,20 +137,13 @@ const vermeer = {
 				break;
 			default:
 				if (event.el) {
-					pEl = event.el.parents("div[data-box]");
-					name = pEl.data("box");
-					if (pEl.length && Self.box[name].dispatch) {
-						Self.box[name].dispatch(event);
-					}
+					pEl = event.el.parents(`div[data-area="sidebar"]`);
+					if (pEl.length) Self.sidebar.dispatch(event);
 				}
 		}
 	},
-	box: {
-		navigator: @import "./boxes/box-navigator.js",
-		histogram: @import "./boxes/box-histogram.js",
-		info:      @import "./boxes/box-info.js",
-		presets:   @import "./boxes/box-presets.js"
-	}
+	blankView: @import "modules/blankView.js",
+	sidebar: @import "sidebar/sidebar.js"
 };
 
 window.exports = vermeer;

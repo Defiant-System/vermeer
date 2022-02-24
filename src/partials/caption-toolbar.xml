@@ -1,15 +1,6 @@
 <CaptionToolBar>
-	<Group width="17%">
-		
-	</Group>
-	<Group>
-		<Options>
-			<Tool name="Library" />
-			<Tool name="Develop" />
-			<Tool name="Sidebar" state="active"/>
-		</Options>
-	</Group>
+	<Group width="75%"/>
 	<Group width="25%">
-		<Tool symbol="icon-cog"/>
+		<Tool symbol="icon-cog" click="toggle-sidebar" state="disabled"/>
 	</Group>
 </CaptionToolBar>

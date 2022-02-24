@@ -1,5 +1,5 @@
 
-// vermeer.box.presets
+// vermeer.sidebar.box.presets
 
 {
 	els: {},
@@ -42,7 +42,7 @@
 	},
 	dispatch(event) {
 		let APP = vermeer,
-			Self = APP.box.presets,
+			Self = APP.sidebar.box.presets,
 			Proj = Projector,
 			File = Proj.file,
 			data,

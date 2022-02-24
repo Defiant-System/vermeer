@@ -8,7 +8,7 @@
 		<meta name="author" value="Jan Wagner" namespace="ant" ported="Hakan Bilgin"/>
 		<meta name="license" value="AGPL-3.0"/>
 		<meta name="repository" value="https://github.com/Defiant-System/vermeer"/>
-		<meta name="width" value="980"/>
+		<meta name="width" value="1025"/>
 		<meta name="height" value="640"/>
 		<meta name="top" value="120"/>
 		<meta name="left" value="120"/>
@@ -19,8 +19,12 @@
 		<meta name="script" value="src/js/main.js"/>
 		<meta name="style" value="src/css/main.less"/>
 		<meta name="content" value="src/partials/content.htm"/>
+		<meta name="xsl" value="src/partials/templates.xsl"/>
 
 		@import "src/partials/menubar.xml"
 		@import "src/partials/caption-toolbar.xml"
 	</Head>
+
+	@import "src/partials/data.xml"
+	
 </Application>

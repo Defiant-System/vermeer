@@ -67,7 +67,7 @@ const UI = {
 				Self.doc.off("mousemove mouseup", Self.doKnob);
 
 				// emit change event
-				name = Drag.el.parents("[data-box").data("box");
+				name = Drag.el.parents("[data-box]").data("box");
 				type = Drag.el.data("emit");
 				if (name && type) {
 					APP.box[name].dispatch({ type });

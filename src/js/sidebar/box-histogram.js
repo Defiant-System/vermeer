@@ -1,5 +1,5 @@
 
-// vermeer.box.histogram
+// vermeer.sidebar.box.histogram
 
 {
 	els: {},
@@ -27,7 +27,7 @@
 	},
 	dispatch(event) {
 		let APP = vermeer,
-			Self = APP.box.histogram,
+			Self = APP.sidebar.box.histogram,
 			Proj = Projector,
 			File = Proj.file,
 			_round = Math.round,

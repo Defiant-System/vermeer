@@ -1,5 +1,5 @@
 
-// vermeer.box.info
+// vermeer.sidebar.box.info
 
 {
 	els: {},
@@ -30,7 +30,7 @@
 	},
 	dispatch(event) {
 		let APP = vermeer,
-			Self = APP.box.info,
+			Self = APP.sidebar.box.info,
 			Detail = event.detail,
 			isOn,
 			el;

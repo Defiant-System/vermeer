@@ -1,4 +1,10 @@
 <content>
+	<!-- shown if no file is opened -->
+	<div class="blank-view" data-area="blankView">
+		<!-- blank view HTML goes here -->
+	</div>
+	
+	<!-- shown if any file or blank file is in view -->
 	<div class="cvs-wrapper">
 		<canvas class="canvas" width="1" height="1"></canvas>
 		<div class="compare hidden">
@@ -8,7 +14,7 @@
 	</div>
 
 	<div class="workspace">
-		<div class="sidebar-wrapper">
+		<div class="sidebar-wrapper" data-area="sidebar">
 
 			<div class="sidebar-box">
 				<div class="box-head" data-click="box-head-tab">

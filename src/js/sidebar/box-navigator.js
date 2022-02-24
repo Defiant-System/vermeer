@@ -1,5 +1,5 @@
 
-// vermeer.box.navigator
+// vermeer.sidebar.box.navigator
 
 {
 	els: {},
@@ -50,7 +50,7 @@
 	},
 	dispatch(event) {
 		let APP = vermeer,
-			Self = APP.box.navigator,
+			Self = APP.sidebar.box.navigator,
 			Proj = Projector,
 			File = Proj.file,
 			_round = Math.round,

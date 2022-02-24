@@ -45,7 +45,7 @@ const vermeer = {
 		this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
-		// setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
+		setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
 		// setTimeout(() => this.els.content.find(".box-head div[data-content='info']").trigger("click"), 700);
 		// setTimeout(() => this.dispatch({ type: "save-file" }), 700);
 	},
@@ -138,11 +138,11 @@ const vermeer = {
 					oldBox = el.parent().nextAll(".box-body").find("> div[data-box]");
 				
 				// notify box state = off
-				this.box[oldBox.data("box")].toggle(oldBox, "off");
+				this.sidebar.box[oldBox.data("box")].toggle(oldBox, "off");
 				// replace box body
 				newBox = oldBox.replace(newBox);
 				// notify box state = on
-				this.box[newBox.data("box")].toggle(newBox, "on");
+				this.sidebar.box[newBox.data("box")].toggle(newBox, "on");
 				break;
 			case "select-tool":
 				if (TOOLS._active === event.arg) return;

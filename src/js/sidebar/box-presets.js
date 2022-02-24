@@ -161,7 +161,7 @@
 	},
 	compare(event) {
 		let APP = vermeer,
-			Self = APP.box.presets,
+			Self = APP.sidebar.box.presets,
 			Drag = Self.drag,
 			Proj = Projector,
 			File = Proj.file,

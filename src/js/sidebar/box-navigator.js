@@ -66,6 +66,7 @@
 
 		if (!Self.els.root) return;
 
+		// console.log(event);
 		switch (event.type) {
 			// subscribed events
 			case "projector-zoom":
@@ -134,7 +135,7 @@
 	},
 	pan(event) {
 		let APP = vermeer,
-			Self = APP.box.navigator,
+			Self = APP.sidebar.box.navigator,
 			Drag = Self.drag,
 			Proj = Projector,
 			File = Proj.file,

@@ -70,7 +70,7 @@ const UI = {
 				name = Drag.el.parents("[data-box]").data("box");
 				type = Drag.el.data("emit");
 				if (name && type) {
-					APP.box[name].dispatch({ type });
+					APP.sidebar.box[name].dispatch({ type });
 				}
 				break;
 		}

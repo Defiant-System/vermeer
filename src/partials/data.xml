@@ -1,11 +1,13 @@
 <Data>
-	<Presets>
-		<i width="600" height="400" icon="file-image" bg="#f1f1f1" bg-name="White" name="Landscape, 3 x 2"/>
-		<i width="500" height="300" icon="file-image" bg="#111111" bg-name="Black" name="Landscape, 5 x 3"/>
-		<i width="400" height="600" icon="file-image" bg="#f1f1f1" bg-name="White" name="Portrait, 2 x 3"/>
-		<i width="300" height="500" icon="file-image" bg="#111111" bg-name="Black" name="Portrait, 3 x 5"/>
-		<i width="500" height="500" icon="file-image" bg="transparent" bg-name="Transparent" name="Quadratic, 1 x 1"/>
-	</Presets>
+	<Samples>
+		<i width="600" height="400" path="~/samples/robert-collins.jpg"/>
+		<i width="600" height="400" path="~/samples/matthew-brodeur.jpg"/>
+		<i width="600" height="400" path="~/samples/johannes-andersson.jpg"/>
+		<i width="600" height="400" path="~/samples/brigitte-tohm.jpg"/>
+		<i width="600" height="400" path="~/samples/casey-lee.jpg"/>
+		<i width="600" height="400" path="~/samples/brantley-neal.jpg"/>
+		<i width="600" height="400" path="~/samples/alexander-scott-lambley.jpg"/>
+	</Samples>
 	<Recents>
 		<i name="basketball.png" filepath="/fs/Desktop/images/basketball.png"/>
 		<i name="coast.jpg" filepath="/fs/Desktop/coast.jpg"/>

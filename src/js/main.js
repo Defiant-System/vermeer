@@ -37,9 +37,9 @@ const vermeer = {
 			.map(i => this[i].init(this));
 
 		// initate editor
-		this.editor = new Editor(Projector);
+		// this.editor = new Editor(Projector);
 		
-		this.dispatch({ type: "select-tool", arg: "move" });
+		// this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
 		// setTimeout(() => this.els.content.find(".box-head div[data-content='info']").trigger("click"), 700);

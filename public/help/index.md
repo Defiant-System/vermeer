@@ -6,6 +6,8 @@
 
 *This application is named after famous Dutch painter [Johannes Vermeer](https://en.wikipedia.org/wiki/Johannes_Vermeer), commonly referred to as the **master of light**.*
 
+*Royalty free photos downloaded from [www.unsplash.com](https://unsplash.com/).*
+
 ### How to
 
 

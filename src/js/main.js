@@ -126,7 +126,7 @@ const vermeer = {
 			case "toggle-sidebar":
 				return Self.sidebar.dispatch(event);
 			case "set-clut":
-				Self.box.presets.dispatch(event);
+				Self.sidebar.box.presets.dispatch(event);
 				break;
 			case "box-head-tab":
 				el = $(event.target);
@@ -138,11 +138,11 @@ const vermeer = {
 					oldBox = el.parent().nextAll(".box-body").find("> div[data-box]");
 				
 				// notify box state = off
-				this.sidebar.box[oldBox.data("box")].toggle(oldBox, "off");
+				Self.sidebar.box[oldBox.data("box")].toggle(oldBox, "off");
 				// replace box body
 				newBox = oldBox.replace(newBox);
 				// notify box state = on
-				this.sidebar.box[newBox.data("box")].toggle(newBox, "on");
+				Self.sidebar.box[newBox.data("box")].toggle(newBox, "on");
 				break;
 			case "select-tool":
 				if (TOOLS._active === event.arg) return;

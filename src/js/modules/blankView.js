@@ -34,6 +34,22 @@
 			el;
 		// console.log(event);
 		switch (event.type) {
+			case "open-filesystem":
+				APP.dispatch({ type: "open-file" });
+				break;
+			case "select-sample":
+				el = $(event.target);
+				if (!el.hasClass("sample")) return;
+
+				console.log(event.type, el);
+				break;
+			case "select-recent-file":
+				el = $(event.target);
+				if (!el.hasClass("recent-file")) return;
+				
+				defiant.shell(`fs -o '${el.data("file")}' null`)
+					.then(exec => APP.dispatch(exec.result));
+				break;
 			/*
 			case "add-recent-file":
 				let str = `<i name="${event.file.base}" filepath="${event.file.path}"/>`,
@@ -43,13 +59,6 @@
 				if (xExist) xExist.parentNode.removeChild(xExist);
 				// insert new entry at first position
 				Self.xRecent.insertBefore(xFile, Self.xRecent.firstChild);
-				break;
-			case "open-filesystem":
-				window.dialog.open({
-					jpg: item => Self.dispatch(item),
-					jpeg: item => Self.dispatch(item),
-					png: item => Self.dispatch(item),
-				});
 				break;
 			case "from-clipboard":
 				// TODO
@@ -65,13 +74,6 @@
 					height: +el.data("height"),
 				};
 				APP.dispatch({ type: "new-file", value });
-				break;
-			case "select-recent-file":
-				el = $(event.target);
-				if (!el.hasClass("recent-file")) return;
-				
-				defiant.shell(`fs -o '${el.data("file")}' null`)
-					.then(exec => APP.dispatch(exec.result));
 				break;
 				*/
 		}

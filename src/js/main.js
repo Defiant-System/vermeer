@@ -37,11 +37,12 @@ const vermeer = {
 			.map(i => this[i].init(this));
 
 		// initate editor
-		// this.editor = new Editor(Projector);
-		
-		// this.dispatch({ type: "select-tool", arg: "move" });
+		this.editor = new Editor(Projector);
+		// default tool; move
+		this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
+		setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
 		// setTimeout(() => this.els.content.find(".box-head div[data-content='info']").trigger("click"), 700);
 		// setTimeout(() => this.dispatch({ type: "save-file" }), 700);
 	},
@@ -63,14 +64,23 @@ const vermeer = {
 				break;
 			case "window.close":
 				// send "kill" signal to workers
-				Self.editor.dispose();
+				if (Self.editor) Self.editor.dispose();
 				break;
 			case "open.file":
 				// Files.open(event.path);
 				event.open({ responseType: "blob" })
-					.then(file => Files.open(file));
+					.then(file => {
+						// set up workspace
+						Self.dispatch({ type: "setup-workspace" });
+						// open file with Files
+						Files.open(file);
+					});
 				break;
 			// custom events
+			case "setup-workspace":
+				// hide blank view
+				Self.els.content.removeClass("show-blank-view");
+				break;
 			case "reset-app":
 				// render blank view
 				window.render({
@@ -82,6 +92,11 @@ const vermeer = {
 				Self.els.content.addClass("show-blank-view");
 				break;
 			case "open-file":
+				window.dialog.open({
+					jpg: item => Self.dispatch(item),
+					jpeg: item => Self.dispatch(item),
+					png: item => Self.dispatch(item),
+				});
 				break;
 			case "save-file":
 				file = Files.activeFile;
@@ -137,8 +152,11 @@ const vermeer = {
 				break;
 			default:
 				if (event.el) {
-					pEl = event.el.parents(`div[data-area="sidebar"]`);
-					if (pEl.length) Self.sidebar.dispatch(event);
+					pEl = event.el.parents(`div[data-area]`);
+					if (pEl.length) {
+						name = pEl.data("area");
+						Self[name].dispatch(event);
+					}
 				}
 		}
 	},

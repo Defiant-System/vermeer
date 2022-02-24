@@ -90,6 +90,7 @@ content {
 		
 		&.icon-file-image  { background-image: url(~/icons/icon-file-image.png); }
 		&.icon-folder-open { background-image: url(~/icons/icon-folder-open.png); }
+		&.icon-clipboard   { background-image: url(~/icons/icon-clipboard.png); }
 	}
 
 	.bg-checker {
@@ -174,30 +175,33 @@ content {
 
 			.sample {
 				display: inline-block;
-				background: #ccc;
+				background-color: #ccc;
+				background-size: 0 0;
 				position: relative;
 				width: 113px;
 				height: 113px;
 				margin: 0 21px 13px 0;
 				border-radius: 5px;
-				box-shadow: inset 0 0 0 3px #ccc;
 				cursor: pointer;
+				box-shadow: 0 0 0 3px #ccc,
+							inset 0 0 0 3px #ccc;
 
 				&:hover {
 					box-shadow: 0 0 0 3px #489bf770,
-								inset 0 0 0 2px #489bf7;
+								inset 0 0 0 3px #489bf7;
 				}
 
-				> div {
+				&:after {
+					content: "";
+					background: inherit;
 					background-position: 50% 50%;
 					background-repeat: no-repeat;
 					background-size: contain;
 					position: absolute;
-					top: 5px;
-					left: 5px;
-					right: 5px;
-					bottom: 5px;
-					border-radius: 5px;
+					top: 2px;
+					left: 2px;
+					right: 2px;
+					bottom: 2px;
 				}
 			}
 		}

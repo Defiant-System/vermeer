@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="block-samples" data-click="select-sample">
-		<h3>Samples</h3>
+		<h3>Example</h3>
 		<xsl:call-template name="sample-list" />
 	</div>
 
@@ -32,9 +32,7 @@
 <xsl:template name="sample-list">
 	<xsl:for-each select="./Samples/*">
 		<div class="sample">
-			<div>
-				<xsl:attribute name="style">background-image: url(<xsl:value-of select="@path"/>);</xsl:attribute>
-			</div>
+			<xsl:attribute name="style">background-image: url(<xsl:value-of select="@path"/>);</xsl:attribute>
 		</div>
 	</xsl:for-each>
 </xsl:template>

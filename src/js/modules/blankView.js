@@ -37,6 +37,9 @@
 			case "open-filesystem":
 				APP.dispatch({ type: "open-file" });
 				break;
+			case "from-clipboard":
+				// TODO
+				break;
 			case "select-sample":
 				el = $(event.target);
 				if (!el.hasClass("sample")) return;
@@ -59,9 +62,6 @@
 				if (xExist) xExist.parentNode.removeChild(xExist);
 				// insert new entry at first position
 				Self.xRecent.insertBefore(xFile, Self.xRecent.firstChild);
-				break;
-			case "from-clipboard":
-				// TODO
 				break;
 			case "select-preset":
 				el = $(event.target);

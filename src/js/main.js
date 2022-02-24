@@ -23,6 +23,9 @@ const vermeer = {
 		this.els = {
 			content: window.find("content"),
 			blankView: window.find(".blank-view"),
+			toolbar: {
+				sidebar: window.find(`.toolbar-tool_[data-click="toggle-sidebar"]`),
+			}
 		};
 
 		// init objects
@@ -42,7 +45,7 @@ const vermeer = {
 		this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
-		setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
+		// setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
 		// setTimeout(() => this.els.content.find(".box-head div[data-content='info']").trigger("click"), 700);
 		// setTimeout(() => this.dispatch({ type: "save-file" }), 700);
 	},
@@ -80,6 +83,10 @@ const vermeer = {
 			case "setup-workspace":
 				// hide blank view
 				Self.els.content.removeClass("show-blank-view");
+				// enable & click on show sidebar
+				Self.els.toolbar.sidebar
+					.removeClass("tool-disabled_")
+					.trigger("click");
 				break;
 			case "reset-app":
 				// render blank view

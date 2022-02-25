@@ -25,7 +25,10 @@ const Files = {
 		this.select(file._file.id);
 	},
 	openLocal(url) {
-		let file = new defiant.File;
+		let parts = url.slice(url.lastIndexOf("/") + 1),
+			[ name, kind ] = parts.split("."),
+			file = new defiant.File({ name, kind });
+		// return promise
 		return new Promise((resolve, reject) => {
 			// fetch image and transform it to a "fake" file
 			fetch(url)

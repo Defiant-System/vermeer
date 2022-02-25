@@ -66,6 +66,8 @@ const vermeer = {
 				Projector.file.dispatch({ type: "set-scale" });
 				break;
 			case "window.close":
+				// save recents list to settings
+				window.settings.setItem("recents", Self.blankView.xRecent);
 				// send "kill" signal to workers
 				if (Self.editor) Self.editor.dispose();
 				break;
@@ -76,6 +78,8 @@ const vermeer = {
 				break;
 			// custom events
 			case "prepare-file":
+				// add file to "recent" list
+				Self.blankView.dispatch({ ...event, type: "add-recent-file" });
 				// set up workspace
 				Self.dispatch({ type: "setup-workspace" });
 				// open file with Files

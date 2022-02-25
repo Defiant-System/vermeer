@@ -29,6 +29,7 @@
 	dispatch(event) {
 		let APP = vermeer,
 			Self = APP.blankView,
+			file,
 			name,
 			value,
 			el;
@@ -43,8 +44,12 @@
 			case "select-sample":
 				el = $(event.target);
 				if (!el.hasClass("sample")) return;
-
-				console.log(event.type, el);
+				// opening image file from application package
+				Files.openLocal(el.data("url"))
+					.then(file => {
+						// forward event to app
+						APP.dispatch({ type: "prepare-file", file })
+					});
 				break;
 			case "select-recent-file":
 				el = $(event.target);

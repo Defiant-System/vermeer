@@ -24,6 +24,20 @@ const Files = {
 		// select newly added file
 		this.select(file._file.id);
 	},
+	openLocal(url) {
+		let file = new defiant.File;
+		return new Promise((resolve, reject) => {
+			// fetch image and transform it to a "fake" file
+			fetch(url)
+				.then(resp => resp.blob())
+				.then(blob => {
+					// here the image is a blob
+					file.blob = blob;
+					resolve(file);
+				})
+				.catch(err => reject(err));
+		});
+	},
 	select(_id) {
 		// skip reset if this function is called from "open"
 		// if (Projector.file && Projector.file._file.id === _id) return;

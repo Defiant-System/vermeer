@@ -33,6 +33,7 @@
 	<xsl:for-each select="./Samples/*">
 		<div class="sample">
 			<xsl:attribute name="style">background-image: url(<xsl:value-of select="@path"/>);</xsl:attribute>
+			<xsl:attribute name="data-url"><xsl:value-of select="@path"/></xsl:attribute>
 		</div>
 	</xsl:for-each>
 </xsl:template>

@@ -45,8 +45,8 @@ const vermeer = {
 		this.dispatch({ type: "select-tool", arg: "move" });
 
 		// temp
-		setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
-		// setTimeout(() => this.els.content.find(".box-head div[data-content='info']").trigger("click"), 700);
+		// setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
+		// setTimeout(() => this.els.blankView.find(".sample:nth(1)").trigger("click"), 500);
 		// setTimeout(() => this.dispatch({ type: "save-file" }), 700);
 	},
 	dispatch(event) {
@@ -72,14 +72,15 @@ const vermeer = {
 			case "open.file":
 				// Files.open(event.path);
 				event.open({ responseType: "blob" })
-					.then(file => {
-						// set up workspace
-						Self.dispatch({ type: "setup-workspace" });
-						// open file with Files
-						Files.open(file);
-					});
+					.then(file => Self.dispatch({ type: "prepare-file", file }));
 				break;
 			// custom events
+			case "prepare-file":
+				// set up workspace
+				Self.dispatch({ type: "setup-workspace" });
+				// open file with Files
+				Files.open(event.file);
+				break;
 			case "setup-workspace":
 				// hide blank view
 				Self.els.content.removeClass("show-blank-view");

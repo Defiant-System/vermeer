@@ -39,27 +39,6 @@
 </xsl:template>
 
 
-<xsl:template name="sample-list2">
-	<xsl:for-each select="./Samples/*">
-		<div class="sample">
-			<xsl:attribute name="data-width"><xsl:value-of select="@width"/></xsl:attribute>
-			<xsl:attribute name="data-height"><xsl:value-of select="@height"/></xsl:attribute>
-			<xsl:attribute name="data-bg"><xsl:value-of select="@bg"/></xsl:attribute>
-			<xsl:if test="@icon = 'folder-open'">
-				<xsl:attribute name="class">sample fs-open</xsl:attribute>
-			</xsl:if>
-			<i>
-				<xsl:attribute name="class">icon-<xsl:value-of select="@icon"/></xsl:attribute>
-			</i>
-			<h4><xsl:value-of select="@name"/></h4>
-			<xsl:if test="@bg-name">
-				<h5><xsl:value-of select="@bg-name"/>, <xsl:value-of select="@width"/>x<xsl:value-of select="@height"/> pixels</h5>
-			</xsl:if>
-		</div>
-	</xsl:for-each>
-</xsl:template>
-
-
 <xsl:template name="recent-list">
 	<xsl:for-each select="./Recents/*">
 		<div class="recent-file">

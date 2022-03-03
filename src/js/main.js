@@ -78,8 +78,10 @@ const vermeer = {
 				break;
 			// custom events
 			case "prepare-file":
-				// add file to "recent" list
-				Self.blankView.dispatch({ ...event, type: "add-recent-file" });
+				if (!event.isSample) {
+					// add file to "recent" list
+					Self.blankView.dispatch({ ...event, type: "add-recent-file" });
+				}
 				// set up workspace
 				Self.dispatch({ type: "setup-workspace" });
 				// open file with Files
@@ -94,12 +96,6 @@ const vermeer = {
 					.trigger("click");
 				break;
 			case "reset-app":
-				// render blank view
-				window.render({
-					template: "blank-view",
-					match: `//Data`,
-					target: Self.els.blankView
-				});
 				// show blank view
 				Self.els.content.addClass("show-blank-view");
 				break;
@@ -124,6 +120,16 @@ const vermeer = {
 					jpg: () => file.toBlob("image/jpeg", .95),
 					webp: () => file.toBlob("image/webp"),
 				});
+				break;
+			case "close-file":
+				// close file + prepare workspace
+				Files.close();
+				// show blank view
+				Self.els.content.addClass("show-blank-view");
+				// hide sidebar, if needed
+				if (Self.els.tools.sidebar.hasClass("tool-active_")) {
+					Self.els.tools.sidebar.trigger("click");
+				}
 				break;
 			case "open-help":
 				defiant.shell("fs -u '~/help/index.md'");

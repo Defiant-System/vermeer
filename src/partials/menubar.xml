@@ -10,7 +10,7 @@
 		<Menu name="Save" click="save-file" hotkey="alt+s"/>
 		<Menu name="Save As&#8230;" click="save-file-as"/>
 		<Menu type="divider"/>
-		<Menu name="Close"/>
+		<Menu name="Close file" click="close-file"/>
 	</Menu>
 	<Menu name="Presets" for="preset-list">
 		<Menu name="None" click="set-clut" arg="none" check-group="active-clut" is-checked="1" />

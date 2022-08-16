@@ -19,13 +19,13 @@
 			this.els.root = root;
 
 			// subscribe to events
-			defiant.on("mouse-move", this.dispatch);
+			karaqu.on("mouse-move", this.dispatch);
 		} else {
 			// clean up
 			this.els = {};
 
 			// unsubscribe to events
-			defiant.off("mouse-move", this.dispatch);
+			karaqu.off("mouse-move", this.dispatch);
 		}
 	},
 	dispatch(event) {

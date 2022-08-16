@@ -132,7 +132,7 @@ const vermeer = {
 				}
 				break;
 			case "open-help":
-				defiant.shell("fs -u '~/help/index.md'");
+				karaqu.shell("fs -u '~/help/index.md'");
 				break;
 			case "toggle-sidebar":
 				return Self.sidebar.dispatch(event);

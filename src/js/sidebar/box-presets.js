@@ -16,9 +16,9 @@
 			this.els.compare.on("mousedown", this.compare);
 
 			// subscribe to events
-			defiant.on("select-file", this.dispatch);
-			defiant.on("projector-zoom", this.dispatch);
-			defiant.on("projector-pan", this.dispatch);
+			karaqu.on("select-file", this.dispatch);
+			karaqu.on("projector-zoom", this.dispatch);
+			karaqu.on("projector-pan", this.dispatch);
 
 			if (this.data) {
 				// dispatch if ratio is calculated
@@ -35,9 +35,9 @@
 			this.els = {};
 
 			// unsubscribe to events
-			defiant.off("select-file", this.dispatch);
-			defiant.off("projector-zoom", this.dispatch);
-			defiant.off("projector-pan", this.dispatch);
+			karaqu.off("select-file", this.dispatch);
+			karaqu.off("projector-zoom", this.dispatch);
+			karaqu.off("projector-pan", this.dispatch);
 		}
 	},
 	dispatch(event) {
@@ -202,7 +202,7 @@
 				Drag.el.css({ top: cY +"px", left: cX +"px" });
 
 				// broadcast event
-				defiant.emit("mouse-move", { cX, cY });
+				karaqu.emit("mouse-move", { cX, cY });
 
 				// Projector -> render comparison
 				Proj.comparison.cX = cX - Drag.min.x;

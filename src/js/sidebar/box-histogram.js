@@ -14,7 +14,7 @@
 			this.ctx = this.cvs[0].getContext("2d");
 
 			// subscribe to events
-			defiant.on("projector-update", this.dispatch);
+			karaqu.on("projector-update", this.dispatch);
 
 			this.dispatch({ type: "projector-update" });
 		} else {
@@ -22,7 +22,7 @@
 			this.els = {};
 
 			// unsubscribe to events
-			defiant.off("projector-update", this.dispatch);
+			karaqu.off("projector-update", this.dispatch);
 		}
 	},
 	dispatch(event) {

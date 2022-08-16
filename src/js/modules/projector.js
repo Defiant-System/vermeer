@@ -44,7 +44,7 @@ const Projector = {
 								&& event.offsetX >= File.oX && event.offsetX <= File.oX + File.width;
 
 				// broadcast event
-				defiant.emit("mouse-move", data);
+				karaqu.emit("mouse-move", data);
 				break;
 		}
 	},
@@ -113,7 +113,7 @@ const Projector = {
 
 		if (opt && opt.emit) {
 			// emit event
-			opt.emit.map(type => defiant.emit(type));
+			opt.emit.map(type => karaqu.emit(type));
 		}
 	}
 };

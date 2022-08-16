@@ -25,9 +25,9 @@
 			this.els.zoomSlider.on("input", this.dispatch);
 
 			// subscribe to events
-			defiant.on("projector-zoom", this.dispatch);
-			defiant.on("projector-pan", this.dispatch);
-			defiant.on("projector-update", this.dispatch);
+			karaqu.on("projector-zoom", this.dispatch);
+			karaqu.on("projector-pan", this.dispatch);
+			karaqu.on("projector-update", this.dispatch);
 
 			if (this.ratio) {
 				// dispatch if ratio is calculated
@@ -43,9 +43,9 @@
 			this.els = {};
 
 			// unsubscribe to events
-			defiant.off("projector-zoom", this.dispatch);
-			defiant.off("projector-pan", this.dispatch);
-			defiant.off("projector-update", this.dispatch);
+			karaqu.off("projector-zoom", this.dispatch);
+			karaqu.off("projector-pan", this.dispatch);
+			karaqu.off("projector-update", this.dispatch);
 		}
 	},
 	dispatch(event) {

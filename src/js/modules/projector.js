@@ -39,7 +39,7 @@ const Projector = {
 				data.offsetY = _min(_max(event.offsetY, File.oY), File.oY + File.height) - Self.aY;
 				data.offsetX = _min(_max(event.offsetX, File.oX), File.oX + File.width) - Self.aX;
 
-				let c = Self.ctx.getImageData(data.left, data.top, 1, 1).data;
+				let c = File.ctx.getImageData(data.left, data.top, 1, 1).data;
 				data.rgba = { r: c[0], g: c[1], b: c[2], a: c[3] };
 				data.hsl = ColorLib.rgbToHsl(data.rgba);
 				data.isOnCanvas = event.offsetY >= File.oY && event.offsetY <= File.oY + File.height

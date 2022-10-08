@@ -121,8 +121,8 @@ const vermeer = {
 				// show blank view
 				Self.els.content.addClass("show-blank-view");
 				// hide sidebar, if needed
-				if (Self.els.tools.sidebar.hasClass("tool-active_")) {
-					Self.els.tools.sidebar.trigger("click");
+				if (Self.els.toolbar.sidebar.hasClass("tool-active_")) {
+					Self.els.toolbar.sidebar.trigger("click");
 				}
 				break;
 			case "open-help":

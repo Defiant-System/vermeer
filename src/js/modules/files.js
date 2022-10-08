@@ -2,14 +2,14 @@
 const Files = {
 	init() {
 		// file stack
-		this.stack = [];
+		this._stack = [];
 	},
 	open(fsFile) {
 		// create file
 		let file = new File(fsFile);
 		
 		// add to stack
-		this.stack.push(file);
+		this._stack.push(file);
 
 		// add option to menubar
 		window.menuBar.add({
@@ -46,12 +46,17 @@ const Files = {
 		// if (Projector.file && Projector.file._file.id === _id) return;
 
 		// reference to active file
-		this._active = this.stack.find(f => f._file.id === _id);
+		this._active = this._stack.find(f => f._file.id === _id);
 
 		Projector.reset(this._active);
 		Projector.render({ emit: ["projector-zoom", "projector-pan", "projector-update", "select-file"] });
 	},
 	get activeFile() {
 		return this._active;
+	},
+	close() {
+		let index = this._stack.indexOf(this._active);
+		this._stack.splice(index, 1);
+		delete this._active;
 	}
 };

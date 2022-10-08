@@ -16,7 +16,7 @@
 
 		// temp
 		// setTimeout(() => window.find(`.toolbar-tool_[data-click="toggle-sidebar"]`).trigger("click"), 300);
-		setTimeout(() => window.find(`.box-head div[data-content="info"]`).trigger("click"), 300);
+		// setTimeout(() => window.find(`.box-head div[data-content="info"]`).trigger("click"), 300);
 	},
 	dispatch(event) {
 		let APP = vermeer,

@@ -2,50 +2,38 @@
 // vermeer.sidebar.box.navigator
 
 {
-	els: {},
-	toggle(root, state) {
-		if (state === "on") {
-			// fast references
-			this.doc = $(document);
-			this.els.wrapper = root.find(".navigator-wrapper");
-			this.els.zoomRect = root.find(".view-rect");
-			this.els.zoomValue = root.find(".box-foot .value");
-			this.els.zoomSlider = root.find(".zoom-slider input");
-			this.els.root = root;
+	init() {
+		// fast references
+		let root = window.find(`.sidebar-wrapper .box-body > div[data-box="navigator"]`);
+		this.doc = $(document);
+		this.els = {
+			wrapper: root.find(".navigator-wrapper"),
+			zoomRect: root.find(".view-rect"),
+			zoomValue: root.find(".box-foot .value"),
+			zoomSlider: root.find(".zoom-slider input"),
+			root,
+		};
 
-			this.cvs = root.find(".nav-cvs");
-			this.ctx = this.cvs[0].getContext("2d");
+		this.cvs = root.find(".nav-cvs");
+		this.ctx = this.cvs[0].getContext("2d");
 
-			// available height
-			this.navHeight = this.els.wrapper.height();
-			this.maxWidth = parseInt(this.els.wrapper.css("max-width"), 10);
+		// available height
+		this.navHeight = this.els.wrapper.height();
+		this.maxWidth = parseInt(this.els.wrapper.css("max-width"), 10);
 
-			// bind event handlers
-			this.els.zoomRect.on("mousedown", this.pan);
-			this.els.zoomSlider.on("input", this.dispatch);
+		// bind event handlers
+		this.els.zoomRect.on("mousedown", this.pan);
+		this.els.zoomSlider.on("input", this.dispatch);
 
-			// subscribe to events
-			karaqu.on("projector-zoom", this.dispatch);
-			karaqu.on("projector-pan", this.dispatch);
-			karaqu.on("projector-update", this.dispatch);
+		// subscribe to events
+		karaqu.on("projector-zoom", this.dispatch);
+		karaqu.on("projector-pan", this.dispatch);
+		karaqu.on("projector-update", this.dispatch);
 
-			if (this.ratio) {
-				// dispatch if ratio is calculated
-				this.dispatch({ type: "projector-zoom" });
-				this.dispatch({ type: "projector-update" });
-			}
-		} else {
-			// unbind event handlers
-			if (this.els.zoomRect) this.els.zoomRect.off("mousedown", this.pan);
-			if (this.els.zoomSlider) this.els.zoomSlider.off("input", this.dispatch);
-
-			// clean up
-			this.els = {};
-
-			// unsubscribe to events
-			karaqu.off("projector-zoom", this.dispatch);
-			karaqu.off("projector-pan", this.dispatch);
-			karaqu.off("projector-update", this.dispatch);
+		if (this.ratio) {
+			// dispatch if ratio is calculated
+			this.dispatch({ type: "projector-zoom" });
+			this.dispatch({ type: "projector-update" });
 		}
 	},
 	dispatch(event) {

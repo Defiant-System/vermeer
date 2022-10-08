@@ -2,31 +2,25 @@
 // vermeer.sidebar.box.info
 
 {
-	els: {},
-	toggle(root, state) {
-		if (state === "on") {
-			// fast references
-			this.els.hslH = root.find(".value.hslH");
-			this.els.hslS = root.find(".value.hslS");
-			this.els.hslV = root.find(".value.hslV");
-			this.els.rgbR = root.find(".value.rgbR");
-			this.els.rgbG = root.find(".value.rgbG");
-			this.els.rgbB = root.find(".value.rgbB");
-			this.els.mouseX = root.find(".value.mouseX");
-			this.els.mouseY = root.find(".value.mouseY");
-			this.els.comparisonX = root.find(".value.comparisonX");
-			this.els.comparisonY = root.find(".value.comparisonY");
-			this.els.root = root;
+	init() {
+		let root = window.find(`.sidebar-wrapper .box-body > div[data-box="info"]`);
+		// fast references
+		this.els = {
+			hslH: root.find(".value.hslH"),
+			hslS: root.find(".value.hslS"),
+			hslV: root.find(".value.hslV"),
+			rgbR: root.find(".value.rgbR"),
+			rgbG: root.find(".value.rgbG"),
+			rgbB: root.find(".value.rgbB"),
+			mouseX: root.find(".value.mouseX"),
+			mouseY: root.find(".value.mouseY"),
+			comparisonX: root.find(".value.comparisonX"),
+			comparisonY: root.find(".value.comparisonY"),
+			root,
+		};
 
-			// subscribe to events
-			karaqu.on("mouse-move", this.dispatch);
-		} else {
-			// clean up
-			this.els = {};
-
-			// unsubscribe to events
-			karaqu.off("mouse-move", this.dispatch);
-		}
+		// subscribe to events
+		karaqu.on("mouse-move", this.dispatch);
 	},
 	dispatch(event) {
 		let APP = vermeer,

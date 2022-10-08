@@ -9,11 +9,10 @@
 			el: window.find(".sidebar-wrapper"),
 		};
 		
-		// init sidebar initial boxes
-		["navigator", "presets"].map(item => {
-			let box = window.store(`boxes/box-${item}.htm`, `div[data-box="${item}"]`);
-			this.box[item].toggle(box, "on");
-		});
+		// init all sub-objects
+		Object.keys(this.box)
+			.filter(i => typeof this.box[i].init === "function")
+			.map(i => this.box[i].init(this));
 
 		// temp
 		// setTimeout(() => window.find(`.toolbar-tool_[data-click="toggle-sidebar"]`).trigger("click"), 300);
@@ -31,6 +30,16 @@
 				value = Self.els.content.hasClass("show-sidebar");
 				Self.els.content.toggleClass("show-sidebar", value);
 				return !value;
+			case "box-head-tab":
+				el = $(event.target);
+				if (el.hasClass("active") || !el.parent().hasClass("box-head")) return;
+				el.parent().find(".active").removeClass("active");
+				el.addClass("active");
+
+				pEl = el.parents(".sidebar-box");
+				pEl.find(".active").removeClass("active");
+				pEl.find(`.box-body > div[data-box="${el.data("content")}"]`).addClass("active");
+				break;
 			default:
 				if (event.el) {
 					pEl = event.el.parents("div[data-box]");

@@ -56,12 +56,9 @@
 			case "select-sample":
 				el = $(event.target);
 				if (!el.hasClass("sample")) return;
-				// opening image file from application package
-				Files.openLocal(el.data("url"))
-					.then(file => {
-						// forward event to app
-						APP.dispatch({ type: "prepare-file", isSample: true, file })
-					});
+
+				name = el.data("url");
+				APP.dispatch({ type: "load-samples", names: [name.slice(name.lastIndexOf("/")+1)] });
 				break;
 			case "select-recent-file":
 				el = $(event.target);

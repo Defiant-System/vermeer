@@ -427,10 +427,14 @@ content {
 				}
 
 				div[data-box] {
-					display: flex;
-					flex-direction: column;
+					display: none;
 					height: 100%;
 					border-top: 1px solid rgba(#555, .25);
+
+					&.active {
+						display: flex;
+						flex-direction: column;
+					}
 
 					.box-content-wrapper {
 						flex: 1;
@@ -454,13 +458,11 @@ content {
 					max-width: 220px;
 					//border: 1px solid rgba(#000, .65);
 
-					&.hidden {
-						.nav-cvs,
-						.view-rect {
-							opacity: 0;
-							width: 0;
-							height: 0;
-						}
+					.nav-cvs,
+					.view-rect {
+						opacity: 0;
+						width: 0;
+						height: 0;
 					}
 
 					> div {
@@ -531,6 +533,7 @@ content {
 							width: 15px;
 							height: 15px;
 							transform: translateY(-50%);
+							background-size: 0 0;
 						}
 
 						.info-row {

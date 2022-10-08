@@ -2,28 +2,23 @@
 // vermeer.sidebar.box.histogram
 
 {
-	els: {},
-	toggle(root, state) {
-		if (state === "on") {
-			// fast references
-			this.els.foot = root.find(".box-foot");
-			this.els.rgbIcon = root.find(".box-foot .icon-rgb");
-			this.els.root = root;
+	init() {
+		// fast references
+		let root = window.find(`.sidebar-wrapper .box-body > div[data-box="histogram"]`);
+		// fast references
+		this.els = {
+			foot: root.find(".box-foot"),
+			rgbIcon: root.find(".box-foot .icon-rgb"),
+			root,
+		};
 
-			this.cvs = root.find(".histogram-cvs");
-			this.ctx = this.cvs[0].getContext("2d");
+		this.cvs = root.find(".histogram-cvs");
+		this.ctx = this.cvs[0].getContext("2d");
 
-			// subscribe to events
-			karaqu.on("projector-update", this.dispatch);
+		// subscribe to events
+		karaqu.on("projector-update", this.dispatch);
 
-			this.dispatch({ type: "projector-update" });
-		} else {
-			// clean up
-			this.els = {};
-
-			// unsubscribe to events
-			karaqu.off("projector-update", this.dispatch);
-		}
+		// this.dispatch({ type: "projector-update" });
 	},
 	dispatch(event) {
 		let APP = vermeer,
@@ -37,6 +32,8 @@
 		switch (event.type) {
 			// subscribed events
 			case "projector-update":
+				if (File.oW === undefined) return;
+
 				let d = File.ctx.getImageData(0, 0, File.oW, File.oH).data,
 					rData = Array(256).fill(0),
 					gData = Array(256).fill(0),

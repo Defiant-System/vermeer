@@ -1,12 +1,12 @@
 <Data>
 	<Samples>
-		<i width="600" height="400" path="~/samples/robert-collins.jpg"/>
-		<i width="600" height="400" path="~/samples/matthew-brodeur.jpg"/>
-		<i width="600" height="400" path="~/samples/johannes-andersson.jpg"/>
-		<i width="600" height="400" path="~/samples/brigitte-tohm.jpg"/>
-		<i width="600" height="400" path="~/samples/casey-lee.jpg"/>
-		<i width="600" height="400" path="~/samples/brantley-neal.jpg"/>
-		<i width="600" height="400" path="~/samples/alexander-scott-lambley.jpg"/>
+		<i width="600" height="400" path="robert-collins.jpg"/>
+		<i width="600" height="400" path="matthew-brodeur.jpg"/>
+		<i width="600" height="400" path="johannes-andersson.jpg"/>
+		<i width="600" height="400" path="brigitte-tohm.jpg"/>
+		<i width="600" height="400" path="casey-lee.jpg"/>
+		<i width="600" height="400" path="brantley-neal.jpg"/>
+		<i width="600" height="400" path="alexander-scott-lambley.jpg"/>
 	</Samples>
 	<!-- <Recents>
 		<i name="basketball.png" filepath="/fs/Desktop/images/basketball.png"/>

@@ -4,7 +4,7 @@ import { Editor } from "./classes/editor";
 
 @import "./modules/exif.min.js"
 @import "./classes/file.js"
-@import "./modules/color.js"
+@import "./modules/color.new.js"
 @import "./modules/misc.js"
 @import "./modules/ui.js"
 @import "./modules/files.js"
@@ -43,40 +43,24 @@ const vermeer = {
 		this.editor = new Editor(Projector);
 		// default tool; move
 		this.dispatch({ type: "select-tool", arg: "move" });
-
-		// temp
-		// setTimeout(() => this.els.blankView.find(".recent-file:nth(1)").trigger("click"), 500);
-		// setTimeout(() => this.els.blankView.find(".sample:nth(1)").trigger("click"), 500);
-		// setTimeout(() => this.dispatch({ type: "save-file" }), 700);
 	},
 	dispatch(event) {
 		let Self = vermeer,
-			file,
-			name,
-			pEl,
 			el;
 		switch (event.type) {
 			// system events
 			case "window.init":
-				// reset app by default - show initial view
-				Self.dispatch({ type: "reset-app" });
 				break;
-			case "window.resize":
-				Projector.reset();
-				Projector.file.dispatch({ type: "set-scale" });
-				break;
-			case "window.close":
-				// save recents list to settings
-				window.settings.setItem("recents", Self.blankView.xRecent);
-				// send "kill" signal to workers
-				if (Self.editor) Self.editor.dispose();
-				break;
-			case "open.file":
-				// Files.open(event.path);
-				event.open({ responseType: "blob" })
-					.then(file => Self.dispatch({ type: "prepare-file", file }));
-				break;
+
 			// custom events
+			case "load-samples":
+				// opening image file from application package
+				event.names.map(async name => {
+					// forward event to app
+					let file = await Files.openLocal(`~/samples/${name}`);
+					Self.dispatch({ type: "prepare-file", isSample: true, file });
+				});
+				break;
 			case "prepare-file":
 				if (!event.isSample) {
 					// add file to "recent" list
@@ -95,84 +79,18 @@ const vermeer = {
 					.removeClass("tool-disabled_")
 					.trigger("click");
 				break;
-			case "reset-app":
+			case "show-blank-view":
 				// show blank view
 				Self.els.content.addClass("show-blank-view");
 				break;
-			case "open-file":
-				window.dialog.open({
-					jpg: item => Self.dispatch(item),
-					jpeg: item => Self.dispatch(item),
-					png: item => Self.dispatch(item),
-				});
-				break;
-			case "save-file":
-				file = Files.activeFile;
-				// create blob and save file
-				file.toBlob(file._file.blob.type, .95)
-					.then(blob => window.dialog.save(file._file, blob));
-				break;
-			case "save-file-as":
-				file = Files.activeFile;
-				// pass on available file types
-				window.dialog.saveAs(file._file, {
-					png: () => file.toBlob("image/png"),
-					jpg: () => file.toBlob("image/jpeg", .95),
-					webp: () => file.toBlob("image/webp"),
-				});
-				break;
-			case "close-file":
-				// close file + prepare workspace
-				Files.close();
-				// show blank view
-				Self.els.content.addClass("show-blank-view");
-				// hide sidebar, if needed
-				if (Self.els.tools.sidebar.hasClass("tool-active_")) {
-					Self.els.tools.sidebar.trigger("click");
-				}
-				break;
-			case "open-help":
-				karaqu.shell("fs -u '~/help/index.md'");
-				break;
+			// proxy events
 			case "toggle-sidebar":
 				return Self.sidebar.dispatch(event);
-			case "set-clut":
-				Self.sidebar.box.presets.dispatch(event);
-				break;
-			case "box-head-tab":
-				el = $(event.target);
-				if (el.hasClass("active") || !el.parent().hasClass("box-head")) return;
-				el.parent().find(".active").removeClass("active");
-				el.addClass("active");
-
-				let newBox = window.store(`boxes/box-${el.data("content")}.htm`),
-					oldBox = el.parent().nextAll(".box-body").find("> div[data-box]");
-				
-				// notify box state = off
-				Self.sidebar.box[oldBox.data("box")].toggle(oldBox, "off");
-				// replace box body
-				newBox = oldBox.replace(newBox);
-				// notify box state = on
-				Self.sidebar.box[newBox.data("box")].toggle(newBox, "on");
-				break;
-			case "select-tool":
-				if (TOOLS._active === event.arg) return;
-				
-				if (TOOLS._active) {
-					// disable active tool
-					TOOLS[TOOLS._active].dispatch({ type: "disable" });
-				}
-				if (TOOLS[event.arg]) {
-					// enable tool
-					TOOLS._active = event.arg;
-					TOOLS[TOOLS._active].dispatch({ type: "enable" });
-				}
-				break;
 			default:
 				if (event.el) {
-					pEl = event.el.parents(`div[data-area]`);
+					let pEl = event.el.parents(`div[data-area]`);
 					if (pEl.length) {
-						name = pEl.data("area");
+						let name = pEl.data("area");
 						Self[name].dispatch(event);
 					}
 				}

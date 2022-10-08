@@ -16,6 +16,7 @@
 
 		// temp
 		// setTimeout(() => window.find(`.toolbar-tool_[data-click="toggle-sidebar"]`).trigger("click"), 300);
+		setTimeout(() => window.find(`.box-head div[data-content="info"]`).trigger("click"), 300);
 	},
 	dispatch(event) {
 		let APP = vermeer,
@@ -37,7 +38,7 @@
 				el.addClass("active");
 
 				pEl = el.parents(".sidebar-box");
-				pEl.find(".active").removeClass("active");
+				pEl.find(".box-body .active").removeClass("active");
 				pEl.find(`.box-body > div[data-box="${el.data("content")}"]`).addClass("active");
 				break;
 			default:

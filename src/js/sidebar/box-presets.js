@@ -2,43 +2,27 @@
 // vermeer.sidebar.box.presets
 
 {
-	els: {},
-	toggle(root, state) {
-		if (state === "on") {
-			// fast references
-			this.doc = $(document);
-			this.els.selectEl = root.find(".box-tools .option[data-menu='preset-list'] .value");
-			this.els.compareIcon = root.find(".icon-compare");
-			this.els.compare = vermeer.els.content.find(".compare");
-			this.els.root = root;
+	init() {
+		let root = window.find(`.sidebar .box-body > div[data-box="presets"]`);
+		// fast references
+		this.doc = $(document);
+		this.els = {
+			selectEl: root.find(".box-tools .option[data-menu='preset-list'] .value"),
+			compareIcon: root.find(".icon-compare"),
+			compare: vermeer.els.content.find(".compare"),
+			root,
+		};
 
-			// bind event handlers
-			this.els.compare.on("mousedown", this.compare);
+		// bind event handlers
+		this.els.compare.on("mousedown", this.compare);
 
-			// subscribe to events
-			karaqu.on("select-file", this.dispatch);
-			karaqu.on("projector-zoom", this.dispatch);
-			karaqu.on("projector-pan", this.dispatch);
+		// subscribe to events
+		karaqu.on("select-file", this.dispatch);
+		karaqu.on("projector-zoom", this.dispatch);
+		karaqu.on("projector-pan", this.dispatch);
 
-			if (this.data) {
-				// dispatch if ratio is calculated
-				this.dispatch({ type: "select-file", arg: this.data });
-			}
-
-			// temp
-			//setTimeout(() => this.els.root.find(".icon-compare").trigger("click"), 300);
-		} else {
-			// unbind event handlers
-			if (this.els.compare) this.els.compare.off("mousedown", this.compare);
-
-			// clean up
-			this.els = {};
-
-			// unsubscribe to events
-			karaqu.off("select-file", this.dispatch);
-			karaqu.off("projector-zoom", this.dispatch);
-			karaqu.off("projector-pan", this.dispatch);
-		}
+		// temp
+		//setTimeout(() => this.els.root.find(".icon-compare").trigger("click"), 300);
 	},
 	dispatch(event) {
 		let APP = vermeer,
@@ -58,7 +42,7 @@
 				data = File.config;
 
 				Object.keys(data).map(key => {
-					let el = Self.els.root.find(".control."+ key);
+					let el = Self.els.root.find(`.control.${key}`);
 					if (!el.length) return;
 
 					let knob = el.find(".knob, .pan-knob"),
@@ -138,7 +122,7 @@
 				break;
 			case "set-clut":
 				let xEl = window.bluePrint.selectSingleNode(`//Menu[@arg="${event.arg}"]`);
-				this.els.selectEl.html(xEl.getAttribute("name"));
+				Self.els.selectEl.html(xEl.getAttribute("name"));
 				// update file's clut filename
 				File.config.clutFile = event.arg === "none" ? false : event.arg;
 				// apply config on file / image

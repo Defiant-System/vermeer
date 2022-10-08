@@ -145,6 +145,8 @@ const vermeer = {
 			// proxy events
 			case "toggle-sidebar":
 				return Self.sidebar.dispatch(event);
+			case "set-clut":
+				Self.sidebar.box.presets.dispatch(event);
 			default:
 				if (event.el) {
 					let pEl = event.el.parents(`div[data-area]`);

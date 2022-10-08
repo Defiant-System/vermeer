@@ -6,7 +6,7 @@
 		// fast references
 		this.els = {
 			content: window.find("content"),
-			el: window.find(".sidebar-wrapper"),
+			el: window.find(".sidebar"),
 		};
 		
 		// init all sub-objects

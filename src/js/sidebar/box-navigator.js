@@ -4,7 +4,7 @@
 {
 	init() {
 		// fast references
-		let root = window.find(`.sidebar-wrapper .box-body > div[data-box="navigator"]`);
+		let root = window.find(`.sidebar .box-body > div[data-box="navigator"]`);
 		this.doc = $(document);
 		this.els = {
 			wrapper: root.find(".navigator-wrapper"),
@@ -85,10 +85,11 @@
 				data.top = _max(data.top, 0);
 				data.left = _max(data.left, 0);
 
-				for (let key in data) data[key] = _round(data[key]) +"px";
+				for (let key in data) data[key] = _round(data[key]);
 				Self.els.zoomRect.css(data);
 				break;
 			case "projector-update":
+				if (!Self.navWidth) return;
 				Self.els.wrapper.css({ width: Self.navWidth +"px" });
 				Self.cvs.prop({ width: Self.navWidth, height: Self.navHeight });
 				Self.ctx.drawImage(File.cvs[0], 0, 0, Self.navWidth, Self.navHeight);
@@ -112,42 +113,41 @@
 				Self.els.zoomSlider.val(value).trigger("input");
 				break;
 			case "pan-canvas":
-				top = _round((event.y / event.max.y) * event.max.h) + Proj.aY;
-				left = _round((event.x / event.max.x) * event.max.w) + Proj.aX;
+				top = _round((event.top / event.max.y) * event.max.h) + Proj.aY;
+				left = _round((event.left / event.max.x) * event.max.w) + Proj.aX;
 				//if (isNaN(top) || isNaN(left)) return;
 
 				// forward event to canvas
-				File.dispatch({ type: "pan-canvas", top, left });
+				File.dispatch({ type: "pan-canvas", top, left, noEmit: 1 });
 				break;
 		}
 	},
 	pan(event) {
 		let APP = vermeer,
 			Self = APP.sidebar.box.navigator,
-			Drag = Self.drag,
-			Proj = Projector,
-			File = Proj.file,
-			_max = Math.max,
-			_min = Math.min,
-			x, y,
-			el;
+			Drag = Self.drag;
 		switch (event.type) {
 			case "mousedown":
 				// prevent default behaviour
 				event.preventDefault();
 				// prepare drag object
-				el = $(event.target);
+				let el = $(event.target),
+					Proj = Projector;
+				// console.log( el.parent().prop("offsetHeight"), el.prop("offsetHeight") );
 				Self.drag = {
 					el,
+					file: Proj.file,
 					clickX: +el.prop("offsetLeft") - event.clientX,
 					clickY: +el.prop("offsetTop") - event.clientY,
 					min: { x: 0, y: 0 },
 					max: {
 						x: +el.parent().prop("offsetWidth") - +el.prop("offsetWidth"),
-						y: +el.parent().prop("offsetHeight") - +el.prop("offsetHeight") - 2,
-						w: Proj.aW - File.width,
-						h: Proj.aH - File.height,
-					}
+						y: +el.parent().prop("offsetHeight") - +el.prop("offsetHeight"),
+						w: Proj.aW - Proj.file.width,
+						h: Proj.aH - Proj.file.height,
+					},
+					_max: Math.max,
+					_min: Math.min,
 				};
 				// prevent mouse from triggering mouseover
 				APP.els.content.addClass("cover");
@@ -155,12 +155,13 @@
 				Self.doc.on("mousemove mouseup", Self.pan);
 				break;
 			case "mousemove":
-				x = _min(_max(event.clientX + Drag.clickX, Drag.min.x), Drag.max.x);
-				y = _min(_max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
+				let left = Drag._min(Drag._max(event.clientX + Drag.clickX, Drag.min.x), Drag.max.x),
+					top = Drag._min(Drag._max(event.clientY + Drag.clickY, Drag.min.y), Drag.max.y);
+				// console.log( top, left );
 				// moves navigator view rectangle
-				Drag.el.css({ top: y +"px", left: x +"px" });
+				Drag.el.css({ top, left });
 				// emit pan-event
-				Self.dispatch({ type: "pan-canvas", ...Drag, x, y, skipEmit: true });
+				Self.dispatch({ type: "pan-canvas", ...Drag, left, top });
 				break;
 			case "mouseup":
 				// remove class

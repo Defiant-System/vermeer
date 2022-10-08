@@ -50,6 +50,23 @@ const vermeer = {
 		switch (event.type) {
 			// system events
 			case "window.init":
+				// reset app by default - show initial view
+				Self.dispatch({ type: "show-blank-view" });
+				break;
+			case "window.resize":
+				Projector.reset();
+				Projector.file.dispatch({ type: "set-scale" });
+				break;
+			case "window.close":
+				// save recents list to settings
+				window.settings.setItem("recents", Self.blankView.xRecent);
+				// send "kill" signal to workers
+				if (Self.editor) Self.editor.dispose();
+				break;
+			case "open.file":
+				// Files.open(event.path);
+				event.open({ responseType: "blob" })
+					.then(file => Self.dispatch({ type: "prepare-file", file }));
 				break;
 
 			// custom events
@@ -82,6 +99,48 @@ const vermeer = {
 			case "show-blank-view":
 				// show blank view
 				Self.els.content.addClass("show-blank-view");
+				break;
+			case "save-file":
+				file = Files.activeFile;
+				// create blob and save file
+				file.toBlob(file._file.blob.type, .95)
+					.then(blob => window.dialog.save(file._file, blob));
+				break;
+			case "save-file-as":
+				file = Files.activeFile;
+				// pass on available file types
+				window.dialog.saveAs(file._file, {
+					png: () => file.toBlob("image/png"),
+					jpg: () => file.toBlob("image/jpeg", .95),
+					webp: () => file.toBlob("image/webp"),
+				});
+				break;
+			case "close-file":
+				// close file + prepare workspace
+				Files.close();
+				// show blank view
+				Self.els.content.addClass("show-blank-view");
+				// hide sidebar, if needed
+				if (Self.els.tools.sidebar.hasClass("tool-active_")) {
+					Self.els.tools.sidebar.trigger("click");
+				}
+				break;
+			case "open-help":
+				karaqu.shell("fs -u '~/help/index.md'");
+				break;
+				
+			case "select-tool":
+				if (TOOLS._active === event.arg) return;
+				
+				if (TOOLS._active) {
+					// disable active tool
+					TOOLS[TOOLS._active].dispatch({ type: "disable" });
+				}
+				if (TOOLS[event.arg]) {
+					// enable tool
+					TOOLS._active = event.arg;
+					TOOLS[TOOLS._active].dispatch({ type: "enable" });
+				}
 				break;
 			// proxy events
 			case "toggle-sidebar":

@@ -4,7 +4,7 @@
 {
 	init() {
 		// fast references
-		let root = window.find(`.sidebar-wrapper .box-body > div[data-box="histogram"]`);
+		let root = window.find(`.sidebar .box-body > div[data-box="histogram"]`);
 		// fast references
 		this.els = {
 			foot: root.find(".box-foot"),

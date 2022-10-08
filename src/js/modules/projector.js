@@ -4,7 +4,7 @@ const Projector = {
 		// fast references
 		this.doc = $(document);
 		this.els = {
-			sideBar: window.find(".sidebar-wrapper"),
+			sideBar: window.find(".sidebar"),
 		};
 		// canvas
 		this.cvs = window.find(".cvs-wrapper .canvas");

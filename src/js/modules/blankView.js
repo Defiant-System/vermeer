@@ -30,7 +30,7 @@
 				window.render({
 					template: "blank-view",
 					match: `//Data`,
-					target: vermeer.els.blankView
+					target: this.els.el
 				});
 
 				// setTimeout(() => window.find(".sample:nth(0)").trigger("click"), 100);

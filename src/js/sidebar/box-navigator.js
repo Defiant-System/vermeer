@@ -15,7 +15,7 @@
 		};
 
 		this.cvs = root.find(".nav-cvs");
-		this.ctx = this.cvs[0].getContext("2d");
+		this.ctx = this.cvs[0].getContext("2d", { willReadFrequently: true });
 
 		// available height
 		this.navHeight = this.els.wrapper.height();

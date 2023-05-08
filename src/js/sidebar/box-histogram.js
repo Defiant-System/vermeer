@@ -13,7 +13,7 @@
 		};
 
 		this.cvs = root.find(".histogram-cvs");
-		this.ctx = this.cvs[0].getContext("2d");
+		this.ctx = this.cvs[0].getContext("2d", { willReadFrequently: true });
 
 		// subscribe to events
 		karaqu.on("projector-update", this.dispatch);

@@ -4,7 +4,7 @@ import { processImage } from "../modules/image-processing";
 export default class CanvasProcessor {
 	constructor(canvas) {
 		this.canvas = canvas;
-		this.ctx = this.canvas.getContext("2d");
+		this.ctx = this.canvas.getContext("2d", { willReadFrequently: true });
 	}
 
 	static isSupported() {

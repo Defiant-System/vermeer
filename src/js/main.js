@@ -70,6 +70,12 @@ const vermeer = {
 				break;
 
 			// custom events
+			case "open-filesystem":
+				window.dialog.open({
+					png: fsItem => Self.dispatch(fsItem),
+					jpg: fsItem => Self.dispatch(fsItem),
+				});
+				break;
 			case "load-samples":
 				// opening image file from application package
 				event.names.map(async name => {

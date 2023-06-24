@@ -55,7 +55,9 @@ const vermeer = {
 				break;
 			case "window.resize":
 				Projector.reset();
-				Projector.file.dispatch({ type: "set-scale" });
+				if (Projector.file) {
+					Projector.file.dispatch({ type: "set-scale" });
+				}
 				break;
 			case "window.close":
 				// save recents list to settings

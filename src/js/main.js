@@ -157,7 +157,7 @@ const vermeer = {
 				Self.sidebar.box.presets.dispatch(event);
 			default:
 				if (event.el) {
-					let pEl = event.el.parents(`div[data-area]`);
+					let pEl = event.el.parents(`[data-area]`);
 					if (pEl.length) {
 						let name = pEl.data("area");
 						Self[name].dispatch(event);

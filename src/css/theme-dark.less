@@ -16,6 +16,11 @@
 				}
 			}
 		}
+
+		sidebar {
+			
+		}
+
 	}
 
 	.blank-view {
@@ -63,6 +68,110 @@
 				box-shadow: 0 0 0 3px rgba(0,0,0,.1),
 							inset 0 0 0 2px rgba(0,0,0,.05);
 			}
+		}
+	}
+
+	sidebar {
+		background: rgba(#fff,.025);
+		overflow: visible;
+	
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 1px;
+			opacity: .35;
+			background: linear-gradient(0deg, transparent 0%, #fff 50%, transparent 100%);
+			mix-blend-mode: overlay;
+		}
+
+		&:after {
+			left: -1px;
+			border-color: rgba(#000,.4);
+		}
+
+		.sidebar-box {
+			border-top-color: rgba(#111,.25);
+			border-top-width: 1px;
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 1px;
+				opacity: .35;
+				background: linear-gradient(90deg, transparent 0%, #fff 50%, transparent 100%);
+				mix-blend-mode: overlay;
+			}
+
+			.box-head {
+				> div {
+					color: #ccc;
+					text-shadow: 0 1px 0 rgba(#111,.25);
+
+					&.active {
+						color: #eee;
+						text-shadow: 0 1px 0 rgba(#111,.25);
+					}
+				}
+			}
+
+			.box-body {
+				div[data-box] {
+					border-top-color: rgba(#111,.25);
+
+					&:before {
+						content: "";
+						position: absolute;
+						top: 1px;
+						left: 0;
+						right: 0;
+						height: 1px;
+						opacity: .175;
+						background: linear-gradient(90deg, transparent 0%, #fff 50%, transparent 100%);
+						mix-blend-mode: overlay;
+					}
+				}
+			}
+
+			.box-foot {
+				background: rgba(#111, .1);
+				border-top-color: rgba(#111,.25);
+				
+				.icon {
+					filter: invert(1) brightness(2) drop-shadow(0 1px 0 rgba(#111,.35));
+
+					&:after {
+						opacity: .5;
+					}
+				}
+			}
+		}
+
+		.control {
+			background: rgba(#fff,.15);
+
+			span {
+				&:nth-child(1) {
+					color: #eee;
+					text-shadow: 0 1px 0 rgba(#111,.35);
+				}
+
+				&:nth-child(3) {
+					color: #bbb;
+					text-shadow: 0 1px 0 rgba(#111,.35);
+				}
+			}
+		}
+
+		.pan-knob,
+		.knob {
+			filter: hue-rotate(310deg) invert(1) drop-shadow(0 1px 0 #000);
+			mix-blend-mode: color-dodge;
 		}
 	}
 }

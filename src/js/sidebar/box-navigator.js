@@ -4,7 +4,7 @@
 {
 	init() {
 		// fast references
-		let root = window.find(`.sidebar .box-body > div[data-box="navigator"]`);
+		let root = window.find(`sidebar .box-body > div[data-box="navigator"]`);
 		this.doc = $(document);
 		this.els = {
 			wrapper: root.find(".navigator-wrapper"),

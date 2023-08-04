@@ -3,7 +3,7 @@
 
 {
 	init() {
-		let root = window.find(`.sidebar .box-body > div[data-box="presets"]`);
+		let root = window.find(`sidebar .box-body > div[data-box="presets"]`);
 		// fast references
 		this.doc = $(document);
 		this.els = {

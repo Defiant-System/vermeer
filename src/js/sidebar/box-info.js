@@ -3,7 +3,7 @@
 
 {
 	init() {
-		let root = window.find(`.sidebar .box-body > div[data-box="info"]`);
+		let root = window.find(`sidebar .box-body > div[data-box="info"]`);
 		// fast references
 		this.els = {
 			hslH: root.find(".value.hslH"),

@@ -17,9 +17,9 @@
 		this.els.compare.on("mousedown", this.compare);
 
 		// subscribe to events
-		karaqu.on("select-file", this.dispatch);
-		karaqu.on("projector-zoom", this.dispatch);
-		karaqu.on("projector-pan", this.dispatch);
+		window.on("select-file", this.dispatch);
+		window.on("projector-zoom", this.dispatch);
+		window.on("projector-pan", this.dispatch);
 
 		// temp
 		//setTimeout(() => this.els.root.find(".icon-compare").trigger("click"), 300);
@@ -186,7 +186,7 @@
 				Drag.el.css({ top: cY +"px", left: cX +"px" });
 
 				// broadcast event
-				karaqu.emit("mouse-move", { cX, cY });
+				window.emit("mouse-move", { cX, cY });
 
 				// Projector -> render comparison
 				Proj.comparison.cX = cX - Drag.min.x;

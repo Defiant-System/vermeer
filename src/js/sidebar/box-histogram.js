@@ -16,7 +16,7 @@
 		this.ctx = this.cvs[0].getContext("2d", { willReadFrequently: true });
 
 		// subscribe to events
-		karaqu.on("projector-update", this.dispatch);
+		window.on("projector-update", this.dispatch);
 
 		// this.dispatch({ type: "projector-update" });
 	},

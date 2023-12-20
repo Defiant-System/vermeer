@@ -20,7 +20,7 @@
 		};
 
 		// subscribe to events
-		karaqu.on("mouse-move", this.dispatch);
+		window.on("mouse-move", this.dispatch);
 	},
 	dispatch(event) {
 		let APP = vermeer,

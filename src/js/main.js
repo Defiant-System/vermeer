@@ -9,6 +9,7 @@ import { Editor } from "./classes/editor";
 @import "./modules/ui.js"
 @import "./modules/files.js"
 @import "./modules/projector.js"
+@import "./modules/test.js"
 
 
 const TOOLS = {
@@ -43,6 +44,10 @@ const vermeer = {
 		this.editor = new Editor(Projector);
 		// default tool; move
 		this.dispatch({ type: "select-tool", arg: "move" });
+
+		// DEV-ONLY-START
+		Test.init(this);
+		// DEV-ONLY-END
 	},
 	dispatch(event) {
 		let Self = vermeer,

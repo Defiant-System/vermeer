@@ -40,7 +40,8 @@
 					background: #ab6d4712 radial-gradient(circle at top center, #ab6d4754 0, transparent 90%);
 					box-shadow: 0 0 0;
 
-					.knob {
+					.knob,
+					.pan-knob {
 						filter: hue-rotate(240deg) invert(1) saturate(1.5) brightness(1.25) drop-shadow(0 1px 0 #000);
 					}
 
@@ -94,6 +95,25 @@
 				.box-tools {
 					background: #509b4d33;
 				}
+
+				.control {
+					background: #8cc98d12 radial-gradient(circle at top center, #5dac598f 0, transparent 90%);
+					box-shadow: 0 0 0;
+
+					.knob,
+					.pan-knob {
+						filter: hue-rotate(170deg) invert(1) saturate(1.5) brightness(1.15) drop-shadow(0 1px 0 #000);
+					}
+
+					span.label {
+						color: #d4ffd9;
+					}
+
+					span.value {
+						background: rgba(#000,.125);
+						color: #d4ffd9;
+					}
+				}
 			}
 		}
 	}
@@ -140,7 +160,8 @@
 					background: #f2d8ff12 radial-gradient(circle at top center, #9a59acbb 0, transparent 90%);
 					box-shadow: 0 0 0;
 
-					.knob {
+					.knob,
+					.pan-knob {
 						filter: hue-rotate(240deg) invert(1) saturate(1.5) brightness(1.25) drop-shadow(0 1px 0 #000);
 					}
 

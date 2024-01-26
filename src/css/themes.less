@@ -61,7 +61,55 @@
 
 [data-ui="royale-black"] {
 	.win-body_ content {
-		
+		sidebar {
+			background: #242252;
+
+			.sidebar-box {
+				background: #242252 radial-gradient(circle at top center, #535099 0, transparent 90%);
+
+				.box-head {
+					background: radial-gradient(ellipse at bottom center, #38b3ff63, transparent 60%),
+								radial-gradient(ellipse at top center, #1f6b8347, transparent 50%),
+								linear-gradient(180deg, #53516f 0px, #2c294b 12px, #1e1c44 13px, #141438 24px);
+
+					> div {
+						color: #b4b7ec9e;
+
+						&:not(:first-child) {
+							border-left: 1px solid #d1c9ff12;
+						}
+
+						&.active {
+							background: transparent;
+							color: #e6f4ff;
+						}
+					}
+				}
+
+				.box-tools {
+					background: #5f5caa61;
+				}
+
+				.control {
+					background: #8c9ac912 radial-gradient(circle at top center, #5961ac8f 0, transparent 90%);
+					box-shadow: 0 0 0;
+
+					.knob,
+					.pan-knob {
+						filter: hue-rotate(170deg) invert(1) saturate(1.5) brightness(1.15) drop-shadow(0 1px 0 #000);
+					}
+
+					span.label {
+						color: #d4dcff;
+					}
+
+					span.value {
+						background: rgba(#000,.125);
+						color: #d4dcff;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -121,7 +169,70 @@
 
 [data-ui="royale-pink"] {
 	.win-body_ content {
-		
+		sidebar {
+			background: #f4a7ff;
+			border-left-color: #a13e9570;
+
+			&:before {
+				left: -2px;
+			}
+
+			&:after {
+				display: none;
+			}
+
+			.sidebar-box {
+				background: #f4a7ff radial-gradient(circle at top center, #d080c6 0, transparent 90%);
+
+				.box-head {
+					background: radial-gradient(ellipse at bottom center, #ffdaffcc,transparent 70%),
+								linear-gradient(180deg, #f7c8ff 0px, #f9a1ff 12px, #e381f9 13px, #f25dff 24px);
+
+					> div {
+						color: #fdf4ffe6;
+
+						&:not(:first-child) {
+							border-left: 1px solid #ffc9f275;
+						}
+
+						&.active {
+							background: transparent;
+							color: #fff;
+						}
+					}
+				}
+
+				.box-tools {
+					background: #ffccff36;
+				}
+
+				.box-foot {
+					.icon:after {
+						opacity: .75;
+						filter: none;
+					}
+				}
+
+				.control {
+					background: #bd7fb840 radial-gradient(circle at top center, #fdccff85 0, transparent 90%);
+					box-shadow: 0 0 0;
+
+					.knob,
+					.pan-knob {
+						filter: hue-rotate(170deg) invert(.1) saturate(5) brightness(.25) drop-shadow(0 1px 0 #000);
+					}
+
+					span.label {
+						color: #fdf4ffe6;
+					}
+
+					span.value {
+						background: rgba(#000,.1);
+						color: #fdf4ffe6;
+					}
+				}
+			}
+		}
 	}
 }
 

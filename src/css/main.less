@@ -127,7 +127,7 @@ content {
 			height: 37px;
 			border-radius: 50%;
 			border: 2px solid #fff;
-			background: rgba(255,255,255,.4);
+			background: rgba(#fff,.4);
 			box-shadow: 0 2px 4px rgba(0,0,0,.35);
 			cursor: col-resize;
 
@@ -225,9 +225,9 @@ content {
 					border-right: 1px solid rgba(#000, .15);
 
 					&.active {
-						background: rgba(255,255,255,0.25);
+						background: rgba(#fff,0.25);
 						color: #555;
-						text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+						text-shadow: 0 1px 0 rgba(#fff,0.5);
 						//border-right: 1px solid rgba(#000, .2);
 					}
 				}
@@ -397,7 +397,7 @@ content {
 
 				.presets-wrapper {
 					.box-content-body {
-						padding: 8px 9px;
+						padding: 8px 0 8px 9px;
 						font-size: 0;
 					}
 				}
@@ -502,19 +502,20 @@ content {
 						margin: 0 7px;
 						height: 16px;
 
-						&::-webkit-slider-thumb {
-							//background: #9aa;
-							box-shadow: 0 0 0 1px #aaa;
-							height: 10px;
-							width: 10px;
-							margin-top: -4px;
-							border: 0;
-						}
-						&::-webkit-slider-runnable-track {
-							//background: #f90;
-							height: 2px;
-							//box-shadow: 0 1px 0 rgba(#000, 0.2)
-						}
+						// &::-webkit-slider-thumb {
+						// 	//background: #9aa;
+						// 	box-shadow: 0 0 0 1px #aaa;
+						// 	height: 10px;
+						// 	width: 10px;
+						// 	margin-top: -4px;
+						// 	border: 0;
+						// }
+						
+						// &::-webkit-slider-runnable-track {
+						// 	//background: #f90;
+						// 	height: 2px;
+						// 	//box-shadow: 0 1px 0 rgba(#000, 0.2)
+						// }
 					}
 				}
 			}
@@ -551,7 +552,7 @@ content {
 				flex: 1;
 				background: linear-gradient(to bottom, rgba(235,235,235,.55), rgba(170,170,170,.35));
 				box-shadow: inset 0 0 0 1px rgba(60,60,60,.3),
-							inset 0 2px 0 rgba(255,255,255,.3),
+							inset 0 2px 0 rgba(#fff,.3),
 							0 1px 1px rgba(0,0,0,.05);
 
 				&:before {
@@ -584,12 +585,12 @@ content {
 			width: 67px;
 			//height: 85px;
 			border-radius: 5px;
-			margin: 0 6px 6px 0;
+			margin: 0 7px 7px 0;
 			padding: 5px;
 			font-size: 11px;
 			text-align: center;
 			box-shadow: inset 0 0 0 1px rgba(60,60,60,.3),
-						inset 0 2px 0 rgba(255,255,255,.3),
+						inset 0 2px 0 rgba(#fff,.3),
 						0 1px 1px rgba(0,0,0,.05);
 
 			&:not(.temperature) {
@@ -639,7 +640,7 @@ content {
 		font-weight: 100;
 		color: #69e;
 		text-shadow: 0 0 0;
-		filter: drop-shadow(0 1px 0 rgba(255,255,255,.75));
+		filter: drop-shadow(0 1px 0 rgba(#fff,.75));
 		//background-color: rgba(0,0,0,.1);
 
 		&[data-label]:before {
@@ -723,7 +724,7 @@ content {
 		margin: 1px 3px 0;
 		background: url(~/icons/pan-knob.png) no-repeat;
 		background-size: 100% auto;
-		filter: drop-shadow(0 1px 0 rgba(255,255,255,.75));
+		filter: drop-shadow(0 1px 0 rgba(#fff,.75));
 
 		&:before {
 			content: "";

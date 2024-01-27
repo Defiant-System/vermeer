@@ -30,6 +30,18 @@
 			case "toggle-sidebar":
 				value = Self.els.content.hasClass("show-sidebar");
 				Self.els.content.toggleClass("show-sidebar", value);
+
+				// fake event listener
+				Self.els.el.cssSequence("tmp", "transitionend", el => {
+					// clean up
+					el.removeClass("tmp");
+					// center canvas
+					if (Projector.file) {
+						Projector.reset(Projector.file);
+						Projector.file.dispatch({ type: "set-scale" });
+					}
+				});
+
 				return !value;
 			case "box-head-tab":
 				el = $(event.target);

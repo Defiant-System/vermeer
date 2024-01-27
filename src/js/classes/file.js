@@ -97,8 +97,8 @@ class File {
 			case "set-scale":
 				// scaled dimension
 				this.scale = event.scale || this.scale;
-				this.width = this.oW * this.scale;
-				this.height = this.oH * this.scale;
+				this.width = Math.round(this.oW * this.scale);
+				this.height = Math.round(this.oH * this.scale);
 
 				// origo
 				this.oX = Math.round(Proj.cX - (this.width / 2));

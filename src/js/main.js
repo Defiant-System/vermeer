@@ -62,6 +62,7 @@ const vermeer = {
 			case "window.resize":
 				Projector.reset();
 				if (Projector.file) {
+					Projector.reset(Projector.file);
 					Projector.file.dispatch({ type: "set-scale" });
 				}
 				break;

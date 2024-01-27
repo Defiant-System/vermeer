@@ -52,8 +52,8 @@ const Projector = {
 	},
 	renderFrame(file) {
 		// pre-render frame
-		let w = file.oW * file.scale,
-			h = file.oH * file.scale,
+		let w = Math.round(file.oW * file.scale),
+			h = Math.round(file.oH * file.scale),
 			oX = file.oX || Math.round(this.cX - (w / 2)),
 			oY = file.oY || Math.round(this.cY - (h / 2));
 		
@@ -73,13 +73,16 @@ const Projector = {
 		this.file = file || this.file;
 		// reset canvases
 		this.cvs.prop({ width: window.width, height: window.height });
+		
+		let width = vermeer.els.content.hasClass("show-sidebar") ? 233 : 0;
+
 		// available dimensions
 		this.aX = 0;
 		this.aY = 0;
-		this.aW = window.innerWidth - this.aX - this.els.sideBar.width();
+		this.aW = window.innerWidth - this.aX - width;
 		this.aH = window.innerHeight - this.aY;
 		// center
-		this.cX = (window.innerWidth + this.aX - this.els.sideBar.width()) / 2;
+		this.cX = (window.innerWidth + this.aX - width) / 2;
 		this.cY = (window.innerHeight + this.aY) / 2;
 		// pre-render frame
 		if (this.file) this.renderFrame(this.file);

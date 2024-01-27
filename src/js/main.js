@@ -51,6 +51,7 @@ const vermeer = {
 	},
 	dispatch(event) {
 		let Self = vermeer,
+			file,
 			el;
 		switch (event.type) {
 			// system events

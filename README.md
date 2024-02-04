@@ -1,1 +1,2 @@
-# Vermeer - Film Simulator
+# Vermeer
+<img src="public/icon.svg" width=200 height=200>

@@ -394,6 +394,6 @@
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>
 		<Menu type="divider"/>
-		<Menu name="Source Code"/>
+		<Menu name="License" shell="win -al"/>
 	</Menu>
 </MenuBar>

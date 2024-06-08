@@ -158,6 +158,9 @@ const vermeer = {
 				}
 				break;
 			// proxy events
+			case "toggle-compare":
+				return Self.sidebar.box.presets.dispatch(event);
+				break;
 			case "toggle-sidebar":
 				return Self.sidebar.dispatch(event);
 			case "set-clut":

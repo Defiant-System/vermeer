@@ -1,6 +1,7 @@
 <CaptionToolBar>
 	<Group width="75%"/>
 	<Group width="25%">
+		<Tool symbol="icon-tool-compare" click="toggle-compare"/>
 		<Tool symbol="icon-cog" click="toggle-sidebar" state="disabled"/>
 	</Group>
 </CaptionToolBar>

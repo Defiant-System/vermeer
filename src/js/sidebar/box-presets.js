@@ -76,9 +76,18 @@
 				Proj.render();
 				break;
 			// custom events
+			case "toggle-compare":
+				el = Self.els.root.find(`.icon[data-click="compare-image"]`);
+				/* falls through */
 			case "compare-image":
-				isOn = event.el.hasClass("active");
-				event.el.toggleClass("active", isOn);
+				el = el || event.el;
+				isOn = el.hasClass("active");
+				el.toggleClass("active", isOn);
+
+				if (event.el.hasClass("icon-compare")) {
+					// toggle toolbar too, if event is not originated in toolbar
+					window.find(`.toolbar-tool_[data-click="toggle-compare"]`).toggleClass("tool-active_", isOn);
+				}
 
 				Self.els.compare.toggleClass("active", isOn)
 
@@ -95,7 +104,7 @@
 					cX: +Self.els.compare.prop("offsetLeft") - File.oX + (rect.width / 2),
 				};
 				Proj.render();
-				break;
+				return !isOn;
 			case "save-values":
 				break;
 			case "reset-values":

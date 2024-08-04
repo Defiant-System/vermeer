@@ -73,7 +73,7 @@ const Projector = {
 		this.file = file || this.file;
 		// reset canvases
 		this.cvs.prop({ width: window.width, height: window.height });
-		
+
 		let width = vermeer.els.content.hasClass("show-sidebar") ? 233 : 0;
 
 		// available dimensions
@@ -102,7 +102,7 @@ const Projector = {
 		this.ctx.translate(file.oX, file.oY);
 		this.ctx.drawImage(file.cvs[0], 0, 0, file.width, file.height);
 
-		if (this.comparison.isOn) {
+		if (this.comparison.isOn && file.img) {
 			let cX = this.comparison.cX,
 				x1 = cX / file.scale,
 				y1 = 0,

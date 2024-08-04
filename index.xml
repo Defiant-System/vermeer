@@ -4,7 +4,7 @@
 	</Build>
 	<Head>
 		<meta name="id" value="vermeer"/>
-		<meta name="title" value="Vermeer" version="1.46"/>
+		<meta name="title" value="Vermeer" version="1.47"/>
 		<meta name="author" value="Jan Wagner" namespace="ant" ported="Hakan Bilgin"/>
 		<meta name="license" value="AGPL-3.0"/>
 		<meta name="repository" value="https://github.com/Defiant-System/vermeer"/>

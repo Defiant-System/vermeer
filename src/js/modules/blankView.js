@@ -22,12 +22,12 @@
 					xItem.parentNode.removeChild(xItem)
 				}
 			}))
-			.then(() => {
+			.then(async () => {
 				// add recent files in to data-section
 				xSamples.parentNode.append(this.xRecent);
 
 				// render blank view
-				window.render({
+				await window.render({
 					template: "blank-view",
 					match: `//Data`,
 					target: this.els.el
